@@ -13,13 +13,13 @@ export default function Login() {
         </div>
         <div className="inputs">
           <div className="form-title">Login</div>
-          <input className="login-input" type="text" placeholder=" Email" />
-          <input className="password-input" type="password" placeholder=" Senha" />
+          <input className="login-input" type="text" placeholder="Email" />
+          <input className="password-input" type="password" placeholder="Senha" />
         </div>
         <button className="login-button">Login</button>
       </div>
       <div className="login-logo">
-        <img src={LoginLogo} alt="Login image" />
+        <img src={LoginLogo} alt="Login Logo" />
       </div>
     </div>
   );
