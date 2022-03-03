@@ -1,15 +1,15 @@
 import React from "react";
 
 import LoginLogo from "../../assets/LoginLogo.png";
+import ProjectLogo from "../../assets/ProjectLogo.png"
 import "./styles.css";
 
 export default function Login() {
   return (
     <div className="login_page_container">
       <div className="login-form-container">
-        <div className="titles">
-          <div className="title-1">O Povo</div>
-          <div className="title-2">REQUER</div>
+        <div className="form-logo">
+        <img src={ProjectLogo} alt="Projetc Logo" />
         </div>
         <div className="inputs">
           <div className="form-title">Login</div>
