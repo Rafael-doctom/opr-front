@@ -14,11 +14,11 @@
   text-align: center;
 }
 
-.form-logo{
-  height: 24vh ;
+.form-logo {
+  height: 24vh;
 }
 
-.form-logo img{
+.form-logo img {
   width: 10.5vw;
   margin-top: 2vh;
 }
@@ -33,7 +33,6 @@
 .form-title {
   font-size: 35px;
   font-weight: 400;
-  /*margin-top: 24px;*/
   font-family: "Roboto Condensed", sans-serif;
 }
 
@@ -80,4 +79,45 @@
 
 .login-logo img {
   width: 34vw;
+}
+
+/*Responsive css*/
+
+@media (max-width: 1640px) {
+  .login-form-container {
+    min-width: 410px;
+  }
+
+  .inputs {
+    min-width: 370px;
+  }
+
+  .form-logo img {
+    min-width: 170px;
+  }
+}
+
+@media (max-width: 900px) {
+  .login_page_container {
+    display: grid;
+    justify-content: center;
+  }
+
+  .login-form-container {
+    max-height: 735px;
+    margin-bottom: 20px;
+    margin-top: 5vh;
+  }
+
+  .form-logo {
+    max-height: 220px;
+  }
+
+  .inputs {
+    max-height: 270px;
+  }
+
+  .login-logo img {
+    min-width: 310px;
+  }
 }
