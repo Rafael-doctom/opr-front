@@ -14,9 +14,17 @@ export default function Login() {
         <div className="inputs">
           <div className="form-title">Login</div>
           <input className="login-input" type="text" placeholder="Email" />
-          <input className="password-input" type="password" placeholder="Senha" />
+          <input className="password-input" type="password" placeholder="Senha"/>
         </div>
         <button className="login-button">Login</button>
+        <div className="login-links">
+          <a className="forgot-my-password-link" href="#">
+            Esqueci minha senha
+          </a>
+          <a className="register-link" href="/register">
+            Ainda não tenho cadastro
+          </a>
+        </div>
       </div>
       <div className="login-logo">
         <img src={LoginLogo} alt="Login Logo" />

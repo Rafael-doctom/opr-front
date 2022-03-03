@@ -21,19 +21,19 @@
 
 .title-1 {
   margin-bottom: 0;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .title-2 {
   font-weight: bold;
   font-size: 40px;
   color: #0a68f4;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .inputs {
-  height: 50%;
-  width: 85%;
+  width: 21.5vw;
+  height: 37vh;
   display: grid;
   margin: auto;
 }
@@ -42,31 +42,48 @@
   font-size: 35px;
   font-weight: 400;
   margin-top: 54px;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
-.login-input, .password-input, .login-button{
-    font-size: 30px;
-    border:0;
-    font-family: 'Roboto Condensed', sans-serif;
+.login-input,
+.password-input,
+.login-button {
+  font-size: 30px;
+  border: 0;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
-.login-input, .password-input{
-    background-color: #EEEEEE;
-    height: 60px;
-    font-weight: 300;
-    padding-left: 15px;
+.login-input,
+.password-input {
+  background-color: #eeeeee;
+  height: 60px;
+  font-weight: 300;
+  padding-left: 15px;
 }
 
-.login-button{
-    width: 85%;
-    height: 67px;
-    background-color: #0A68F4;
-    border-radius: 10px;
-    color: #ffffff;
-    font-weight: 700;
+.login-button {
+  width: 85%;
+  height: 67px;
+  background-color: #0a68f4;
+  border-radius: 10px;
+  color: #ffffff;
+  font-weight: 700;
 }
 
-.login-logo {
-  width: 635px;
+.login-links {
+  display: grid;
+  margin-top: 2vh;
+  font-size: 20px;
+  font-weight: 400;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.register-link,
+.forgot-my-password-link {
+  color: #0a68f4;
+  text-decoration: none;
+}
+
+.login-logo img {
+  width: 34vw;
 }
