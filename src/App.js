@@ -9,9 +9,7 @@ function App() {
     document.title = "O Povo Requer"
   }, [])
 
-  return (
-    <AppRoutes />
-  );
+  return <AppRoutes />;
 }
 
 export default App;

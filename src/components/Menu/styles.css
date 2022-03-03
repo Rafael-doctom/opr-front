@@ -1,0 +1,106 @@
+.makeStyles-menuButton-4 {
+  width: 57px !important;
+  background: #0A68F4 !important;
+  margin: 0 !important;
+}
+
+.MuiIconButton-root {
+  border-radius: 0 !important;
+}
+
+.makeStyles-drawerOpen-7 {
+  width: 350px !important;
+  height: 100% !important;
+  justify-content: space-between !important;
+  overflow: hidden !important;
+}
+
+.makeStyles-toolbar-9 {
+  min-height: 0 !important;
+}
+
+.MuiSvgIcon-root {
+  color: #FFF;
+}
+
+.MuiList-padding > a {
+  color: #FFF;
+  text-decoration: none;
+}
+
+.boxProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.boxProfile > h4 {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 16px;
+  margin: 15px;
+}
+
+.boxProfile > button {
+  font-weight: lighter;
+  font-size: 16px;
+  line-height: 14px;
+  color: #DFDFDF;
+
+  background: none;
+  border: none;
+}
+
+.exitOpen {
+  align-self: center;
+}
+
+.MuiList-padding {
+  padding: 2px 0 !important;
+}
+
+.groupOptionsOpen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.groupOptionsClose {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+}
+
+.avatar {
+  width: 110px !important;
+  height: 110px !important;
+}
+
+@media(min-width: 600px) {
+  .makeStyles-drawerClose-8 {
+    width: 57px !important;
+  }
+}
+
+@media(max-width: 850px){
+  .groupOptionsClose, .makeStyles-drawerClose-8 {
+    display: none;
+  }
+
+  .makeStyles-appBar-2 {
+    background: #0A68F4 !important;
+  }
+
+  .makeStyles-drawerOpen-7 {
+    width: 100% !important;
+  }
+
+  .makeStyles-appBar-2 {
+    transition: none !important;
+  }
+}
