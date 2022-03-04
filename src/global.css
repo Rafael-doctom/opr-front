@@ -1,0 +1,34 @@
+:root {
+  --background: #EEEEEE;
+  --secondary-background: #FFFFFF;
+  --light-blue: #469BFE;
+  --blue: #0A68F4;
+  --dark-blue: #0050c8;
+  --light-orange: #ffc68f;
+  --medium-orange: #ff9f43;
+  --orange: #ff7d00;
+  --turquoise: #009FB7;
+  --red: #EF233C;
+  --green: #00B877;
+  --titles: #000000;
+  --infos: #444444;
+  --descriptions: #666666;
+  --not-allowed: #888888;
+  --stroke: #c2c2c2;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: var(--background);
+}
+
+button {
+  cursor: pointer;
+}
+
+h1 {
+  margin-block-start: 0 !important;
+  margin-block-end: 0 !important;
+}
