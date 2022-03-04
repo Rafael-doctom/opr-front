@@ -1,4 +1,130 @@
 .login_page_container {
-    width: 100%;
-    height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100vw;
+  height: 100vh;
+}
+
+.login-form-container {
+  width: 25vw;
+  height: 75vh;
+  background-color: var(--secondary-background);
+  border-radius: 20px;
+  text-align: center;
+}
+
+.form-logo {
+  height: 24vh;
+  border-radius: inherit;
+  background-color: var(--secondary-background);
+}
+
+.form-logo img {
+  width: 10.5vw;
+  margin-top: 2vh;
+  background-color: var(--secondary-background);
+}
+
+.inputs {
+  display: grid;
+  width: 21.5vw;
+  height: 25vh;
+  margin: auto;
+  background-color: var(--secondary-background);
+}
+
+.form-title {
+  font-size: 35px;
+  font-weight: 400;
+  font-family: "Roboto Condensed", sans-serif;
+  background-color: var(--secondary-background);
+}
+
+.login-input,
+.password-input,
+.login-button {
+  font-size: 30px;
+  border: 0;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.login-input,
+.password-input {
+  height: 60px;
+  font-weight: 300;
+  background-color: var(--background);
+  padding-left: 15px;
+}
+
+.login-button {
+  width: 85%;
+  height: 67px;
+  margin-top: 3vh;
+  border-radius: 10px;
+  background-color: var(--blue);
+  color: var(--secondary-background);
+  font-weight: 700;
+}
+
+.login-links {
+  display: grid;
+  margin-top: 2vh;
+  background-color: var(--secondary-background);
+  font-size: 20px;
+  font-weight: 400;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.register-link,
+.forgot-my-password-link {
+  color: var(--blue);
+  text-decoration: none;
+  margin-bottom: 1vh;
+  background-color: var(--secondary-background);
+}
+
+.login-logo img {
+  width: 34vw;
+}
+
+/*Responsive css*/
+
+@media (max-width: 1640px) {
+  .login-form-container {
+    min-width: 410px;
+  }
+
+  .inputs {
+    min-width: 370px;
+  }
+
+  .form-logo img {
+    min-width: 170px;
+  }
+}
+
+@media (max-width: 900px) {
+  .login_page_container {
+    display: grid;
+    justify-content: center;
+  }
+
+  .login-form-container {
+    max-height: 735px;
+    margin-bottom: 5vh;
+    margin-top: 5vh;
+  }
+
+  .form-logo {
+    max-height: 220px;
+  }
+
+  .inputs {
+    max-height: 270px;
+  }
+
+  .login-logo img {
+    min-width: 400px;
+  }
 }

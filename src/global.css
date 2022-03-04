@@ -21,7 +21,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: var(--background);
+}
+
+body {
+  background-color: var(--background) !important;
 }
 
 button {
