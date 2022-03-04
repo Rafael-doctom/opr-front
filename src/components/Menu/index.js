@@ -153,7 +153,7 @@ export default function Menu() {
         <div className={open ? 'groupOptionsOpen' : 'groupOptionsClose'}>
           <div className='options'>
             <List>
-              <a href="/application">
+              <a href="/requirements">
                 <ListItem button key="Requerimentos">
                   <ListItemIcon>
                     <MessageIcon />
