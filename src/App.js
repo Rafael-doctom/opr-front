@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
+import { Provider } from 'react-redux';
 
 import './global.css';
-
+import store from './store';
 import AppRoutes from './routes';
 
 function App() {
@@ -10,7 +11,9 @@ function App() {
   }, [])
 
   return (
-    <AppRoutes />
+    <Provider store={store}>
+      <AppRoutes />
+    </Provider>
   );
 }
 
