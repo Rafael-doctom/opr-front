@@ -1,6 +1,6 @@
 .makeStyles-menuButton-4 {
   width: 57px !important;
-  background: #0A68F4 !important;
+  background: var(--blue) !important;
   margin: 0 !important;
 }
 
@@ -20,11 +20,11 @@
 }
 
 .MuiSvgIcon-root {
-  color: #FFF;
+  color: var(--secondary-background);
 }
 
 .MuiList-padding > a {
-  color: #FFF;
+  color: var(--secondary-background);
   text-decoration: none;
 }
 
@@ -45,7 +45,7 @@
   font-weight: lighter;
   font-size: 16px;
   line-height: 14px;
-  color: #DFDFDF;
+  color: var(--stroke);
 
   background: none;
   border: none;
@@ -93,7 +93,7 @@
   }
 
   .makeStyles-appBar-2 {
-    background: #0A68F4 !important;
+    background: var(--blue) !important;
   }
 
   .makeStyles-drawerOpen-7 {
