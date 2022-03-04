@@ -26,7 +26,7 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: 'flex'
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -105,7 +105,7 @@ export default function Menu() {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={open && "root"}>
       <CssBaseline />
       <AppBar
         position="fixed"
