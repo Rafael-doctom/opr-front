@@ -9,31 +9,36 @@
 .login-form-container {
   width: 25vw;
   height: 75vh;
-  background-color: #ffffff;
+  background-color: var(--secondary-background);
   border-radius: 20px;
   text-align: center;
 }
 
 .form-logo {
   height: 24vh;
+  border-radius: inherit;
+  background-color: var(--secondary-background);
 }
 
 .form-logo img {
   width: 10.5vw;
   margin-top: 2vh;
+  background-color: var(--secondary-background);
 }
 
 .inputs {
+  display: grid;
   width: 21.5vw;
   height: 25vh;
-  display: grid;
   margin: auto;
+  background-color: var(--secondary-background);
 }
 
 .form-title {
   font-size: 35px;
   font-weight: 400;
   font-family: "Roboto Condensed", sans-serif;
+  background-color: var(--secondary-background);
 }
 
 .login-input,
@@ -46,9 +51,9 @@
 
 .login-input,
 .password-input {
-  background-color: #eeeeee;
   height: 60px;
   font-weight: 300;
+  background-color: var(--background);
   padding-left: 15px;
 }
 
@@ -57,14 +62,15 @@
   height: 67px;
   margin-top: 3vh;
   border-radius: 10px;
-  background-color: #0a68f4;
-  color: #ffffff;
+  background-color: var(--blue);
+  color: var(--secondary-background);
   font-weight: 700;
 }
 
 .login-links {
   display: grid;
   margin-top: 2vh;
+  background-color: var(--secondary-background);
   font-size: 20px;
   font-weight: 400;
   font-family: "Roboto Condensed", sans-serif;
@@ -72,9 +78,10 @@
 
 .register-link,
 .forgot-my-password-link {
-  color: #0a68f4;
+  color: var(--blue);
   text-decoration: none;
   margin-bottom: 1vh;
+  background-color: var(--secondary-background);
 }
 
 .login-logo img {
@@ -105,7 +112,7 @@
 
   .login-form-container {
     max-height: 735px;
-    margin-bottom: 20px;
+    margin-bottom: 5vh;
     margin-top: 5vh;
   }
 
@@ -118,6 +125,6 @@
   }
 
   .login-logo img {
-    min-width: 310px;
+    min-width: 400px;
   }
 }
