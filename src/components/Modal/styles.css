@@ -1,0 +1,31 @@
+.modal_container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.modal {
+    position: relative;
+    width: 65vw;
+    height: 80vh;
+    background: var(--secondary-background);
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.close_modal_button {
+    border: none;
+    background-color: transparent;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
