@@ -1,24 +1,20 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import List from '@material-ui/core/List';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
-import LiveHelpIcon from '@material-ui/icons/LiveHelp';
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
-import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import MessageIcon from '@material-ui/icons/Message';
-import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
-import Avatar from '@material-ui/core/Avatar';
+import {
+  PeopleAlt as PeopleAltIcon,
+  LiveHelp as LiveHelpIcon,
+  LibraryBooks as LibraryBooksIcon,
+  ThumbUp as ThumbUpIcon,
+  Message as MessageIcon,
+  ChevronLeft as ChevronLeftIcon,
+  ChevronRight as ChevronRightIcon,
+  Menu as MenuIcon,
+  PowerSettingsNew as PowerSettingsNewIcon
+} from '@material-ui/icons';
+
+import { Drawer, AppBar, List, CssBaseline, IconButton, ListItem, 
+  ListItemIcon, ListItemText, Avatar, makeStyles, useTheme
+} from '@material-ui/core';
 
 import './styles.css';
 
