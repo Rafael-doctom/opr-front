@@ -6,7 +6,7 @@
   height: 100vh;
 }
 
-.login-form-container {
+.login_form_container {
   width: 25vw;
   height: 75vh;
   background-color: var(--secondary-background);
@@ -14,13 +14,13 @@
   text-align: center;
 }
 
-.form-logo {
+.form_logo {
   height: 24vh;
   border-radius: inherit;
   background-color: var(--secondary-background);
 }
 
-.form-logo img {
+.form_logo img {
   width: 10.5vw;
   margin-top: 2vh;
   background-color: var(--secondary-background);
@@ -34,30 +34,30 @@
   background-color: var(--secondary-background);
 }
 
-.form-title {
+.form_title {
   font-size: 35px;
   font-weight: 400;
   font-family: "Roboto Condensed", sans-serif;
   background-color: var(--secondary-background);
 }
 
-.login-input,
-.password-input,
-.login-button {
+.login_input,
+.password_input,
+.login_button {
   font-size: 30px;
   border: 0;
   font-family: "Roboto Condensed", sans-serif;
 }
 
-.login-input,
-.password-input {
+.login_input,
+.password_input {
   height: 60px;
   font-weight: 300;
   background-color: var(--background);
   padding-left: 15px;
 }
 
-.login-button {
+.login_button {
   width: 85%;
   height: 67px;
   margin-top: 3vh;
@@ -67,7 +67,7 @@
   font-weight: 700;
 }
 
-.login-links {
+.login_links {
   display: grid;
   margin-top: 2vh;
   background-color: var(--secondary-background);
@@ -76,22 +76,22 @@
   font-family: "Roboto Condensed", sans-serif;
 }
 
-.register-link,
-.forgot-my-password-link {
+.register_link,
+.forgot_my_password_link {
   color: var(--blue);
   text-decoration: none;
   margin-bottom: 1vh;
   background-color: var(--secondary-background);
 }
 
-.login-logo img {
+.login_logo img {
   width: 34vw;
 }
 
 /*Responsive css*/
 
 @media (max-width: 1640px) {
-  .login-form-container {
+  .login_form_container {
     min-width: 410px;
   }
 
@@ -99,7 +99,7 @@
     min-width: 370px;
   }
 
-  .form-logo img {
+  .form_logo img {
     min-width: 170px;
   }
 }
@@ -110,13 +110,13 @@
     justify-content: center;
   }
 
-  .login-form-container {
+  .login_form_container {
     max-height: 735px;
     margin-bottom: 5vh;
     margin-top: 5vh;
   }
 
-  .form-logo {
+  .form_logo {
     max-height: 220px;
   }
 
@@ -124,7 +124,7 @@
     max-height: 270px;
   }
 
-  .login-logo img {
+  .login_logo img {
     min-width: 400px;
   }
 }
