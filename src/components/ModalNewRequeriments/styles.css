@@ -6,7 +6,6 @@
 .box input, textarea {
   width: 100%;
   resize: none;
-
   border: 1px solid #C2C2C2;
   background: #f8f8f8;
   border-radius: 10px;

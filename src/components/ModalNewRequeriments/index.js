@@ -1,18 +1,17 @@
-import React, { useRef, useState } from "react";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
-import CloseIcon from "@material-ui/icons/Close";
-import AddIcon from "@material-ui/icons/Add";
-import CameraAltOutlinedIcon from "@material-ui/icons/CameraAltOutlined";
-import DoneOutlineOutlinedIcon from "@material-ui/icons/DoneOutlineOutlined";
+import React, { useRef, useState, forwardRef } from "react";
+import { Button, Box, Grid, Paper } from "@material-ui/core/";
+import {
+  DoneOutlineOutlined as DoneOutlineOutlinedIcon,
+  CameraAltOutlined as CameraAltOutlinedIcon,
+  Add as AddIcon,
+  Close as CloseIcon,
+} from "@material-ui/icons/"
 import { DropzoneDialog } from "material-ui-dropzone";
-import Modal from "./Modal";
+import Modal from "../Modal";
 
 import "./styles.css";
 
-export default function ModalNewRequeriments() {
+const ModalNewRequeriments = forwardRef((props, modalRef) => {
   const [tag, setTag] = useState("");
   const [listTags, setListTags] = useState("");
   const [legislador, setLegislador] = useState("");
@@ -22,7 +21,6 @@ export default function ModalNewRequeriments() {
   const [files, setFiles] = useState([]);
   const [open, setOpen] = useState(false);
 
-  const modalRef = useRef();
   const modalRefTags = useRef();
   const modalRefLegislador = useRef();
 
@@ -87,7 +85,7 @@ export default function ModalNewRequeriments() {
               variant="contained"
               onClick={() => setOpen(true)}
               disabled={checkFile}
-              className={checkFile && "button-disabled"}
+              className={() => checkFile ? "button-disabled" : ""}
             >
               {checkFile ? (
                 <DoneOutlineOutlinedIcon className="icon-photo" />
@@ -240,4 +238,6 @@ export default function ModalNewRequeriments() {
       </Grid>
     </Modal>
   );
-}
+})
+
+export default ModalNewRequeriments;
