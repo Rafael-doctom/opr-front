@@ -8,7 +8,7 @@ import AddIcon from "@material-ui/icons/Add";
 import CameraAltOutlinedIcon from "@material-ui/icons/CameraAltOutlined";
 import DoneOutlineOutlinedIcon from "@material-ui/icons/DoneOutlineOutlined";
 import { DropzoneDialog } from "material-ui-dropzone";
-import Modal from "../../components/Modal";
+import Modal from "./Modal";
 
 import "./styles.css";
 
