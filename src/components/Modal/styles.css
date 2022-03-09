@@ -18,6 +18,7 @@
     background: var(--secondary-background);
     border-radius: 15px;
     padding: 15px;
+    overflow: auto;
 }
 
 .close_modal_button {
@@ -28,4 +29,40 @@
     position: absolute;
     top: 15px;
     right: 15px;
+}
+
+.tags, .legislador {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 15px;
+    margin: 15px;
+    width: 320px;
+}
+
+.tags form, .legislador form {
+    display: flex;
+    flex-direction: column;
+}
+
+.tags input {
+    padding: 5px;
+    margin: 15px 0;
+}
+
+.legislador input {
+    padding: 5px;
+    margin: 6px 0;
+}
+
+.tags h4, .legislador h4 {
+    margin: 20px 0 10px 0;
+    font-family: "Roboto Condensed", sans-serif;
+    text-align: center;
+}
+
+#button {
+    background-color: var(--blue);
+    color: var(--secondary-background);
+    margin-top: 10px;
 }

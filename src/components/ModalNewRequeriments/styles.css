@@ -1,0 +1,202 @@
+.box {
+  font-family: "Roboto Condensed", sans-serif;
+  padding: 20px;
+}
+
+.box input, textarea {
+  width: 100%;
+  resize: none;
+  border: 1px solid #C2C2C2;
+  background: #f8f8f8;
+  border-radius: 10px;
+  padding: 15px;
+  outline: none;
+}
+
+.box input {
+  height: 45px;
+}
+
+.box h4 {
+  font-weight: lighter;
+}
+
+.box .paper {
+  padding: 10px;
+  text-align: center;
+  color: aqua;
+}
+
+.box .group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input h4 {
+  display: flex;
+  gap: 2px;
+  margin-top: 15px;
+}
+
+.input h4 p {
+  color: #0A68F4;
+}
+
+.box .form {
+  margin-top: 20px;
+}
+
+.box .form .input {
+  width: 100%;
+}
+
+.input small {
+  display: flex;
+  place-content: end;
+}
+
+.box .group-input {
+  display: flex;
+  gap: 8px;
+}
+
+.card-legislador .card {
+  width: 180px;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  flex-direction: column;
+  background: #ececec;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: start;
+}
+
+.card-legislador .card span:nth-child(1) {
+  color: #303030;
+}
+
+.card-legislador .card span:nth-child(2) {
+  color: #666666;
+}
+
+.cards-tags, .card-legislador {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0 25px 0;
+}
+
+.card-tag {
+  display: flex;
+}
+
+.card-tag .delete-tag {
+  padding: 0;
+  display: contents;
+}
+
+.MuiButton-contained {
+  height: 40px !important;
+  margin: auto 0 !important;
+}
+
+.new-element {
+  box-shadow: none !important;
+  border-radius: 10px !important;
+  background: #ececec !important;
+}
+
+.submit {
+  display: flex !important;
+  margin-left: auto !important;
+  background-color: #0A68F4 !important;
+  color: #FFF !important;
+  padding: 10px 30px !important;
+  border-radius: 10px !important;
+}
+
+.MuiPaper-elevation1 {
+  box-shadow: none !important;
+}
+
+.item {
+  display: flex;
+  background-color: #ECECEC !important;
+  padding: 6px 16px !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.item span {
+  display: flex;
+  align-items: center;
+}
+
+.upload {
+  display: flex;
+  margin-top: 15px !important;
+}
+
+.upload-image {
+  margin-left: auto;
+  width: 80%;
+}
+
+.upload-image button {
+  width: 100%;
+  height: 90% !important;
+  border: 1px solid #C2C2C2;
+  background: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.upload-image button svg {
+  font-size: 5rem !important;
+  color: #C2C2C2;
+}
+
+.MuiDropzoneArea-root {
+  min-height: 160px !important;
+}
+
+.icon-photo {
+  color: #0A68F4 !important;
+}
+
+.button-disabled {
+  border: solid 1px #0A68F4 !important;
+}
+
+@media(max-width: 860px){
+  .modal {
+    width: 80% !important;
+  }
+
+  .MuiGrid-grid-xs-6 {
+    max-width: 100% !important;
+    flex-basis: 100% !important;
+  }
+
+  .upload-image {
+    width: 100% !important;
+    margin-bottom: 10px;
+  }
+}
+
+@media(max-width: 600px){
+  .modal {
+    width: 95% !important;
+  }
+
+  .box .group-input {
+    flex-direction: column;
+  }
+
+  .box h1 {
+    font-size: 24px;
+    padding: 0 25px 0 0;
+  }
+}
