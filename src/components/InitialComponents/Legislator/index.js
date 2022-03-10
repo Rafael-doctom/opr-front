@@ -37,7 +37,7 @@ export default function Legislator() {
             <div className="comunity_button">
             <select className="comunity_button_style">
             <option value = "Todas">Todas</option>
-            <option value = "Todas">Centro</option>
+            <option value = "Centro">Centro</option>
             </select>
             </div>
 
