@@ -1,0 +1,245 @@
+.box {
+  font-family: "Roboto Condensed", sans-serif;
+  padding: 20px;
+}
+
+.box input, textarea {
+  width: 100%;
+  resize: none;
+  border: 1px solid #C2C2C2;
+  background: #f8f8f8;
+  border-radius: 10px;
+  padding: 15px;
+  outline: none;
+}
+
+.box input {
+  height: 45px;
+}
+
+.box small strong {
+  color: var(--infos);
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-title button {
+  display: flex;
+  background: none;
+  border: none;
+}
+
+.header-profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 0;
+}
+
+.header-profile > h5 {
+  font-weight: lighter;
+  font-size: 14px;
+}
+
+.header-profile .profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-profile .profile img {
+  object-fit: cover;
+  border-radius: 120px;
+}
+
+.header-profile .profile .info {
+  gap: 5px;
+}
+
+.info h5 {
+  font-size: 14px;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status h4 {
+  color: var(--blue);
+}
+
+.status span {
+  font-size: 12px;
+  padding: 4px 18px;
+  border-radius: 20px;
+  background: var(--orange);
+  color: var(--secondary-background);
+}
+
+.tags-view {
+  display: flex;
+  padding: 0;
+  margin: 12px 0 8px 8px;
+  gap: 15px;
+}
+
+.tags-view li {
+  list-style: none;
+  background: var(--fill);
+  padding: 2px 12px;
+  border-radius: 30px;
+
+  font-size: 14px;
+  color: var(--descriptions);
+}
+
+.description {
+  font-size: 16px;
+  color: var(--infos);
+  margin: 0 8px 8px 0;
+}
+
+.box-like {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.box-like button {
+  background: none;
+  border: 0;
+}
+
+.box-like button svg {
+  color: var(--descriptions);
+}
+
+.box-like span {
+  font-size: 16px;
+  color: var(--descriptions);
+}
+
+.box-info {
+  display: flex;
+  margin-top: 30px;
+  gap: 30px;
+}
+
+.box-info .left {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  width: 100%;
+  overflow: auto;
+}
+
+.midias, .legisladores {
+  display: flex;
+  flex-direction: column;
+}
+
+.midias h4, .legisladores h4, .right h4 {
+  font-size: 16px;
+  color: var(--infos);
+}
+
+.carrossel {
+  display: flex;
+  gap: 6px;
+  margin: 12px 0 20px 8px;
+}
+
+.midias .carrossel button {
+  background: none;
+  border: 0;
+}
+
+.carrossel button img {
+  object-fit: cover;
+}
+
+.legisladores #carrossel {
+  overflow-x: auto;
+}
+
+.legisladores .carrossel {
+  display: flex;
+  width: fit-content;
+}
+
+.card-legislador {
+  display: flex;
+  width: 160px;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--background);
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.box-info .right {
+  flex: 1;
+}
+
+.right .boxComments {
+  display: flex;
+  flex-direction: column;
+  height: 220px;
+  overflow-y: auto;
+  gap: 10px;
+  padding: 8px;
+  margin-top: 6px;
+}
+
+.right .boxComments::-webkit-scrollbar {
+  display: none;
+}
+
+.boxComments .comments {
+  display: flex;
+  flex-direction: column;
+}
+
+.comments .profile {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.profile img {
+  border-radius: 20px;
+}
+
+.profile small {
+  color: var(--infos);
+  font-weight: bold;
+}
+
+.comments p {
+  font-size: 14px;
+  color: var(--descriptions);
+}
+
+.box-write {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.box-write button {
+  color: var(--secondary-background);
+  background: var(--blue);
+  border: 0;
+  border-radius: 8px;
+  padding: 6px;
+}
+
+.box-write input {
+  height: 35px;
+}
