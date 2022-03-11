@@ -1,0 +1,101 @@
+.pages_header {
+    position: absolute;
+    width: calc(100vw - 65px);
+    margin-left: 65px;
+    display: flex;
+    margin-top: 10px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    z-index: 1202;
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+.container_href{
+    width: 25vw;
+    height: 5vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px
+}
+
+.header_redirect_link {
+    font-size: 1.3vw;
+    color: var(--infos);
+}
+
+.locations_infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 15px;
+}
+
+.location_icon_and_city{
+    width: 5vw;
+    height: 3vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.location_icon {
+    color: var(--infos) !important;
+}
+
+
+.comunity_icon_and_comunity{
+    width: 4vw;
+    height: 3vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+
+.comunity_icon {
+    color: var(--infos) !important;
+}
+
+
+.city,
+.comunity{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 16px;
+    line-height: 19px;
+    color: var(--descriptions);
+}
+
+.city_button_style{
+    width: 13vw;
+    height: 3vh;
+    box-shadow: var(--infos);
+    background-color: var(--background-requirements);
+    color: var(--infos);
+    font-size: 14px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border-color: var(--background-requirements) var(--background-requirements) var(--infos) var(--background-requirements);
+}
+
+.comunity_button_style{
+    width: 8vw;
+    height: 3vh;
+    box-shadow: var(--infos);
+    background-color: var(--background-requirements);
+    color: var(--infos);
+    font-size: 14px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border-color: var(--background-requirements) var(--background-requirements) var(--infos) var(--background-requirements);
+}
+
