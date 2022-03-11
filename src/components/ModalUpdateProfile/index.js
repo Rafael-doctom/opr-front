@@ -20,7 +20,7 @@ const ModalUpdateProfile = forwardRef((props, modalRef) => {
             <h4>Email</h4>
             <input />
           </Box>
-          <Box className="group-input">
+          <Box className="group_input">
             <Box className="input">
               <h4>Estado</h4>
               <input />
@@ -32,7 +32,7 @@ const ModalUpdateProfile = forwardRef((props, modalRef) => {
           </Box>
         </Grid>
         <Grid className="profile" item xs={6}>
-          <Box className="box-profile">
+          <Box className="box_profile">
             <Avatar src="/profile.png" className="avatar">
               M
             </Avatar>

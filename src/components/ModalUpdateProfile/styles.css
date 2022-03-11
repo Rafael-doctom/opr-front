@@ -44,15 +44,10 @@ textarea {
   width: 100%;
 }
 
-.box .group-input {
+.box .group_input {
   display: grid;
   grid-template-columns: 1fr 3fr;
   gap: 8px;
-}
-
-.MuiButton-contained {
-  height: 40px !important;
-  margin: auto 0 !important;
 }
 
 .submit {
@@ -69,13 +64,13 @@ textarea {
   margin-top: 15px !important;
 }
 
-.box-profile {
+.box_profile {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.box-profile > h4 {
+.box_profile > h4 {
   font-weight: 400;
   font-size: 18px;
   margin: 5px;
