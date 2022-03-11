@@ -6,7 +6,6 @@ import Modal from "../Modal";
 import "./styles.css";
 
 const ModalUpdateProfile = forwardRef((props, modalRef) => {
-  
   return (
     <Modal ref={modalRef} additionalClass="box">
       <h1>Atualização de perfil</h1>
