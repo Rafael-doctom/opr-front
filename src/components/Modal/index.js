@@ -6,7 +6,7 @@ import Modal from '@material-ui/core/Modal';
 import './styles.css'
 
 const ModalComponent = forwardRef(({children, additionalClass}, ref) => {
-    const [modalStatus, setModalStatus] = useState(false);
+    const [modalStatus, setModalStatus] = useState(true);
 
     useImperativeHandle(ref, () => ({
         openModal() {
