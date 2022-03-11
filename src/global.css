@@ -16,6 +16,7 @@
   --not-allowed: #888888;
   --stroke: #c2c2c2;
   --fill: #EEEEEE;
+  --background-requirements: #f1f1f1;
 }
 
 * {
