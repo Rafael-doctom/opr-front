@@ -7,15 +7,19 @@ import './styles.css'
 
 const ModalComponent = forwardRef(({children, additionalClass}, ref) => {
     const [modalStatus, setModalStatus] = useState(false);
+    console.log(modalStatus)
 
-    useImperativeHandle(ref, () => ({
-        openModal() {
-            setModalStatus(true);
-        },
-        closeModal() {
-            setModalStatus(false);
+    useImperativeHandle(ref, () => {
+        return {
+            openModal: () => {
+                console.log("setting true")
+                setModalStatus(true);
+            },
+            closeModal: () => {
+                setModalStatus(false);
+            }
         }
-    }));
+    }, [ref]);
 
     return (
         <Modal className="modal_container" open={modalStatus} onClose={() => setModalStatus(false)}>
