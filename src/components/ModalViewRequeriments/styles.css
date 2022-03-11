@@ -22,15 +22,17 @@
 }
 
 .header-title {
-  display: flex;
+  display: flex !important;
   align-items: center;
   gap: 10px;
 }
 
 .header-title button {
   display: flex;
-  background: none;
+  background: none !important;
   border: none;
+  padding: 0;
+  min-width: 0 !important;
 }
 
 .header-profile {
@@ -41,6 +43,8 @@
 }
 
 .header-profile > h5 {
+  display: flex;
+  align-items: center;
   font-weight: lighter;
   font-size: 14px;
 }
@@ -90,6 +94,8 @@
 }
 
 .tags-view li {
+  display: flex;
+  align-items: center;
   list-style: none;
   background: var(--fill);
   padding: 2px 12px;
@@ -105,6 +111,12 @@
   margin: 0 8px 8px 0;
 }
 
+.inputText {
+  font-size: 16px;
+  font-family: "Roboto Condensed", sans-serif;
+  height: 120px;
+}
+
 .box-like {
   display: flex;
   align-items: center;
@@ -112,8 +124,10 @@
 }
 
 .box-like button {
-  background: none;
+  background: none !important;
   border: 0;
+  padding: 0;
+  min-width: 0 !important;
 }
 
 .box-like button svg {
@@ -168,19 +182,30 @@
   overflow-x: auto;
 }
 
+.card-legisladores {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .legisladores .carrossel {
   display: flex;
   width: fit-content;
 }
 
 .card-legislador {
-  display: flex;
   width: 160px;
-  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
   gap: 6px;
-  background: var(--background);
   padding: 8px;
   border-radius: 12px;
+  background: var(--background);
+}
+
+.card-legislador #card {
+  display: flex;
+  flex-direction: column;
 }
 
 .box-info .right {
@@ -237,9 +262,51 @@
   background: var(--blue);
   border: 0;
   border-radius: 8px;
-  padding: 6px;
+  font-size: 12px;
+  text-transform: capitalize;
+  transition: 0.6s;
+}
+
+.box-write .comment-submit:hover {
+  opacity: 0.9;
+  background: var(--blue) !important;
 }
 
 .box-write input {
   height: 35px;
+}
+
+.settings-modal {
+  background: none;
+  border: none;
+}
+
+#test {
+  display: flex;
+}
+
+.settings-delete {
+  display: contents;
+  background: none;
+  border: 0;
+  min-width: 0 !important;
+  padding: 0 !important;
+}
+
+.settings-delete:hover {
+  background: none !important;
+}
+
+.settings-delete svg {
+  font-size: 18px;
+  color: var(--infos);
+}
+
+.settings-new {
+  background: var(--blue) !important;
+  color: var(--secondary-background) !important;
+  padding: 4px 12px !important;
+  border-radius: 12px !important;
+  font-size: 12px !important;
+  font-family: "Roboto Condensed", sans-serif !important;
 }

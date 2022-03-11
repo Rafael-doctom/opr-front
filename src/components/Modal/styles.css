@@ -43,11 +43,7 @@
 .tags form, .legislador form {
     display: flex;
     flex-direction: column;
-}
-
-.tags input {
-    padding: 5px;
-    margin: 15px 0;
+    gap: 15px;
 }
 
 .legislador input {
@@ -61,8 +57,8 @@
     text-align: center;
 }
 
-#button {
+#Button {
     background-color: var(--blue);
     color: var(--secondary-background);
-    margin-top: 10px;
+    margin-top: 15px;
 }
