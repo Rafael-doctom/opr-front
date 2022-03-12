@@ -29,6 +29,10 @@
     background-color: var(--red);
 }
 
+.requirement_status.analisys {
+    background-color: var(--orange);
+}
+
 .requirement_user {
     display: flex;
     flex-direction: row;

@@ -10,16 +10,22 @@ export default function Requirement({requirement}) {
     const requirementUser = requirement.user;
 
     function renderRequirementStatus() {
-        if (requirement.status) {
+        if (requirement.status === "concluded") {
             return (
                 <div className="requirement_status finished">
                     <span>Concluído</span>
                 </div>
             )
-        } else {
+        } else if (requirement.status === "not_accepted") {
             return (
                 <div className="requirement_status closed">
                     <span>Não aceito</span>    
+                </div>
+            )
+        } else {
+            return (
+                <div className="requirement_status analisys">
+                    <span>Em análise</span>
                 </div>
             )
         }
@@ -32,7 +38,7 @@ export default function Requirement({requirement}) {
 
                 <section className="requirement_user">
                     <div className="user_image">
-                        <img src="/profile.png" alt="user-image" />
+                        <img src="/profile.png" alt="user-img" />
                     </div>
                     <div className="user_infos">
                         <span>{requirementUser.name}</span>

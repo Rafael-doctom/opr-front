@@ -7,7 +7,6 @@ import './styles.css'
 
 const ModalComponent = forwardRef(({children, additionalClass}, ref) => {
     const [modalStatus, setModalStatus] = useState(false);
-    console.log(modalStatus)
 
     useImperativeHandle(ref, () => {
         return {
