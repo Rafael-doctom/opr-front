@@ -1,20 +1,19 @@
 .requirement_container {
     cursor: pointer;
     font-family: "Roboto Condensed", sans-serif;
-    width: 220px;
-    height: 330px;
+    width: 230px;
+    height: auto;
     border-radius: 10px;
     background-color: var(--secondary-background);
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 15px;
 }
 
 .requirement_status {
     width: 100px;
     height: 25px;
     border-radius: 18px;
-    margin: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,6 +36,10 @@
     margin-top: 10px;
 }
 
+.user_infos {
+    margin-left: 10px !important;
+}
+
 .user_infos span + span {
     font-size: 12px;
 }
@@ -47,12 +50,15 @@
 }
 
 .requirement_container .requirement_infos {
-    margin-top: 10px;
-    padding: 10px;
+    margin-top: 0px !important;
+    padding: 20px 0;
 }
 
 .requirement_container .requirement_infos p {
     max-height: 200px;
+    padding: 0px !important;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .requirement_date {
@@ -60,5 +66,5 @@
 }
 
 .requirement_date span {
-    opacity: 0.6;   
+    opacity: 0.8;   
 }

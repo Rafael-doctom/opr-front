@@ -10,7 +10,6 @@ export default function Requirement({requirement}) {
     const requirementUser = requirement.user;
 
     function renderRequirementStatus() {
-        console.log(requirement)
         if (requirement.status) {
             return (
                 <div className="requirement_status finished">
@@ -24,10 +23,6 @@ export default function Requirement({requirement}) {
                 </div>
             )
         }
-    }
-
-    function getDateFormated() {
-        return moment.unix(requirement.creationDate).format("DD/MM/YYYY");
     }
 
     return (
@@ -53,7 +48,7 @@ export default function Requirement({requirement}) {
                 <section className="requirement_date">
                     <label>Data de publicação:</label>
                     <br />
-                    <span>{getDateFormated()}</span>
+                    <span>{moment.unix(requirement.creationDate).format("DD/MM/YYYY")}</span>
                 </section>
 
             </div>

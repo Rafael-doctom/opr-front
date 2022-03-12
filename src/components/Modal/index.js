@@ -12,7 +12,6 @@ const ModalComponent = forwardRef(({children, additionalClass}, ref) => {
     useImperativeHandle(ref, () => {
         return {
             openModal: () => {
-                console.log("setting true")
                 setModalStatus(true);
             },
             closeModal: () => {
