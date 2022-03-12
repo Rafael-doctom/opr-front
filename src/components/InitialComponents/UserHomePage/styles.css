@@ -1,0 +1,14 @@
+.user_home_page_container {
+    padding-left: 85px;
+    padding-bottom: 20px;
+}
+
+.requirements_container {
+    width: calc(100vw - 100px);
+    display: grid;
+    gap: 20px;
+    column-gap: 10px;
+    grid-template-columns: repeat( auto-fit, minmax(230px, 1fr) );
+    justify-content: center;
+    align-content: center;
+}
