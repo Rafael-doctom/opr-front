@@ -3,7 +3,24 @@
     padding-bottom: 20px;
 }
 
-.requirements_container {
+.user_home_page_content {
+    margin-top: 5vh;
+    padding-top: 40px;
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+.user_home_page_title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.user_home_page_content .user_home_page_title h1 {
+    font-size: 30px;
+    padding-right: 15px;
+}
+
+.user_home_page-requirements_container {
     width: calc(100vw - 100px);
     display: grid;
     gap: 20px;
@@ -11,4 +28,29 @@
     grid-template-columns: repeat( auto-fit, minmax(230px, 1fr) );
     justify-content: center;
     align-content: center;
+    padding-top: 40px;
+}
+
+.search_requirement_button {
+    width: auto;
+    padding: 0 5px;
+    height: 30px;
+    border-color: transparent;
+    border-radius: 10px;
+    background-color: var(--blue); 
+    color: var(--secondary-background);  
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+.new_requirement_button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 100px;
+    height: 35px;
+    border-color: transparent;
+    border-radius: 10px;
+    background-color: var(--blue); 
+    color: var(--secondary-background);  
+    font-family: "Roboto Condensed", sans-serif;
 }
