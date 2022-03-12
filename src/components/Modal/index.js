@@ -19,7 +19,7 @@ const ModalComponent = forwardRef(({children, additionalClass}, ref) => {
                 setModalStatus(false);
             }
         }
-    }, [ref]);
+    }, []);
 
     return (
         <Modal className="modal_container" open={modalStatus} onClose={() => setModalStatus(false)}>
