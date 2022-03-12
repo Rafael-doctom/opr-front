@@ -15,7 +15,7 @@ export default function AppRoutes() {
             <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/initial-page" element={<InitialPage />} />
+                <Route path="/home" element={<InitialPage />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/requirements" element={<Requirements />} />
                 <Route path="/faq" element={<Faq />} />
