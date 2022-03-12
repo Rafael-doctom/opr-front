@@ -25,7 +25,7 @@ export default function Requirement({requirement}) {
         } else {
             return (
                 <div className="requirement_status analisys">
-                    <span>Em análise</span>
+                    <span>Em avaliação</span>
                 </div>
             )
         }
