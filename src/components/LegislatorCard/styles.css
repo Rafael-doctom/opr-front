@@ -1,0 +1,57 @@
+.legislators_cards{
+    position: absolute;
+    width: 85vw;
+    margin-left: 100px;
+    display: flex;
+    height: 60vh;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    font-family: "Inter";
+    gap: 20px;
+}
+
+.container_cards{
+    background: var(--secondary-background);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 30vw;
+    height: 30vh;
+    align-items: center;
+    display: flex;
+    flex-direction: column;    
+}
+
+.title{
+    font-size: 16px;
+    color: var(--titles); 
+    padding-top: 2vh;
+}
+
+.reivindicacoes{
+    color: var(--titles);  
+    padding-top: 1vh;
+}
+
+.numberRequirements{
+    font-size: 60px;
+    color: var(--dark-blue);
+    padding-top: 2vh;
+}
+
+.numberAnalysis{
+    font-size: 60px;
+    color: var(--turquoise);
+    padding-top: 2vh; 
+}
+
+.numberDenied{
+    font-size: 60px;
+    color: var(--red);
+    padding-top: 2vh;  
+}
+
+.numberDone{
+    font-size: 60px;
+    color: var(--green);
+    padding-top: 2vh; 
+}
