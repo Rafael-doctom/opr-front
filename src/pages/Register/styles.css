@@ -38,7 +38,6 @@ img.formLogo {
 .inputsArea {
     display: grid;
     width: 21.5vw;
-    height: auto;
     margin-bottom: 1vh;
     background-color: var(--secondary-background);
     font-family: "Roboto Condensed", sans-serif;
@@ -138,7 +137,7 @@ img.pageLogo {
         min-width: 410px;
     }
 
-    .inputs {
+    .inputsArea {
         min-width: 370px;
         margin-bottom: 0.5vh;
     }
