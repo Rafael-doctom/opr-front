@@ -31,6 +31,35 @@
     padding-top: 40px;
 }
 
+.search_input_container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.search_input_container input {
+    border-radius: 10px;
+    border: 1px solid #C2C2C2;
+    background-color: #E4E4E4;
+    height: 30px;
+    padding: 0 25px 0 5px;
+    font-family: "Roboto Condensed", sans-serif;
+    text-align: center;
+}
+
+.search_input_container input:focus {
+    border: 1px solid #C2C2C2 !important;
+}
+
+.search_input_container button {
+    position: absolute;
+    right: 5px;
+    height: 100%;
+    background-color: transparent;
+    border-color: transparent;
+}
+
 .search_requirement_button {
     width: auto;
     padding: 0 5px;
@@ -46,10 +75,17 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 100px;
+    width: 90px;
     height: 35px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
     border-color: transparent;
     border-radius: 10px;
+    font-size: 16px;
+    font-weight: 400;
     background-color: var(--blue); 
     color: var(--secondary-background);  
     font-family: "Roboto Condensed", sans-serif;
