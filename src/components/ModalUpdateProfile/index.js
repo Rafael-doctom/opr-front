@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import { Button, Box, Grid } from "@material-ui/core/";
 import { Avatar } from "@material-ui/core";
 import Modal from "../Modal";
@@ -7,6 +7,10 @@ import "./styles.css";
 
 const ModalUpdateProfile = forwardRef((props, modalRef) => {
   const data = mockUser 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [state, setState] = useState("");
+  const [city, setCity] = useState("");
   return (
     <Modal ref={modalRef} additionalClass="box">
       <h1>Atualização de perfil</h1>
@@ -15,20 +19,20 @@ const ModalUpdateProfile = forwardRef((props, modalRef) => {
         <Grid item xs={6} className="group">
           <Box className="input">
             <h4>Nome</h4>
-            <input />
+            <input value ={name} onChange={(event) => setName(event.target.value)} />
           </Box>
           <Box className="input">
             <h4>Email</h4>
-            <input />
+            <input value ={email} onChange={(event) => setEmail(event.target.value)}/>
           </Box>
           <Box className="group_input">
             <Box className="input">
               <h4>Estado</h4>
-              <input />
+              <input value ={state} onChange={(event) => setState(event.target.value)}/>
             </Box>
             <Box className="input">
               <h4>Cidade</h4>
-              <input />
+              <input value ={city} onChange={(event) => setCity(event.target.value)} />
             </Box>
           </Box>
         </Grid>
