@@ -33,7 +33,7 @@ const ModalUpdateProfile = forwardRef((props, modalRef) => {
         </Grid>
         <Grid className="profile" item xs={6}>
           <Box className="box_profile">
-            <Avatar src="/profile.png" className="avatar">
+            <Avatar src="/profile.png" className="profile_avatar">
               M
             </Avatar>
             <h4>000.000.000-60</h4>

@@ -2,7 +2,7 @@
   font-family: "Roboto Condensed", sans-serif;
   padding: 20px;
   width: 55vw;
-  height: 55vh;
+  height: auto;
 }
 
 .box input,
@@ -70,10 +70,11 @@ textarea {
 .box_profile > h4 {
   font-weight: 400;
   font-size: 18px;
-  margin: 5px;
+  margin: 2px;
 }
 
-.avatar {
+.profile_avatar {
   width: 105px !important;
   height: 105px !important;
+  margin-bottom: 2vh;
 }
