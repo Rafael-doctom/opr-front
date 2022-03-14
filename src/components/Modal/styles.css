@@ -9,7 +9,6 @@
     align-items: center;
     justify-content: center;
     z-index: 2000;
-    outline: none;
 }
 
 .modal {
@@ -33,7 +32,6 @@
 }
 
 .tags, .legislador {
-    outline: none;
     display: flex;
     flex-direction: column;
     height: auto;
@@ -45,7 +43,11 @@
 .tags form, .legislador form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+}
+
+.tags input {
+    padding: 5px;
+    margin: 15px 0;
 }
 
 .legislador input {
@@ -59,24 +61,8 @@
     text-align: center;
 }
 
-#Button {
+#button {
     background-color: var(--blue);
     color: var(--secondary-background);
-    margin-top: 15px;
-}
-
-.viewPhoto {
-    width: 100%;
-    height: 100%;
-    outline: none;
-    overflow: hidden;
-    background: transparent;
-}
-
-.viewPhoto img {
-    object-fit: contain;
-}
-
-.viewPhoto button svg {
-    color: white !important;
+    margin-top: 10px;
 }
