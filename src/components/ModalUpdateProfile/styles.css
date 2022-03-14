@@ -20,10 +20,6 @@ textarea {
   height: 45px;
 }
 
-.box h4 {
-  font-weight: lighter;
-}
-
 .box .group {
   display: flex;
   flex-direction: column;
@@ -34,6 +30,7 @@ textarea {
   display: flex;
   gap: 2px;
   margin-top: 15px;
+  font-size: 20px;
 }
 
 .box .form {
