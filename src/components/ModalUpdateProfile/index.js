@@ -2,10 +2,11 @@ import React, { forwardRef } from "react";
 import { Button, Box, Grid } from "@material-ui/core/";
 import { Avatar } from "@material-ui/core";
 import Modal from "../Modal";
-
+import {mockUser} from "../../service/api"
 import "./styles.css";
 
 const ModalUpdateProfile = forwardRef((props, modalRef) => {
+  const data = mockUser 
   return (
     <Modal ref={modalRef} additionalClass="box">
       <h1>Atualização de perfil</h1>
@@ -36,10 +37,10 @@ const ModalUpdateProfile = forwardRef((props, modalRef) => {
             <Avatar src="/profile.png" className="profile_avatar">
               M
             </Avatar>
-            <h4>000.000.000-60</h4>
-            <h4>Matheus Oliveira</h4>
-            <h4>matheus.oliveira@ccc.ufcg.edu.br</h4>
-            <h4>Campina Grande - PB</h4>
+            <h4>{data.cpf}</h4>
+            <h4>{data.name}</h4>
+            <h4>{data.email}</h4>
+            <h4>{data.city} - {data.state}</h4>
           </Box>
         </Grid>
         <Grid item xs={12}>
