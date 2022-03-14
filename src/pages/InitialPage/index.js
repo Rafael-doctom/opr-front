@@ -9,8 +9,7 @@ import User from "../../components/InitialComponents/User";
 export default function InitialPage() {
     return (
         <div>
-            <Legislator> </Legislator>
-            
+            <h1>Initial Page</h1>
         </div>
     )
 }
