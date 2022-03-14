@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import LoginLogo from "../../assets/LoginLogo.png";
 import ProjectLogo from "../../assets/ProjectLogo.png"
@@ -18,12 +19,12 @@ export default function Login() {
         </div>
         <button className="login_button">Login</button>
         <div className="login_links">
-          <a className="forgot_my_password_link" href="#">
+          <Link className="forgot_my_password_link" to="#">
             Esqueci minha senha
-          </a>
-          <a className="register_link" href="/register">
+          </Link>
+          <Link className="register_link" to="/register">
             Ainda não tenho cadastro
-          </a>
+          </Link>
         </div>
       </div>
       <div className="login_logo">
