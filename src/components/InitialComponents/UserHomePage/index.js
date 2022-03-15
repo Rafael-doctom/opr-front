@@ -3,7 +3,9 @@ import Menu from "../../Menu/index";
 import HeaderBar from "../../HeaderBar/index";
 import Requirement from "../../Requirement/";
 import ModalNewRequeriments from "../../ModalNewRequeriments/index";
+import { useNavigate } from "react-router-dom";
 import { Search, AddCircleOutline } from "@material-ui/icons/"
+import { mockListRequeriments } from "../../../service/api";
 
 import './styles.css';
 
@@ -13,13 +15,25 @@ export default function UserHomePage() {
     const [searchKeyword, setSearchKeyword] = useState("");
     const newReqModalRef = useRef();
 
+    const navigate = useNavigate();
+
     useEffect(() => {
-        return setRequirements(require("../../../service/requirementsJsonMock.json"))
+        setRequirements(mockListRequeriments);
+
+        return () => { 
+            setRequirements(mockListRequeriments);
+            setRequirementSearchActive(false);
+        };
     }, [])
 
     function searchRequirements() {
         // TODO: Criação de funcionalidade de busca de requerimentos
+        navigate("/requirements", { state: {
+            searchKeyword: searchKeyword }
+        });
     }
+
+
 
     return (
         <div className="user_home_page_container">

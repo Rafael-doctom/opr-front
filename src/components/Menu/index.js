@@ -105,7 +105,7 @@ export default function Menu() {
 
   return (
     
-    <div className={open && "root"}>
+    <div className={open ? "root" : ""}>
       <div className='modal_update_profile'>
         <ModalUpdateProfile ref={modalUpdateProfile}/>
       </div>
@@ -199,7 +199,7 @@ export default function Menu() {
             </List>
           </div>
         </div>
-        <List className={open && 'exitOpen'}>
+        <List className={open ? 'exitOpen' : ""}>
           <a href="/exit">
             <ListItem button key="Sair">
               <ListItemIcon>
