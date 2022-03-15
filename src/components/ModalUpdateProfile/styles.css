@@ -37,6 +37,11 @@ textarea {
   margin-top: 20px;
 }
 
+.form_update_and_show_infos {
+  display: flex;
+  justify-content: center;
+}
+
 .box .form .input {
   width: 100%;
 }
@@ -59,6 +64,8 @@ textarea {
 
 .profile {
   margin-top: 15px !important;
+  max-width: 40%;
+  flex-basis: 50%;
 }
 
 .box_profile {
