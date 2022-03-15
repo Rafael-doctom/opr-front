@@ -98,6 +98,7 @@
   padding: 0;
   margin: 12px 0 8px 8px;
   gap: 15px;
+  overflow-x: auto;
 }
 
 .tags-view li {
@@ -107,15 +108,17 @@
   background: var(--fill);
   padding: 2px 12px;
   border-radius: 30px;
-
+  
   font-size: 14px;
   color: var(--descriptions);
+  text-align: center;
 }
 
 .description {
   font-size: 16px;
   color: var(--infos);
   margin: 0 8px 8px 0;
+  text-align: justify;
 }
 
 .inputText {
@@ -157,7 +160,7 @@
   flex: 2;
   flex-direction: column;
   width: 100%;
-  overflow: auto;
+  overflow-x: hidden;
 }
 
 .midias, .legisladores {

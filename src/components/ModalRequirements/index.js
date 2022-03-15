@@ -15,6 +15,7 @@ import { DropzoneDialog } from "material-ui-dropzone";
 import Modal from "../Modal";
 
 import "./styles.css";
+import "./response.css";
 
 const ModalRequirements = forwardRef((props, modalRef) => {
   const [open, setOpen] = useState(false);
