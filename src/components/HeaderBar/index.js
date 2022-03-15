@@ -5,18 +5,24 @@ import { Link } from "react-router-dom";
 import { LocationOn as LocationIcon } from '@material-ui/icons';
 
 export default function HeaderBar() {
+    function isActiveRoute(routeName) {
+        if(window.location.href.indexOf(routeName) > -1) {
+            return "active"
+        }
+    }
+
     return (
         <section className="pages_header">
             <div className="container_href">
-                <Link className="header_redirect_link" to="/initial-page">
+                <Link className={`header_redirect_link ${isActiveRoute("home")}`} to="/home">
                     Início
                 </Link>
 
-                <Link className="header_redirect_link" to="/requirements">
+                <Link className={`header_redirect_link ${isActiveRoute("requirements")}`} to="/requirements">
                     Requerimentos
                 </Link>
 
-                <Link className="header_redirect_link" to="/legislators">
+                <Link className={`header_redirect_link ${isActiveRoute("legislator")}`} to="/legislators">
                     Legislativos
                 </Link>
                 

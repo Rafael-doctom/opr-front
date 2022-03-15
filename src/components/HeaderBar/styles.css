@@ -27,6 +27,12 @@
 .header_redirect_link {
     font-size: 20px;
     color: var(--infos);
+    text-decoration: none;
+}
+
+.header_redirect_link.active {
+    color: var(--blue);
+    text-decoration: underline;
 }
 
 .locations_infos {
