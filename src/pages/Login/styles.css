@@ -43,7 +43,7 @@
 
 .login_input,
 .password_input,
-.login_button {
+.submit_login_button {
   font-size: 30px;
   border: 0;
   font-family: "Roboto Condensed", sans-serif;
@@ -57,7 +57,7 @@
   padding-left: 15px;
 }
 
-.login_button {
+.submit_login_button {
   width: 85%;
   height: 67px;
   margin-top: 3vh;

@@ -17,7 +17,7 @@ export default function Login() {
           <input className="login_input" type="text" placeholder="Email" />
           <input className="password_input" type="password" placeholder="Senha"/>
         </div>
-        <button className="login_button">Login</button>
+        <button className="submit_login_button">Login</button>
         <div className="login_links">
           <Link className="forgot_my_password_link" to="#">
             Esqueci minha senha
