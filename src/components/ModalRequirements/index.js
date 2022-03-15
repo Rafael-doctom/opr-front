@@ -114,7 +114,7 @@ const ModalRequirements = forwardRef((props, modalRef) => {
   };
 
   return (
-    <Modal ref={modalRef} additionalClass="box">
+    <Modal ref={modalRef} additionalClass="box-requirement">
       {settings ? (
         <Box className="header-title">
           <h3>Visualização de Requerimento</h3>
