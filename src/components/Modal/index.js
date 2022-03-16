@@ -4,7 +4,6 @@ import Box from '@material-ui/core/Box';
 import Modal from '@material-ui/core/Modal';
 
 import './styles.css';
-import './response.css';
 
 const ModalComponent = forwardRef(({children, additionalClass}, ref) => {
     const [modalStatus, setModalStatus] = useState(false);
