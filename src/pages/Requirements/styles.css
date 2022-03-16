@@ -1,0 +1,29 @@
+.requirement_page_container {
+    padding-left: 85px;
+    padding-bottom: 20px;
+}
+
+.requirement_page_content {
+    margin-top: 5vh;
+    padding-top: 40px;
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+.requirement_page_content h1 {
+    font-size: 30px;
+}
+
+.without_requirement {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+}
+
+.without_requirement strong {
+    font-size: 20px;
+    color: #666666;
+    margin: 10px;
+}

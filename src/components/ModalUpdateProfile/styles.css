@@ -1,0 +1,80 @@
+.box {
+  font-family: "Roboto Condensed", sans-serif;
+  padding: 20px;
+  width: 55vw;
+  height: auto;
+}
+
+.box input,
+textarea {
+  width: 100%;
+  resize: none;
+  border: 1px solid var(--stroke);
+  background: var(--background);
+  border-radius: 10px;
+  padding: 15px;
+  outline: none;
+}
+
+.box input {
+  height: 45px;
+}
+
+.box .group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input h4 {
+  display: flex;
+  gap: 2px;
+  margin-top: 15px;
+  font-size: 20px;
+}
+
+.box .form {
+  margin-top: 20px;
+}
+
+.box .form .input {
+  width: 100%;
+}
+
+.box .group_input {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 8px;
+}
+
+.submit {
+  display: flex !important;
+  background-color: var(--blue) !important;
+  color: var(--secondary-background) !important;
+  margin: auto !important;
+  margin-top: 10vh !important;
+  padding: 6px 30px !important;
+  border-radius: 10px !important;
+}
+
+.profile {
+  margin-top: 15px !important;
+}
+
+.box_profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box_profile > h4 {
+  font-weight: 400;
+  font-size: 18px;
+  margin: 2px;
+}
+
+.profile_avatar {
+  width: 105px !important;
+  height: 105px !important;
+  margin-bottom: 2vh;
+}

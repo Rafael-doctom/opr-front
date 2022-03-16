@@ -1,7 +1,9 @@
 .pages_header {
     position: absolute;
-    width: calc(100vw - 65px);
-    margin-left: 65px;
+    width: calc(100vw - 100px);
+    top: 0;
+    left: 0;
+    margin-left: 80px;
     display: flex;
     margin-top: 10px;
     flex-direction: row;
@@ -12,8 +14,8 @@
     font-family: "Roboto Condensed", sans-serif;
 }
 
-.container_href{
-    width: 25vw;
+.container_href {
+    width: 30vw;
     height: 5vh;
     display: flex;
     flex-direction: row;
@@ -23,19 +25,25 @@
 }
 
 .header_redirect_link {
-    font-size: 1.3vw;
+    font-size: 20px;
     color: var(--infos);
+    text-decoration: none;
+}
+
+.header_redirect_link.active {
+    color: var(--blue);
+    text-decoration: underline;
 }
 
 .locations_infos {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-start;
     padding-right: 15px;
 }
 
 .location_icon_and_city{
-    width: 5vw;
     height: 3vh;
     display: flex;
     flex-direction: row;
@@ -98,4 +106,3 @@
     border-radius: 10px;
     border-color: var(--background-requirements) var(--background-requirements) var(--infos) var(--background-requirements);
 }
-

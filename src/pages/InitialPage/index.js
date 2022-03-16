@@ -1,16 +1,23 @@
 import React from 'react';
 
 import './styles.css';
-
-import Legislator from "../../components/InitialComponents/Legislator";
-import User from "../../components/InitialComponents/User";
-
+import UserHomePage from '../../components/InitialComponents/UserHomePage';
+import LegislatorHomePage from '../../components/InitialComponents/Legislator';
 
 export default function InitialPage() {
+
+    function isCommonUser() {
+        return true;
+    }
+
     return (
         <div>
-            <Legislator> </Legislator>
-            
+
+            {isCommonUser ?
+                <UserHomePage />
+                :
+                <LegislatorHomePage />
+            }
         </div>
     )
 }

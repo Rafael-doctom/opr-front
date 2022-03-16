@@ -33,19 +33,6 @@ export default function Legislator() {
             <section className="requirement_content">
                 
            
-            <Box className="header-profile">
-
-            </Box>
-            
-            
-            <Box className="profile">   
-            <AccountCircleRoundedIcon color="action" />     
-                <Box className="info">
-                <h5>{"Matheus"}</h5>
-                <small>{"Campina"}</small>
-                </Box>
-            </Box>  
-
             </section>
                         
         </div>

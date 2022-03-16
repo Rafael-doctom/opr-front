@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import clsx from 'clsx';
 import {
   PeopleAlt as PeopleAltIcon,
@@ -17,6 +17,7 @@ import { Drawer, AppBar, List, CssBaseline, IconButton, ListItem,
 } from '@material-ui/core';
 
 import './styles.css';
+import ModalUpdateProfile from '../ModalUpdateProfile';
 
 const drawerWidth = 240;
 
@@ -100,8 +101,14 @@ export default function Menu() {
     setOpen(false);
   };
 
+  const modalUpdateProfile = useRef();
+
   return (
-    <div className={open && "root"}>
+    
+    <div className={open ? "root" : ""}>
+      <div className='modal_update_profile'>
+        <ModalUpdateProfile ref={modalUpdateProfile}/>
+      </div>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -143,7 +150,7 @@ export default function Menu() {
           <div className='boxProfile'>
             <Avatar src="/profile.png" className='avatar'>M</Avatar>
             <h4>Matheus Oliveira</h4>
-            <button>editar perfil</button>
+            <button onClick={() => modalUpdateProfile.current.openModal()}>editar perfil</button>
           </div>
         }
         <div className={open ? 'groupOptionsOpen' : 'groupOptionsClose'}>
@@ -192,7 +199,7 @@ export default function Menu() {
             </List>
           </div>
         </div>
-        <List className={open && 'exitOpen'}>
+        <List className={open ? 'exitOpen' : ""}>
           <a href="/exit">
             <ListItem button key="Sair">
               <ListItemIcon>
