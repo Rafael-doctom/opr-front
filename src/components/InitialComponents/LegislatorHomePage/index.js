@@ -8,7 +8,6 @@ import {
     ThumbUpAltOutlined as ThumbUpAltOutlinedIcon,
     ThumbUpAltRounded as ThumbUpAltRoundedIcon,
     Comment  as CommentIcon,
-    Share as ShareIcon
   } from "@material-ui/icons/";
 
 import Menu from "../../Menu";
