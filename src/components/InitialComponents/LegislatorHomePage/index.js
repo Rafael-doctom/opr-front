@@ -90,7 +90,7 @@ export default function LegislatorHomePage() {
                                 )}
 
                                 <Box className="info">
-                                    <p>Nome: <strong>{requirement.profile.name}</strong></p>
+                                    <p>{requirement.profile.name}</p>
                                     <p>Cidade: <strong>{requirement.profile.city}</strong></p> 
                                 </Box>
 
