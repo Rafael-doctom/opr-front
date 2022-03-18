@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import {
   PeopleAlt as PeopleAltIcon,
@@ -156,58 +157,58 @@ export default function Menu() {
         <div className={open ? 'groupOptionsOpen' : 'groupOptionsClose'}>
           <div className='options'>
             <List>
-              <a href="/requirements">
+              <Link to="/requirements">
                 <ListItem button key="Requerimentos">
                   <ListItemIcon>
                     <MessageIcon />
                   </ListItemIcon>
                   <ListItemText primary="Requerimentos" />
                 </ListItem>
-              </a>
-              <a href="/legislative">
+              </Link>
+              <Link to="/legislative">
                 <ListItem button key="Legislativos">
                   <ListItemIcon>
                     <PeopleAltIcon />
                   </ListItemIcon>
                   <ListItemText primary="Legislativos" />
                 </ListItem>
-              </a>
-              <a href="/manifestos">
+              </Link>
+              <Link to="/manifestos">
                 <ListItem button key="Manifestos em alta">
                   <ListItemIcon>
                     <ThumbUpIcon />
                   </ListItemIcon>
                   <ListItemText primary="Manifestos em alta" />
                 </ListItem>
-              </a>
-              <a href="/faq">
+              </Link>
+              <Link to="/faq">
                 <ListItem button key="Perguntas Frequentes">
                   <ListItemIcon>
                     <LiveHelpIcon />
                   </ListItemIcon>
                   <ListItemText primary="Perguntas Frequentes" />
                 </ListItem>
-              </a>
-              <a href="/userManual">
+              </Link>
+              <Link href="/userManual">
                 <ListItem button key="Manual de Uso">
                   <ListItemIcon>
                     <LibraryBooksIcon />
                   </ListItemIcon>
                   <ListItemText primary="Manual de Uso" />
                 </ListItem>
-              </a>
+              </Link>
             </List>
           </div>
         </div>
-        <List className={open ? 'exitOpen' : ""}>
-          <a href="/exit">
+        <List className={open && 'exitOpen'}>
+          <Link to="/exit">
             <ListItem button key="Sair">
               <ListItemIcon>
                 <PowerSettingsNewIcon />
               </ListItemIcon>
               <ListItemText primary="Sair" />
             </ListItem>
-          </a>
+          </Link>
         </List>
       </Drawer>
     </div>
