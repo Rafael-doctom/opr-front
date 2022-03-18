@@ -1,5 +1,6 @@
 .requirement_container{
     position: relative;
+    cursor: default;
     top: 50vh;
     left: 8vw;
     width: 85vw;
