@@ -14,7 +14,6 @@ import {
 import Menu from "../../Menu";
 import HeaderBar from "../../HeaderBar/index";
 import LegislatorCard from "../../LegislatorCard/index";
-import ModalComponent from "../../Modal/index";
 import Modal from "../../ModalRequirements";
 
 import { mockRequirement } from "../../../service/api";
