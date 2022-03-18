@@ -62,7 +62,7 @@ export default function LegislatorHomePage() {
             <HeaderBar />
                       
             <LegislatorCard requeriments={299} analysis={274} denied={10}
-            done = {15}>  </LegislatorCard>
+            done = {15} />
 
             <section className="requirement_container"> 
                 <section  className="requirement_content"  onClick={() => modalRef.current.openModal()}>
