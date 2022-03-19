@@ -1,39 +1,31 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Menu from "../../Menu/index";
 import HeaderBar from "../../HeaderBar/index";
 import Requirement from "../../Requirement/";
 import ModalNewRequeriments from "../../ModalNewRequeriments/index";
 import { useNavigate } from "react-router-dom";
 import { Search, AddCircleOutline } from "@material-ui/icons/"
-import { mockListRequeriments } from "../../../service/api";
 
 import './styles.css';
+import { saveRequirements } from '../../../store/actions/requirementsActor';
+import { useDispatch, useSelector } from "react-redux";
 
 export default function UserHomePage() {
-    const [requirements, setRequirements] = useState([]);
+    const requirements = useSelector(state => state.requirements.all);
     const [requirementSearchActive, setRequirementSearchActive] = useState(false);
     const [searchKeyword, setSearchKeyword] = useState("");
     const newReqModalRef = useRef();
+    const dispatch = useDispatch();
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        setRequirements(mockListRequeriments);
-
-        return () => { 
-            setRequirements(mockListRequeriments);
-            setRequirementSearchActive(false);
-        };
-    }, [])
-
-    function searchRequirements() {
+    const searchRequirements = useCallback(() => {
         // TODO: Criação de funcionalidade de busca de requerimentos
-        navigate("/requirements", { state: {
-            searchKeyword: searchKeyword }
-        });
-    }
-
-
+        dispatch(saveRequirements([]));
+        // navigate("/requirements", { state: {
+        //     searchKeyword: searchKeyword }
+        // });
+    }, [dispatch]);
 
     return (
         <div className="user_home_page_container">

@@ -1,8 +1,10 @@
 import { combineReducers, createStore } from 'redux';
-import exampleReducer from './reducers/exampleReducer';
+import userReducer from './reducers/userReducer';
+import requirementsReducer from './reducers/requirementsReducer';
 
 const rootReducer = combineReducers({
-    example: exampleReducer
+    user: userReducer,
+    requirements: requirementsReducer
 });
 
 export default createStore(rootReducer);
