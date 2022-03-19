@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { Search, AddCircleOutline } from "@material-ui/icons/"
 
 import './styles.css';
-import { saveRequirements } from '../../../store/actions/requirementsActor';
 import { useDispatch, useSelector } from "react-redux";
 
 export default function UserHomePage() {
@@ -21,11 +20,10 @@ export default function UserHomePage() {
 
     const searchRequirements = useCallback(() => {
         // TODO: Criação de funcionalidade de busca de requerimentos
-        dispatch(saveRequirements([]));
-        // navigate("/requirements", { state: {
-        //     searchKeyword: searchKeyword }
-        // });
-    }, [dispatch]);
+        navigate("/requirements", { state: {
+            searchKeyword: searchKeyword }
+        });
+    }, []);
 
     return (
         <div className="user_home_page_container">
