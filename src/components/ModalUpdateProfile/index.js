@@ -2,11 +2,11 @@ import React, { forwardRef, useState } from "react";
 import { Button, Box, Grid } from "@material-ui/core/";
 import { Avatar } from "@material-ui/core";
 import Modal from "../Modal";
-import { mockUser } from "../../service/api";
 import "./styles.css";
+import { useSelector } from "react-redux";
 
 const ModalUpdateProfile = forwardRef((props, modalRef) => {
-  const data = mockUser;
+  const data = useSelector(state => state.user);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [state, setState] = useState("");
