@@ -11,6 +11,14 @@ export default function InitialPage() {
     }
 
     return (
+
+    /*   vai ser assim:
+    
+            {isCommonUser ?
+                <UserHomePage />
+                :
+                <LegislatorHomePage />
+            }*/
         <div>
             <LegislatorHomePage />           
         </div>

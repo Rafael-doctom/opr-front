@@ -1,7 +1,7 @@
 .legislators_cards{
     position: absolute;
-    width: 85vw;
-    margin-left: 100px;
+    width: calc(100vw - 100px);
+    margin-left: 80px;
     display: flex;
     height: 60vh;
     flex-direction: row;

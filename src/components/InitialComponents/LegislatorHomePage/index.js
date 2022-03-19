@@ -1,14 +1,15 @@
 import React, { useState, useRef, forwardRef } from "react";
 import "./styles.css";
 import { Link } from 'react-router-dom';
-import { Button, Box, TextField } from "@material-ui/core/";
+import { Button, Box } from "@material-ui/core/";
 
 import {
     AccountCircleRounded as AccountCircleRoundedIcon,
     ThumbUpAltOutlined as ThumbUpAltOutlinedIcon,
     ThumbUpAltRounded as ThumbUpAltRoundedIcon,
     Comment  as CommentIcon,
-  } from "@material-ui/icons/";
+    CommentOutlined  as CommentOutlinedIcon,
+} from "@material-ui/icons/";
 
 import Menu from "../../Menu";
 import HeaderBar from "../../HeaderBar/index";
@@ -116,7 +117,9 @@ export default function LegislatorHomePage() {
                             )}
                         </Button>
                        
-                        <Button onClick = {() => handleShowComments()}> <CommentIcon /></Button>
+                        <Button onClick = {() => handleShowComments()}>
+                            {showComments ? <CommentIcon /> : <CommentOutlinedIcon />}                            
+                             </Button>
                    
                     </Box>
 
@@ -124,8 +127,9 @@ export default function LegislatorHomePage() {
 
             </section>
             
-            <section className="comments_container">
+            
             {showComments ? (
+                <section className="comments_container">
                 <Box className="right_comments">
                     
                         <Box className="box_comments">
@@ -153,43 +157,39 @@ export default function LegislatorHomePage() {
                                     <p>{item.message}</p>
                                     </Box>
                             ))}
+                            
                             <span id="downScroll" />
+
                         </Box>
 
                         <Box className="box_write">
-                            <input
-                            value = {comment}
-                            onChange={(e) => setComment(e.target.value)}
-                            placeholder="Digite sua mensagem..."
-                            onKeyPress={(event) => {
-                              if (event.key === "Enter") {
-                                handleComment();
-                              }
-                            }}
-                            type="text"
-                            required                            
-                            />
+                                <input
+                                value = {comment}
+                                onChange={(e) => setComment(e.target.value)}
+                                placeholder="Digite sua mensagem..."
+                                onKeyPress={(event) => {
+                                if (event.key === "Enter") {
+                                    handleComment();
+                                }
+                                }}
+                                type="text"
+                                required                            
+                                />
 
-                            <Button
-                                href="#downScroll"
-                                onClick={() => handleComment()}
-                                className="comment_submit"
-                            >
-                                Comentar
-                            </Button>
+                                <Button
+                                    href="#downScroll"
+                                    onClick={() => handleComment()}
+                                    className="comment_submit"
+                                >
+                                    Comentar
+                                </Button>
 
-                        </Box>
-
-                        
+                            </Box>                       
                 </Box>
-                            
+                </section>           
             ) : (
-                <></>
-            )}
-            </section>
-            
-
-                     
+                <> </>
+            )}                     
         </div>
     )
 }
