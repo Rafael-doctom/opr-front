@@ -189,7 +189,7 @@ export default function Menu() {
                   <ListItemText primary="Perguntas Frequentes" />
                 </ListItem>
               </Link>
-              <Link href="/userManual">
+              <Link to="/userManual">
                 <ListItem button key="Manual de Uso">
                   <ListItemIcon>
                     <LibraryBooksIcon />
