@@ -1,9 +1,9 @@
-.box {
+.box-requirement {
   font-family: "Roboto Condensed", sans-serif;
   padding: 30px;
 }
 
-.box input, textarea {
+.box-requirement input, textarea {
   width: 100%;
   resize: none;
   border: 1px solid #C2C2C2;
@@ -13,11 +13,11 @@
   outline: none;
 }
 
-.box input {
+.box-requirement input {
   height: 45px;
 }
 
-.box small strong {
+.box-requirement small strong {
   color: var(--infos);
 }
 

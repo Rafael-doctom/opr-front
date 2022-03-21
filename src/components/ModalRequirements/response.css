@@ -5,6 +5,11 @@
 }
 
 @media(max-width: 745px){
+  .box-requirement {
+    width: 96vw;
+    height: 92vh;
+  }
+
   .carrossel {
     overflow-x: auto;
   }
@@ -14,7 +19,17 @@
   }
 }
 
+@media(max-width: 610px){
+  .box-requirement {
+    padding: 15px;
+  }
+}
+
 @media(max-width: 470px){
+  .box-requirement {
+    padding: 22px 14px !important;
+  }
+  
   .header-profile {
     flex-direction: column;
     gap: 24px;

@@ -106,7 +106,7 @@ export default function Menu() {
 
   return (
     
-    <div className={open && "root"}>
+    <div className={open ? "root" : ""}>
       <div className='modal_update_profile'>
         <ModalUpdateProfile ref={modalUpdateProfile}/>
       </div>
@@ -189,7 +189,7 @@ export default function Menu() {
                   <ListItemText primary="Perguntas Frequentes" />
                 </ListItem>
               </Link>
-              <Link href="/userManual">
+              <Link to="/userManual">
                 <ListItem button key="Manual de Uso">
                   <ListItemIcon>
                     <LibraryBooksIcon />
