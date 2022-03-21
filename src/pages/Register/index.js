@@ -27,7 +27,7 @@ export default function Register() {
 
     useEffect(() => {
         if (isCitizen) {
-            if (!!name && cpf.length === 11 && !!state && !!city && !!email && !!password && !!passwordConfirmation) {
+            if (!!name && !!state && !!city && !!email && !!password && !!passwordConfirmation) {
                 let isValid = true;
                 isValid = validateEmail(email) && validateCPF(cpf) && (password === passwordConfirmation);
 
@@ -36,7 +36,7 @@ export default function Register() {
                 setIsFormCompleted(false);
             }
         } else {
-            if (!!name && cpf.length === 11 && !!state && !!city && !!email && !!password && !!passwordConfirmation && !!filiation) {
+            if (!!name && !!state && !!city && !!email && !!password && !!passwordConfirmation && !!filiation) {
                 let isValid = true;
                 isValid = validateEmail(email) && validateCPF(cpf) && (password === passwordConfirmation);
 
@@ -66,7 +66,7 @@ export default function Register() {
             "senha": password
         }
 
-        registerCitizen(citizenData).then((response) => {
+        registerCitizen(citizenData).then(() => {
             navigate("/home");
         })
     }
@@ -81,7 +81,7 @@ export default function Register() {
             "partido": filiation
         }
 
-        registerLegislator(legislatorData).then((response) => {
+        registerLegislator(legislatorData).then(() => {
             navigate("/home")
         })
     }

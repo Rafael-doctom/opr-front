@@ -1,16 +1,27 @@
-import { api } from "./api";
+import { api, apiAuth } from "./api";
 import { encryptValue } from "../utils/cryptography";
+import { saveUser, updateUser } from "../store/actions/userActor";
 
 export async function registerCitizen(citizenData) {
-    console.log(citizenData)
-    citizenData.senha = encryptValue(citizenData.senha);
-    citizenData.cpf = encryptValue(citizenData.cpf);
+    const citizenDataEncrypted = citizenData;
+    citizenDataEncrypted.senha = encryptValue(citizenData.senha);
+    citizenDataEncrypted.cpf = encryptValue(citizenData.cpf);
 
-    return api.post("/cidadao", citizenData).then((response) => {
+    return api.post("/cidadao", citizenDataEncrypted).then((response) => {
         return new Promise((resolve, reject) => {
             if (response.data) {
-                localStorage.setItem("@opr/token", response.data);
-                resolve();
+                const userInformations = response.data.cidadaoCriado;
+
+                const infoForLogin = {
+                    senha: citizenData.senha,
+                    cpf: citizenData.cpf
+                }
+                citizenLogin(infoForLogin).then(() => {
+                    saveUser(userInformations);
+                    resolve();
+                }).catch(() => {
+                    reject()
+                })
             } else {
                 reject();
             }
@@ -35,9 +46,11 @@ export async function citizenLogin(loginData) {
 }
 
 export async function updateCitizen(updateData) {
-    return api.put("/cidadao", updateData);
-}
-
-export async function deleteCitizen(citizenCpf) {
-    return api.delete("/cidadao", citizenCpf)
+    return apiAuth.put("/cidadao", updateData).then((response) => {
+        if (response.data) {
+            if (response.data.cidadaoAlterado) {
+                updateUser(response.data.cidadaoAlterado);
+            }
+        }
+    });
 }
