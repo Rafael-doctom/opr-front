@@ -152,7 +152,6 @@ const initialState = {
 };
 
 export default function requirementsReducer(state = initialState, action) {
-    console.log(action);
     switch (action.type) {
         case ActionTypes.SAVE_REQUIREMENTS:
             return {...state, all: action.payload};

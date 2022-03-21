@@ -10,7 +10,7 @@ export default function Requirements(props) {
     const [searchKeyword, setSearchKeyword] = useState("");
     const [requirements, setRequirements] = useState([]);
     const { state } = useLocation()
-    const searchKeywordRecieved = state.searchKeyword;
+    const searchKeywordRecieved = state ? state.searchKeyword: "";
 
     useEffect(() => {
         if (searchKeywordRecieved) {
