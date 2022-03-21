@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 
 import './styles.css';
 import UserHomePage from '../../components/InitialComponents/UserHomePage';
-import LegislatorHomePage from '../../components/InitialComponents/Legislator';
+import LegislatorHomePage from '../../components/InitialComponents/LegislatorHomePage';
 import { useSelector } from 'react-redux';
 
 export default function InitialPage() {
