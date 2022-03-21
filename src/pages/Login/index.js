@@ -1,23 +1,53 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import LoginLogo from "../../assets/LoginLogo.png";
-import ProjectLogo from "../../assets/ProjectLogo.png"
+import ProjectLogo from "../../assets/ProjectLogo.png";
 import "./styles.css";
 
 export default function Login() {
+  const [login, setLogin] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    const listener = event => {
+      if (event.code === "Enter" || event.code === "NumpadEnter") {
+        handleLogin(event);
+      }
+    };
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, [login, password]);
+
+
+  const handleLogin = () => {
+    console.log("login",login)
+  }
+
   return (
     <div className="login_page_container">
       <div className="login_form_container">
         <div className="form_logo">
-        <img src={ProjectLogo} alt="Project Logo" />
+          <img src={ProjectLogo} alt="Project Logo" />
         </div>
         <div className="inputs">
           <div className="form_title">Login</div>
-          <input className="login_input" type="text" placeholder="Email" />
-          <input className="password_input" type="password" placeholder="Senha"/>
+          <input
+            className="login_input"
+            type="text"
+            placeholder="CPF"
+            onChange={(e) => setLogin(e.target.value.replace(".","").replace(".","").replace("-",""))}
+          />
+          <input
+            className="password_input"
+            type="password"
+            placeholder="Senha"
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
-        <button className="submit_login_button">Login</button>
+        <button className="submit_login_button" type='submit' onClick={handleLogin} >Login</button>
         <div className="login_links">
           <Link className="forgot_my_password_link" to="#">
             Esqueci minha senha
