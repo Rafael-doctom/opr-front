@@ -18,12 +18,15 @@ import Modal from "../../ModalRequirements";
 
 import { mockRequirement } from "../../../service/api";
 
+import { useDispatch, useSelector } from "react-redux";
+
 
 export default function LegislatorHomePage() {
 
     const modalRef = useRef();
-     
-    const [requirement, setRequirement] = useState(mockRequirement);
+    
+    const requirements = useSelector(state => state.requirements.all);
+    const [requirement, setRequirement] = useState(requirements[0]);
 
     const [support, setSupport] = useState(false);
     const [showComments, setShowComments] = useState(false);
@@ -42,8 +45,8 @@ export default function LegislatorHomePage() {
 
     const handleComment = () => {
         const data = {
-          profile: requirement.profile.photo,
-          name: requirement.profile.name,
+          profile: requirement.user.photo,
+          name: requirement.user.name,
           message: comment,
         };
     
@@ -56,6 +59,22 @@ export default function LegislatorHomePage() {
         }
       };
 
+    function renderRequirementStatus(){
+        if (requirement.status === "concluded") { 
+            return(                          
+            <span>Concluído</span>
+            )                     
+        } else if (requirement.status === "not_accepted") { 
+            return(                         
+           <span>Não aceito</span>
+            )                         
+        } else { 
+            return(                         
+            <span>Em avaliação</span>
+            )                         
+        }
+    }
+
     return (
         <div>
             <Menu />
@@ -65,13 +84,13 @@ export default function LegislatorHomePage() {
             <LegislatorCard requeriments={299} analysis={274} denied={10}
             done = {15} />
 
-            <section className="requirement_container"> 
-                <section  className="requirement_content"  onClick={() => modalRef.current.openModal()}>
+            <section className="requirement_legislator_container"> 
+                <section  className="requirement_legislator_content"  onClick={() => modalRef.current.openModal()}>
                     
                     <div className="header_title">
                         <p>Reivindicação em destaque</p>
-                        <Box className="status">
-                            <span>{requirement.status}</span>
+                        <Box className="status">                           
+                            {renderRequirementStatus()}
                         </Box>
                     </div>
                         
@@ -79,9 +98,9 @@ export default function LegislatorHomePage() {
                                                              
                             <Box className="profile">
 
-                                { requirement.profile.photo ? (
+                                { requirement.user.photo ? (
                                 <img
-                                    src={requirement.profile.photo}
+                                    src={requirement.user.photo}
                                     width={30}
                                     height={30}
                                     alt="Image"
@@ -91,15 +110,15 @@ export default function LegislatorHomePage() {
                                 )}
 
                                 <Box className="info">
-                                    <p>{requirement.profile.name}</p>
-                                    <p>{requirement.profile.city}</p> 
+                                    <p>{requirement.user.name}</p>
+                                    <p>{requirement.user.location}</p> 
                                 </Box>
 
                             </Box>
 
                             <h5 className="date">
                                     <strong> Data de publicação:  </strong>
-                                    <p>{requirement.profile.dateOccurrence}</p>
+                                    <p>{requirement.user.dateOccurrence}</p>
                             </h5>                      
                     </div>
 
@@ -119,8 +138,7 @@ export default function LegislatorHomePage() {
                        
                         <Button onClick = {() => handleShowComments()}>
                             {showComments ? <CommentIcon /> : <CommentOutlinedIcon />}                            
-                             </Button>
-                   
+                             </Button>                  
                     </Box>
 
                 <Modal ref={modalRef} requirement = {requirement} /> 

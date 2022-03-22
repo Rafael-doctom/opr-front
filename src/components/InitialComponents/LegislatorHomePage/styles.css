@@ -1,4 +1,4 @@
-.requirement_container{
+.requirement_legislator_container{
     position: relative;
     cursor: default;
     top: 48vh;
@@ -44,12 +44,14 @@
     margin-top: 10px;
     font-size: 15px;
     color: var(--titles);
+    padding-left: 12px;
   }
 
   .status {
     display: flex;
     align-items: center;
     gap: 12px;
+    padding-right: 12px;
   }
 
   .status h4 {
@@ -70,7 +72,9 @@
     align-items: center;
     justify-content: space-between;
     top: 10px;
-    height: 12vh;   
+    height: 12vh;
+    padding-left: 12px;
+    padding-right: 12px;   
   }
 
   .header_profile > h5 {
@@ -135,7 +139,7 @@
     color: var(--infos);
     margin: 0 8px 8px 0;
     text-align: justify;
-    padding: 10px 0 0 8px;
+    padding: 12px 12px 0 12px;
   }
   
   .inputText {
