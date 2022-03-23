@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-
 import { Link } from "react-router-dom";
-import { api } from '../../service/api';
+import InputMask from "react-input-mask";
+
+import { api } from "../../service/api";
 
 import LoginLogo from "../../assets/LoginLogo.png";
 import ProjectLogo from "../../assets/ProjectLogo.png";
@@ -15,7 +16,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    const listener = event => {
+    const listener = (event) => {
       if (event.code === "Enter" || event.code === "NumpadEnter") {
         handleLogin(event);
       }
@@ -26,19 +27,18 @@ export default function Login() {
     };
   }, [login, password]);
 
-
-  const handleLogin = async(e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const { token } = await api.post("/cidadao", {login, password});
+      const { token } = await api.post("/cidadao", { login, password });
 
       localStorage.setItem("token", token);
 
       history.push("/home");
-    } catch(err) {
+    } catch (err) {
       console.log(err.data.response.messagem);
     }
-  }
+  };
 
   return (
     <div className="login_page_container">
@@ -47,12 +47,18 @@ export default function Login() {
           <img src={ProjectLogo} alt="Project Logo" />
         </div>
         <div className="inputs">
-          <div className="form_title">Login</div>
-            className="login_input"
-            type="text"
-            placeholder="CPF"
-            onChange={(e) => setLogin(e.target.value.replace(".","").replace(".","").replace("-",""))}
-          />
+          <div className="login_input">
+            <InputMask
+              placeholder="CPF"
+              className="login_input"
+              maskPlaceholder=" "
+              mask="999.999.999-99"
+              value={login}
+              onChange={(e) => setLogin(e.target.value)}
+              required
+            />
+          </div>
+
           <input
             className="password_input"
             type="password"
@@ -61,7 +67,13 @@ export default function Login() {
             required
           />
         </div>
-        <button className="submit_login_button" type='submit' onClick={handleLogin} >Login</button>
+        <button
+          className="submit_login_button"
+          type="submit"
+          onClick={handleLogin}
+        >
+          Login
+        </button>
         <div className="login_links">
           <Link className="forgot_my_password_link" to="#">
             Esqueci minha senha
