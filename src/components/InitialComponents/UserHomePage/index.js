@@ -7,14 +7,13 @@ import { useNavigate } from "react-router-dom";
 import { Search, AddCircleOutline } from "@material-ui/icons/"
 
 import './styles.css';
-import { useDispatch, useSelector } from "react-redux";
+import { useRequirements } from "../../../contexts/requirementsContext";
 
 export default function UserHomePage() {
-    const requirements = useSelector(state => state.requirements.all);
+    const { requirements, setRequirements } = useRequirements();
     const [requirementSearchActive, setRequirementSearchActive] = useState(false);
     const [searchKeyword, setSearchKeyword] = useState("");
     const newReqModalRef = useRef();
-    const dispatch = useDispatch();
 
     const navigate = useNavigate();
 

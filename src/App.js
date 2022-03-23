@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import { Provider } from 'react-redux';
 
 import './global.css';
-import store from './store';
+import AppProvider from "./contexts";
 import AppRoutes from './routes';
 
 function App() {
@@ -11,9 +10,9 @@ function App() {
   }, [])
 
   return (
-    <Provider store={store}>
+    <AppProvider>
       <AppRoutes />
-    </Provider>
+    </AppProvider>
   );
 }
 
