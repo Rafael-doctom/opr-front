@@ -10,13 +10,17 @@ import './styles.css';
 import { useDispatch, useSelector } from "react-redux";
 
 export default function UserHomePage() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const requirements = useSelector(state => state.requirements.all);
+
+    const [search, setSearch] = useState("");
     const [requirementSearchActive, setRequirementSearchActive] = useState(false);
     const [searchKeyword, setSearchKeyword] = useState("");
     const newReqModalRef = useRef();
-    const dispatch = useDispatch();
-
-    const navigate = useNavigate();
+    
+    const requirementsFilted = requirements?.filter(p => (p.title.toLocaleLowerCase() || p.description.toLocaleLowerCase() || p.status.toLocaleLowerCase() || p.creationDate.toLocaleLowerCase()).includes((search.toLocaleLowerCase())));
 
     const searchRequirements = useCallback(() => {
         // TODO: Criação de funcionalidade de busca de requerimentos
@@ -40,7 +44,7 @@ export default function UserHomePage() {
                                 placeholder="Palavra chave" 
                                 onBlur={() => setTimeout(() => setRequirementSearchActive(false), 300)}
                                 defaultValue={searchKeyword}
-                                onChange={(event) => setSearchKeyword(event.target.value)}
+                                onChange={(event) => setSearch(event.target.value)}
                             />
                             <button onClick={() => searchRequirements()}>
                                 <Search style={{ color: "#0A68F4"}}/>
@@ -52,7 +56,7 @@ export default function UserHomePage() {
                 </div>
 
                 <section className="user_home_page-requirements_container">
-                    {requirements.map(requirement => {
+                    {requirementsFilted.map(requirement => {
                         return (
                             <Requirement key={requirement.id} requirement={requirement} />
                         )
