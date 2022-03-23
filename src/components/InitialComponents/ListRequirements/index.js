@@ -6,16 +6,14 @@ import ModalNewRequeriments from "../../ModalNewRequeriments/index";
 import { AddCircleOutline } from "@material-ui/icons/";
 import { mockListRequeriments } from "../../../service/api";
 import usePagination from "../../../hooks/usePagination";
+import useRequirements from "../../../hooks/useRequirements";
 
 import "./styles.css";
-import useRequirements from "../../../hooks/useRequirements";
 
 export default function ListRequirements() {
   const newReqModalRef = useRef();
-  const { requirements, fetchRequirements } = useRequirements(5);
-  const { actualPage, setActualPage } = usePagination();
-  console.log(requirements)
-  console.log(actualPage)
+  const [ requirements, fetchRequirements ] = useRequirements(5);
+  const [ actualPage, setActualPage ] = usePagination();
 
   useEffect(() => {
     fetchRequirements(actualPage);

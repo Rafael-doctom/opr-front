@@ -4,16 +4,17 @@ import { useState } from "react";
 export default function useRequirements(pageLimit) {
     const [requirements, setRequirements] = useState([]);
 
-    function fetchRequirements(page) {
+    async function fetchRequirements(page) {
         const virtualPage = ((page - 1) * pageLimit) ? 0 : ((page - 1) * pageLimit)
 
-        fetch(mockListRequeriments)
-        .then(res => res.json())
-        .then(setRequirements)
+        // TODO: Nesse local pode ser inserida a chamada no backend
+        // Analisar se há necessidade do virtual page de acordo com
+        // o modo que foi implementado no backend
+        setRequirements(mockListRequeriments)
     }
   
-    return (
-      fetchRequirements,
-      requirements
-    );
-  }
+    return [
+      requirements,
+      fetchRequirements
+    ];
+}

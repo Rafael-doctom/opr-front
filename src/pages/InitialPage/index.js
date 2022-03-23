@@ -3,6 +3,7 @@ import React from 'react';
 import './styles.css';
 import UserHomePage from '../../components/InitialComponents/UserHomePage';
 import LegislatorHomePage from '../../components/InitialComponents/Legislator';
+import ListRequirements from '../../components/InitialComponents/ListRequirements';
 
 export default function InitialPage() {
 
@@ -13,11 +14,12 @@ export default function InitialPage() {
     return (
         <div>
 
-            {isCommonUser ?
+            {/* {isCommonUser ?
                 <UserHomePage />
                 :
                 <LegislatorHomePage />
-            }
+            } */}
+            <ListRequirements />
         </div>
     )
 }

@@ -10,9 +10,17 @@ export default function usePagination() {
         getActualPage() || 1
     )
 
+    function getActualPage() {
+        const queryParams = qs.parse(location.search)
+        const page = queryParams.page
+
+        return page ? Number(page) : undefined
+    }
+
     useEffect(() => {
         const queryParams = qs.parse(location.search)
 
+        console.log(queryParams, actualPage)
         navigate({
             search: qs.stringify({
                 ...queryParams,
@@ -20,16 +28,9 @@ export default function usePagination() {
             })
         })
     }, [actualPage])
-
-    function getActualPage() {
-        const queryParams = qs.parse(location.search)
-        const page = queryParams.page
-
-        return page ? Number(page) : undefined
-    }
   
-    return (
-      setActualPage,
-      actualPage
-    );
+    return [
+        actualPage,
+        setActualPage
+    ];
   }
