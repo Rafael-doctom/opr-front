@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+
 import { Link } from "react-router-dom";
+import { api } from '../../service/api';
 
 import LoginLogo from "../../assets/LoginLogo.png";
 import ProjectLogo from "../../assets/ProjectLogo.png";
 import "./styles.css";
 
 export default function Login() {
+  const history = useHistory();
+
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
@@ -22,8 +27,17 @@ export default function Login() {
   }, [login, password]);
 
 
-  const handleLogin = () => {
-    console.log("login",login)
+  const handleLogin = async(e) => {
+    e.preventDefault();
+    try {
+      const { token } = await api.post("/cidadao", {login, password});
+
+      localStorage.setItem("token", token);
+
+      history.push("/home");
+    } catch(err) {
+      console.log(err.data.response.messagem);
+    }
   }
 
   return (
