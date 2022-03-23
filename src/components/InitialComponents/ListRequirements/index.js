@@ -1,35 +1,28 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Menu from "../../Menu/index";
 import HeaderBar from "../../HeaderBar/index";
 import Requirement from "../../Requirement/";
 import ModalNewRequeriments from "../../ModalNewRequeriments/index";
-import { useNavigate } from "react-router-dom";
 import { AddCircleOutline } from "@material-ui/icons/";
 import { mockListRequeriments } from "../../../service/api";
+import usePagination from "../../../hooks/usePagination";
 
 import "./styles.css";
 import useRequirements from "../../../hooks/useRequirements";
 
 export default function ListRequirements() {
-  const [requirementsPerPage, setRequirementsPerPage] = useState(5)
-  const [currentPage, setCurrentPage] = useState(0)
-  const [setRequirementSearchActive] = useState(false);
-  const [searchKeyword, setSearchKeyword] = useState("");
   const newReqModalRef = useRef();
-  const {requirements, fetchRequirements} = useRequirements(5)
-
-  const navigate = useNavigate();
+  const { requirements, fetchRequirements } = useRequirements(5);
+  const { actualPage, setActualPage } = usePagination();
+  console.log(requirements)
+  console.log(actualPage)
 
   useEffect(() => {
-    fetchRequirements(1)
-  })
-
-  const pages = Math.ceil(requirements.length / requirementsPerPage)
+    fetchRequirements(actualPage);
+  }, [actualPage]);
 
   function setNumberOfRequirements(number) {
-    //$('btn_number_of_requirements').removeClass('active')
-    //$(this).addClass('active')
-    // setPageLimit(number)
+    
   }
 
   return (
@@ -47,14 +40,29 @@ export default function ListRequirements() {
         <div className="number_of_requirements_per_page">
           <h4>Requerimentos por página</h4>
           <div className="btn_area">
-            <button className="btn_number_of_requirements" onClick={setNumberOfRequirements(5)}>5</button>
-            <button className="btn_number_of_requirements" onClick={setNumberOfRequirements(10)}>10</button>
-            <button className="btn_number_of_requirements" onClick={setNumberOfRequirements(25)}>25</button>
+            <button
+              className="btn_number_of_requirements"
+              onClick={setNumberOfRequirements(5)}
+            >
+              5
+            </button>
+            <button
+              className="btn_number_of_requirements"
+              onClick={setNumberOfRequirements(10)}
+            >
+              10
+            </button>
+            <button
+              className="btn_number_of_requirements"
+              onClick={setNumberOfRequirements(25)}
+            >
+              25
+            </button>
           </div>
         </div>
 
         <section className="user_home_page-requirements_container">
-          {requirements.map((requirement) => {
+          {requirements && requirements.map((requirement) => {
             return (
               <Requirement key={requirement.id} requirement={requirement} />
             );
@@ -69,6 +77,20 @@ export default function ListRequirements() {
         Novo
         <AddCircleOutline />
       </button>
+
+      <div>
+        {mockListRequeriments && mockListRequeriments.map((_, index) => {
+          return (
+            <button
+              className="btn_page"
+              key={index}
+              onClick={() => {setActualPage(index + 1)}}
+            >
+              {index + 1}
+            </button>
+          );
+        })}
+      </div>
 
       <ModalNewRequeriments ref={newReqModalRef} />
     </div>

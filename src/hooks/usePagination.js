@@ -1,27 +1,35 @@
-import { useState } from "react";
-import { useLocation, useHistory } from "react-router-dom";
-import { mockListRequeriments } from "../../../service/api";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import qs from 'query-string'
 
 export default function usePagination() {
     const location = useLocation()
-    const history = useHistory()
+    const navigate = useNavigate()
+
+    const [actualPage, setActualPage] = useState(
+        getActualPage() || 1
+    )
+
+    useEffect(() => {
+        const queryParams = qs.parse(location.search)
+
+        navigate({
+            search: qs.stringify({
+                ...queryParams,
+                page: actualPage
+            })
+        })
+    }, [actualPage])
 
     function getActualPage() {
-        
-    }
+        const queryParams = qs.parse(location.search)
+        const page = queryParams.page
 
-    const [actualPage, setActualPage] = useState()
-
-    function fetchRequirements(page) {
-        const virtualPage = ((page - 1) * pageLimit) ? 0 : ((page - 1) * pageLimit)
-
-        fetch(mockListRequeriments)
-        .then(res => res.json())
-        .then(setRequirements)
+        return page ? Number(page) : undefined
     }
   
     return (
-      fetchRequirements,
-      requirements
+      setActualPage,
+      actualPage
     );
   }

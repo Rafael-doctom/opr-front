@@ -1,4 +1,5 @@
-import { mockListRequeriments } from "../../../service/api";
+import { mockListRequeriments } from "../service/api";
+import { useState } from "react";
 
 export default function useRequirements(pageLimit) {
     const [requirements, setRequirements] = useState([]);
