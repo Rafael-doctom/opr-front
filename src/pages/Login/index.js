@@ -48,7 +48,6 @@ export default function Login() {
         </div>
         <div className="inputs">
           <div className="form_title">Login</div>
-          <input
             className="login_input"
             type="text"
             placeholder="CPF"
