@@ -32,7 +32,7 @@ export default function Login() {
     try {
       const { token } = await api.post("/cidadao", { login, password });
 
-      localStorage.setItem("token", token);
+      localStorage.setItem("@opr/token", token);
 
       history.push("/home");
     } catch (err) {
