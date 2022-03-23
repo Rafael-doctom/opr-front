@@ -59,6 +59,7 @@ export default function Login() {
             type="password"
             placeholder="Senha"
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </div>
         <button className="submit_login_button" type='submit' onClick={handleLogin} >Login</button>
