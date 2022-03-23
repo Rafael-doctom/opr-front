@@ -8,6 +8,8 @@ import { mockListRequeriments } from "../../../service/api";
 import usePagination from "../../../hooks/usePagination";
 import useRequirements from "../../../hooks/useRequirements";
 
+import { FilterList, CompareArrows } from '@material-ui/icons';
+
 import "./styles.css";
 
 export default function ListRequirements() {
@@ -31,8 +33,12 @@ export default function ListRequirements() {
       <section className="user_home_page_content">
         <div className="user_home_page_title">
           <h1>Requerimentos encontrados para: “Palavra-chave”</h1>
-          <button className="btn_filter">F</button>
-          <button className="btn_order">O</button>
+          <button className="filtering_btn">
+            <FilterList style={{ color: "#000000"}} />
+          </button>
+          <button className="filtering_btn">
+            <CompareArrows style={{ color: "#000000" }} />
+          </button>
         </div>
 
         <div className="number_of_requirements_per_page">
@@ -76,11 +82,11 @@ export default function ListRequirements() {
         <AddCircleOutline />
       </button>
 
-      <div>
+      <div className="btn_container">
         {mockListRequeriments && mockListRequeriments.map((_, index) => {
           return (
             <button
-              className="btn_page"
+              className={`btn_page ${actualPage === (index + 1) ? "actual_page" : ""}` }
               key={index}
               onClick={() => {setActualPage(index + 1)}}
             >
