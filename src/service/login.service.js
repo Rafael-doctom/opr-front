@@ -8,7 +8,6 @@ export async function login(loginData) {
         return new Promise((resolve, reject) => {
             if (response.data) {
                 localStorage.setItem("@opr/token", response.data);
-
                 const jwtDecrypted = decryptJWT(response.data);
 
                 if (jwtDecrypted.tipo_de_usuario === "cidadao") {

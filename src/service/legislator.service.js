@@ -3,7 +3,6 @@ import { api, apiAuth } from "./api";
 import { login } from "./login.service";
 
 export async function registerLegislator(legislatorData) {
-
     return api.post("/legislador", legislatorData).then((response) => {
         return new Promise((resolve, reject) => {
             if (response.data) {
