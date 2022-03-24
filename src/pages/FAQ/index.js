@@ -10,6 +10,7 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import "./styles.css";
+import { red } from "@material-ui/core/colors";
 
 export default function FAQ() {
   return (
@@ -20,7 +21,7 @@ export default function FAQ() {
           <div className="faq_title"> Perguntas Frequentes</div>
         <Accordion>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}     
+            expandIcon={<ExpandMoreIcon style={{color:"#0A68F4"}} />}     
           >
             <Typography>Qual o intuito do sistema?</Typography>
           </AccordionSummary>
@@ -32,7 +33,7 @@ export default function FAQ() {
         </Accordion>
         <Accordion>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon style={{color:"#0A68F4"}}/>}
           >
             <Typography>O que motivou a criação do sistema?</Typography>
           </AccordionSummary>
@@ -44,13 +45,13 @@ export default function FAQ() {
         </Accordion>
         <Accordion>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon style={{color:"#0A68F4"}}/>}
           >
             <Typography>Insira uma pergunta</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-            resposta aqui :)
+            resposta aqui
             </Typography>
           </AccordionDetails>
         </Accordion>
