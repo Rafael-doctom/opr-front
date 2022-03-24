@@ -1,0 +1,14 @@
+.faq_container{
+    margin: auto;
+    width: 90%;
+    margin-top: 10vh;
+    padding-top: 40px;
+}
+
+.faq_title{
+    color: var(--blue);
+    font-size: 30px;
+    font-weight: 500;
+    font-family: "Roboto Condensed", sans-serif;
+    margin-bottom: 2vh;
+}
