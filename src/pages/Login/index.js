@@ -10,8 +10,9 @@ import ProjectLogo from "../../assets/ProjectLogo.png";
 import "./styles.css";
 
 export default function Login() {
-  const navigate = useNavigate();
   const { setCurrentUser } = useUser();
+  const navigate = useNavigate();
+
   const [cpf, setCpf] = useState("");
   const [password, setPassword] = useState("");
 
