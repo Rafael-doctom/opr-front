@@ -1,6 +1,6 @@
 import { api, apiAuth } from "./api";
 import { encryptValue } from "../utils/cryptography";
-import { saveUser, updateUser } from "../store/actions/userActor";
+import { login } from "./login.service";
 
 export async function registerLegislator(legislatorData) {
     const legislatorDataEncrypted = legislatorData;
@@ -16,9 +16,9 @@ export async function registerLegislator(legislatorData) {
                     senha: legislatorData.senha,
                     cpf: legislatorData.cpf
                 }
-                legislatorLogin(infoForLogin).then(() => {
-                    saveUser(userInformations);
-                    resolve();
+
+                login(infoForLogin, false).then(() => {
+                    resolve(userInformations);
                 }).catch(() => {
                     reject()
                 })
@@ -29,28 +29,20 @@ export async function registerLegislator(legislatorData) {
     });
 }
 
-export async function legislatorLogin(loginData) {
-    loginData.password = encryptValue(loginData.password);
-    loginData.cpf = encryptValue(loginData.cpf);
-
-    return api.post("/legislador/login", loginData).then((response) => {
-        return new Promise((resolve, reject) => {
+export async function updateLegislator(updateData) {
+    return new Promise(async (resolve, reject) => {
+        return apiAuth.put("/legislador", updateData).then((response) => {
             if (response.data) {
-                localStorage.setItem("@opr/token", response.data);
-                resolve();
+                if (response.data.legisladorAlterado) {
+                    resolve(response.data.legisladorAlterado);
+                } else {
+                    reject();
+                }
             } else {
                 reject();
             }
-        })
-    });
-}
-
-export async function updateLegislator(updateData) {
-    return apiAuth.put("/legislador", updateData).then((response) => {
-        if (response.data) {
-            if (response.data.legisladorAlterado) {
-                updateUser(response.data.legisladorAlterado);
-            }
-        }
-    });
+        }).catch(() => {
+            reject();
+        });
+    })
 }

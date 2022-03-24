@@ -7,6 +7,7 @@ import ProjectLogo from "../../assets/ProjectLogo.png";
 import { validateCPF, validateEmail } from '../../utils/validators';
 import { registerCitizen } from "../../service/citizen.service";
 import { registerLegislator } from "../../service/legislator.service";
+import { useUser } from "../../contexts/userContext";
 
 import './styles.css';
 
@@ -22,6 +23,7 @@ export default function Register() {
     const [filiation, setFiliation] = useState("")
     const [isCitizen, setIsCitizen] = useState(true);
     const [isFormCompleted, setIsFormCompleted] = useState(false);
+    const { setCurrentUser } = useUser();
 
     const navigate = useNavigate();
 
@@ -66,7 +68,8 @@ export default function Register() {
             "senha": password
         }
 
-        registerCitizen(citizenData).then(() => {
+        registerCitizen(citizenData).then((response) => {
+            setCurrentUser(response);
             navigate("/home");
         })
     }
@@ -81,7 +84,8 @@ export default function Register() {
             "partido": filiation
         }
 
-        registerLegislator(legislatorData).then(() => {
+        registerLegislator(legislatorData).then((response) => {
+            setCurrentUser(response);
             navigate("/home")
         })
     }
