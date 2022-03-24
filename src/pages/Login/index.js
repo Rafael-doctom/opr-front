@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import InputMask from "react-input-mask";
 
@@ -14,18 +14,6 @@ export default function Login() {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
-  useEffect(() => {
-    const listener = (event) => {
-      if (event.code === "Enter" || event.code === "NumpadEnter") {
-        handleLogin(event);
-      }
-    };
-    document.addEventListener("keydown", listener);
-    return () => {
-      document.removeEventListener("keydown", listener);
-    };
-  }, [login, password]);
-
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -33,7 +21,7 @@ export default function Login() {
 
       localStorage.setItem("@opr/token", token);
 
-      navigate("/home", {state: {}, replace: false});
+      navigate("/home", { state: {}, replace: false });
     } catch (err) {
       console.log(err.data.response.messagem);
     }
@@ -45,32 +33,34 @@ export default function Login() {
         <div className="form_logo">
           <img src={ProjectLogo} alt="Project Logo" />
         </div>
-        <div className="inputs">
-          <InputMask
-            placeholder="CPF"
-            className="login_input"
-            maskPlaceholder=" "
-            mask="999.999.999-99"
-            value={login}
-            onChange={(e) => setLogin(e.target.value)}
-            required
-          />
+        <form onSubmit={handleLogin}>
+          <div className="inputs">
+            <InputMask
+              placeholder="CPF"
+              className="login_input"
+              maskPlaceholder=" "
+              mask="999.999.999-99"
+              value={login}
+              onChange={(e) => setLogin(e.target.value)}
+              required
+            />
 
-          <input
-            className="password_input"
-            type="password"
-            placeholder="Senha"
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button
-          className="submit_login_button"
-          type="submit"
-          onClick={handleLogin}
-        >
-          Login
-        </button>
+            <input
+              className="password_input"
+              type="password"
+              placeholder="Senha"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button
+            className="submit_login_button"
+            type="submit"
+            onClick={handleLogin}
+          >
+            Login
+          </button>
+        </form>
         <div className="login_links">
           <Link className="forgot_my_password_link" to="#">
             Esqueci minha senha
