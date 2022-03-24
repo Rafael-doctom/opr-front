@@ -49,7 +49,7 @@ export default function Login() {
               maskPlaceholder=" "
               mask="999.999.999-99"
               value={cpf}
-              onChange={(e) => setCpf(e.target.value)}
+              onChange={(e) => setCpf(e.target.value.replace(/[^\d]/g, ''))}
               required
             />
 
