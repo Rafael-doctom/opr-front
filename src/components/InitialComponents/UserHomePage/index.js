@@ -11,6 +11,7 @@ import { useRequirements } from "../../../contexts/requirementsContext";
 
 export default function UserHomePage() {
     const { requirements, setRequirements } = useRequirements();
+    const [search, setSearch] = useState("");
     const [requirementSearchActive, setRequirementSearchActive] = useState(false);
     const [searchKeyword, setSearchKeyword] = useState("");
     const newReqModalRef = useRef();
