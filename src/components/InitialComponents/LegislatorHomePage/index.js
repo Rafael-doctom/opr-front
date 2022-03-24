@@ -15,17 +15,13 @@ import Menu from "../../Menu";
 import HeaderBar from "../../HeaderBar/index";
 import LegislatorCard from "../../LegislatorCard/index";
 import Modal from "../../ModalRequirements";
-
-import { mockRequirement } from "../../../service/api";
-
-import { useDispatch, useSelector } from "react-redux";
-
+import { useRequirements } from "../../../contexts/requirementsContext";
 
 export default function LegislatorHomePage() {
 
     const modalRef = useRef();
     
-    const requirements = useSelector(state => state.requirements.all);
+    const { requirements } = useRequirements();
     const [requirement, setRequirement] = useState(requirements[0]);
 
     const [support, setSupport] = useState(false);
