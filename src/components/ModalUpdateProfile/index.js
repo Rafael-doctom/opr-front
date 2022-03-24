@@ -1,12 +1,12 @@
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import { Button, Box, Grid } from "@material-ui/core/";
 import { Avatar } from "@material-ui/core";
 import Modal from "../Modal";
+import { useUser } from '../../contexts/userContext';
 import "./styles.css";
-import { useSelector } from "react-redux";
 
 const ModalUpdateProfile = forwardRef((props, modalRef) => {
-  const data = useSelector(state => state.user);
+  const { currentUser, setCurrentUser  } = useUser();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [state, setState] = useState("");
@@ -53,11 +53,11 @@ const ModalUpdateProfile = forwardRef((props, modalRef) => {
             <Avatar src="/profile.png" className="profile_avatar">
               M
             </Avatar>
-            <h4>{data.cpf}</h4>
-            <h4>{data.name}</h4>
-            <h4>{data.email}</h4>
+            <h4>{currentUser.cpf}</h4>
+            <h4>{currentUser.name}</h4>
+            <h4>{currentUser.email}</h4>
             <h4>
-              {data.city} - {data.state}
+              {currentUser.city} - {currentUser.state}
             </h4>
           </Box>
         </Grid>

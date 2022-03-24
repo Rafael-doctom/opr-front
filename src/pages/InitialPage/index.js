@@ -2,16 +2,16 @@ import React, { useCallback } from 'react';
 
 import './styles.css';
 import UserHomePage from '../../components/InitialComponents/UserHomePage';
-import LegislatorHomePage from '../../components/InitialComponents/Legislator';
-import { useSelector } from 'react-redux';
+import LegislatorHomePage from '../../components/InitialComponents/LegislatorHomePage';
+import { useUser } from '../../contexts/userContext';
 
 export default function InitialPage() {
 
-    const user = useSelector(state => state.user);
+    const { currentUser } = useUser();
 
     const isCommonUser = useCallback(() => {
-        return !('partido' in user);
-    }, [user]);
+        return !('partido' in currentUser);
+    }, [currentUser]);
 
     return (
         <div>
