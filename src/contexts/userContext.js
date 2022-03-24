@@ -24,6 +24,7 @@ const initialUser = {
 
 export function UserProvider({ children }) {
     const [currentUser, setCurrentUser] = useState(initialUser);
+    console.log(currentUser)
 
     const updateUser = useCallback((newUser)=>{
         setCurrentUser({...currentUser, ...newUser});

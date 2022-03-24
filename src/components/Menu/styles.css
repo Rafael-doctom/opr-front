@@ -5,6 +5,7 @@
   height: 100vh;
   position: absolute;
   top: 0;
+  z-index: 2000;
 }
 
 .makeStyles-menuButton-4 {
