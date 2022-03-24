@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import InputMask from "react-input-mask";
 
-import { api } from "../../service/api";
+import { login } from '../../service/login.service';
+import { useUser } from '../../contexts/userContext';
 
 import LoginLogo from "../../assets/LoginLogo.png";
 import ProjectLogo from "../../assets/ProjectLogo.png";
@@ -10,8 +11,8 @@ import "./styles.css";
 
 export default function Login() {
   const navigate = useNavigate();
-
-  const [login, setLogin] = useState("");
+  const { setCurrentUser } = useUser();
+  const [cpf, setCpf] = useState("");
   const [password, setPassword] = useState("");
 
   useEffect(() => {
@@ -24,16 +25,22 @@ export default function Login() {
     return () => {
       document.removeEventListener("keydown", listener);
     };
-  }, [login, password]);
+  }, [cpf, password]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const { token } = await api.post("/cidadao", { login, password });
 
-      localStorage.setItem("@opr/token", token);
+      const data = {
+        "cpf": cpf,
+        "senha": password
+      }
 
-      navigate("/home", {state: {}, replace: false});
+      await login(data).then((response) => {
+        setCurrentUser(response);
+      });
+
+      navigate("/home");
     } catch (err) {
       console.log(err.data.response.messagem);
     }
@@ -46,13 +53,15 @@ export default function Login() {
           <img src={ProjectLogo} alt="Project Logo" />
         </div>
         <div className="inputs">
+          <div className="form_title">Login</div>
+          
           <InputMask
             placeholder="CPF"
             className="login_input"
             maskPlaceholder=" "
             mask="999.999.999-99"
-            value={login}
-            onChange={(e) => setLogin(e.target.value)}
+            value={cpf}
+            onChange={(e) => setCpf(e.target.value)}
             required
           />
 
