@@ -23,7 +23,7 @@ export default function FAQ() {
           <AccordionSummary
             expandIcon={<ExpandMoreIcon style={{color:"#0A68F4"}} />}     
           >
-            <Typography>Qual o intuito do sistema?</Typography>
+            <Typography> <b>Qual o intuito do sistema?</b></Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
@@ -35,7 +35,7 @@ export default function FAQ() {
           <AccordionSummary
             expandIcon={<ExpandMoreIcon style={{color:"#0A68F4"}}/>}
           >
-            <Typography>O que motivou a criação do sistema?</Typography>
+            <Typography><b>O que motivou a criação do sistema?</b></Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
@@ -47,11 +47,35 @@ export default function FAQ() {
           <AccordionSummary
             expandIcon={<ExpandMoreIcon style={{color:"#0A68F4"}}/>}
           >
-            <Typography>Insira uma pergunta</Typography>
+            <Typography><b>Existe algum custo para usar o sistema?</b></Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-            resposta aqui
+            É gratuito e sempre será.
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon style={{color:"#0A68F4"}}/>}
+          >
+            <Typography><b>Existe um limite de requerimentos que um cidadão pode fazer?</b></Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+            Colocar resposta aqui
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon style={{color:"#0A68F4"}}/>}
+          >
+            <Typography><b>Como sei que meu requerimento chegou a um dos legisladores mencionados?</b></Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+            Quando o status do seu requerimento mudar para "não aceito" ou para "concluído".
             </Typography>
           </AccordionDetails>
         </Accordion>
