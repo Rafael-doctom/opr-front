@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import InputMask from "react-input-mask";
 
-import { login } from '../../service/login.service';
-import { useUser } from '../../contexts/userContext';
+import { login } from "../../service/login.service";
+import { useUser } from "../../contexts/userContext";
 
 import LoginLogo from "../../assets/LoginLogo.png";
 import ProjectLogo from "../../assets/ProjectLogo.png";
@@ -15,26 +15,13 @@ export default function Login() {
   const [cpf, setCpf] = useState("");
   const [password, setPassword] = useState("");
 
-  useEffect(() => {
-    const listener = (event) => {
-      if (event.code === "Enter" || event.code === "NumpadEnter") {
-        handleLogin(event);
-      }
-    };
-    document.addEventListener("keydown", listener);
-    return () => {
-      document.removeEventListener("keydown", listener);
-    };
-  }, [cpf, password]);
-
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-
       const data = {
-        "cpf": cpf,
-        "senha": password
-      }
+        cpf: cpf,
+        senha: password,
+      };
 
       await login(data).then((response) => {
         setCurrentUser(response);
@@ -52,34 +39,35 @@ export default function Login() {
         <div className="form_logo">
           <img src={ProjectLogo} alt="Project Logo" />
         </div>
-        <div className="inputs">
+        <form onSubmit={handleLogin}>
           <div className="form_title">Login</div>
-          
-          <InputMask
-            placeholder="CPF"
-            className="login_input"
-            maskPlaceholder=" "
-            mask="999.999.999-99"
-            value={cpf}
-            onChange={(e) => setCpf(e.target.value)}
-            required
-          />
+          <div className="inputs">
+            <InputMask
+              placeholder="CPF"
+              className="login_input"
+              maskPlaceholder=" "
+              mask="999.999.999-99"
+              value={cpf}
+              onChange={(e) => setCpf(e.target.value)}
+              required
+            />
 
-          <input
-            className="password_input"
-            type="password"
-            placeholder="Senha"
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button
-          className="submit_login_button"
-          type="submit"
-          onClick={handleLogin}
-        >
-          Login
-        </button>
+            <input
+              className="password_input"
+              type="password"
+              placeholder="Senha"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button
+            className="submit_login_button"
+            type="submit"
+            onClick={handleLogin}
+          >
+            Login
+          </button>
+        </form>
         <div className="login_links">
           <Link className="forgot_my_password_link" to="#">
             Esqueci minha senha
