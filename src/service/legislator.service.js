@@ -1,13 +1,10 @@
 import { api, apiAuth } from "./api";
-import { encryptValue } from "../utils/cryptography";
+
 import { login } from "./login.service";
 
 export async function registerLegislator(legislatorData) {
-    const legislatorDataEncrypted = legislatorData;
-    legislatorDataEncrypted.password = encryptValue(legislatorData.password);
-    legislatorDataEncrypted.cpf = encryptValue(legislatorData.cpf);
 
-    return api.post("/legislador", legislatorDataEncrypted).then((response) => {
+    return api.post("/legislador", legislatorData).then((response) => {
         return new Promise((resolve, reject) => {
             if (response.data) {
                 const userInformations = response.data.legisladorCriado;
