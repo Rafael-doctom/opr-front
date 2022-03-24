@@ -1,6 +1,8 @@
 .box {
   font-family: "Roboto Condensed", sans-serif;
   padding: 20px;
+  max-height: 100vh;
+  min-width: 600px;
 }
 
 .box input, textarea {
@@ -61,6 +63,17 @@
   gap: 8px;
 }
 
+.legislator_cards_section {
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.new_requirement_modal .card-legislador {
+  background: none;
+  width: auto;
+}
+
 .card-legislador .card {
   width: 180px;
   display: flex;
@@ -108,7 +121,8 @@
   background: #ececec !important;
 }
 
-.submit {
+.new_requirement_modal .submit {
+  margin-top: 20px !important;
   display: flex !important;
   margin-left: auto !important;
   background-color: #0A68F4 !important;

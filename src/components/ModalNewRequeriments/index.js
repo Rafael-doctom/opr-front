@@ -8,10 +8,16 @@ import {
 } from "@material-ui/icons/"
 import { DropzoneDialog } from "material-ui-dropzone";
 import Modal from "../Modal";
+import { useUser } from "../../contexts/userContext";
+import { useRequirements } from "../../contexts/requirementsContext";
+import moment from "moment";
+import { createRequirement } from "../../service/requirements.service";
 
 import "./styles.css";
 
 const ModalNewRequeriments = forwardRef((props, modalRef) => {
+  const { currentUser } = useUser();
+  const { saveRequirement } = useRequirements();
   const [tag, setTag] = useState("");
   const [listTags, setListTags] = useState("");
   const [legislador, setLegislador] = useState("");
@@ -19,6 +25,9 @@ const ModalNewRequeriments = forwardRef((props, modalRef) => {
   const [description, setDescription] = useState("");
   const [listLegislador, setListLegislador] = useState([]);
   const [files, setFiles] = useState([]);
+  const [title, setTitle] = useState("");
+  const [location, setLocation] = useState("");
+  const [date, setDate] = useState("");
   const [open, setOpen] = useState(false);
 
   const modalRefTags = useRef();
@@ -51,8 +60,35 @@ const ModalNewRequeriments = forwardRef((props, modalRef) => {
     );
   };
 
+  const createNewRequirement = () => {
+    const requirementData = {
+      cpf_criador: currentUser.cpf,
+      titulo: title,
+      localidade: location,
+      descricao: description,
+      data: moment(date).format("DD/MM/YYYY"),
+      tags: listTags,
+      legisladores: listLegislador,
+      status: "analisys"
+    }
+
+    createRequirement(requirementData).then((response) => {
+      if (response) {
+        requirementData['id'] = response;
+        saveRequirement(requirementData);
+
+        modalRef.current.closeModal();
+      } else {
+        alert.apply("Erro ao criar requiremento. Tente novamente!")
+      }
+    })
+    .catch(() => {
+      alert.apply("Erro ao criar requiremento. Tente novamente!")
+    })
+  }
+
   return (
-    <Modal ref={modalRef} additionalClass="box">
+    <Modal ref={modalRef} additionalClass="box new_requirement_modal">
       <h1>Criação de Requerimento</h1>
 
       <Grid container className="form">
@@ -61,20 +97,20 @@ const ModalNewRequeriments = forwardRef((props, modalRef) => {
             <h4>
               Título <p>*</p>
             </h4>
-            <input />
+            <input value={title} onChange={(event) => setTitle(event.target.value)} />
           </Box>
           <Box className="group-input">
             <Box className="input">
               <h4>
                 Localização <p>*</p>
               </h4>
-              <input />
+              <input value={location} onChange={(event) => setLocation(event.target.value)}/>
             </Box>
             <Box className="input">
               <h4>
                 Data <p>*</p>
               </h4>
-              <input type="date" />
+              <input type="date" value={date} onChange={(event) => setDate(event.target.value)}/>
             </Box>
           </Box>
         </Grid>
@@ -176,7 +212,8 @@ const ModalNewRequeriments = forwardRef((props, modalRef) => {
 
           <h4>Legisladores associados</h4>
 
-          <Box className="card-legislador">
+          <section className="legislator_cards_section">
+            <Box className="card-legislador">
             {listLegislador &&
               listLegislador.map((item, id) => {
                 return (
@@ -196,6 +233,8 @@ const ModalNewRequeriments = forwardRef((props, modalRef) => {
                   </Box>
                 );
               })}
+            </Box>
+            
             <Button
               className="new-element"
               variant="contained"
@@ -203,7 +242,7 @@ const ModalNewRequeriments = forwardRef((props, modalRef) => {
             >
               <AddIcon fontSize="small" />
             </Button>
-          </Box>
+          </section>
 
           <Modal ref={modalRefLegislador} additionalClass="legislador">
             <form>
@@ -229,7 +268,7 @@ const ModalNewRequeriments = forwardRef((props, modalRef) => {
           </Modal>
 
           <Button
-            onClick={() => modalRef.current.closeModal()}
+            onClick={() => createNewRequirement()}
             className="submit"
           >
             Criar
