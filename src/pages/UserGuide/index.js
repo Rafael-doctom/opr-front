@@ -7,6 +7,9 @@ import CadastroCidadao from "../../assets/CadastroCidadao.png";
 import CadastroLegislativo from "../../assets/CadastroLegislativo.png";
 import Login from "../../assets/Login.png"
 import LoginButton from "../../assets/LoginButton.png"
+import MenuOpened from "../../assets/MenuOpened.png"
+import MenuClosed from "../../assets/MenuClosed.png"
+
 import "./style.css";
 
 export default function UserGuide() {
@@ -28,7 +31,11 @@ export default function UserGuide() {
         "Para se cadastrar corretamente, fique atento ao link de cadastro, sinalizado pelas setas laranjas nas imagens.",
     },
     {
-      name: "Se atente ao Menu Lateral",
+      name: "Se atente ao Menu Lateral!",
+      imagea: MenuClosed,
+      imageb: MenuOpened,
+      txt: "A aba do menu lateral aparece na maioria das páginas. "+
+      "Se você clicar, o menu se abre e várias opções do nosso sistema estarão disponíveis. Basta escolher a opção desejada e aproveitar!"
     },
   ];
 
