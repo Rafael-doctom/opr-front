@@ -41,20 +41,22 @@ export default function Requirement({requirement}) {
                         <img src="/profile.png" alt="user-img" />
                     </div>
                     <div className="user_infos">
-                        <span>{requirementUser.name}</span>
-                        <span>{requirementUser.location}</span>
+                        {/* <span>{requirementUser.titulo}</span>
+                        <span>{requirementUser.localidade}</span> */}
+                        <span>Marcos</span>
+                        <span>Campina</span>
                     </div>
                 </section>
 
                 <section className="requirement_infos">
-                    <strong>{requirement.title}</strong>
-                    <p>{requirement.description}</p>
+                    <strong>{requirement.titulo}</strong>
+                    <p>{requirement.descricao}</p>
                 </section>
 
                 <section className="requirement_date">
                     <label>Data de publicação:</label>
                     <br />
-                    <span>{moment.unix(requirement.creationDate).format("DD/MM/YYYY")}</span>
+                    <span>{requirement.data}</span>
                 </section>
 
             </div>

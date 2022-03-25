@@ -36,9 +36,11 @@ export async function getRequirement(requirementId) {
     })
 }
 
-export async function listAllRequirements() {
+export async function listAllRequirements(queryParams) {
     return new Promise((resolve, reject) => {
-        apiAuth.get("/requerimentos").then((response) => {
+        apiAuth.get("/requerimentos", {
+            params: queryParams
+        }).then((response) => {
             resolve(response.data);
         }).catch(() => {
             reject();

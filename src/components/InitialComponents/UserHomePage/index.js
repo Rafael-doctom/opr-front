@@ -21,11 +21,12 @@ export default function UserHomePage() {
     const requirementsFilted = requirements?.filter(p => (p.title.toLocaleLowerCase() || p.description.toLocaleLowerCase() || p.status.toLocaleLowerCase() || p.creationDate.toLocaleLowerCase()).includes((search.toLocaleLowerCase())));
 
     const searchRequirements = useCallback(() => {
+        console.log(searchKeyword)
         // TODO: Criação de funcionalidade de busca de requerimentos
         navigate("/requirements", { state: {
             searchKeyword: searchKeyword }
         });
-    }, []);
+    }, [searchKeyword]);
 
     return (
         <div className="user_home_page_container">
@@ -42,7 +43,7 @@ export default function UserHomePage() {
                                 placeholder="Palavra chave" 
                                 onBlur={() => setTimeout(() => setRequirementSearchActive(false), 300)}
                                 defaultValue={searchKeyword}
-                                onChange={(event) => setSearch(event.target.value)}
+                                onChange={(event) => setSearchKeyword(event.target.value)}
                             />
                             <button onClick={() => searchRequirements()}>
                                 <Search style={{ color: "#0A68F4"}}/>

@@ -1,17 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRequirements as useRequirementsContext } from "../contexts/requirementsContext";
+import { listAllRequirements } from "../service/requirements.service";
 
 export default function useRequirements(pageLimit) {
     const [requirements, setRequirements] = useState([]);
-    const {requirements : requirementsList} = useRequirementsContext()
+    const {requirements : requirementsList, setRequirements: setRequirementsToContext} = useRequirementsContext()
 
-    async function fetchRequirements(page) {
-        const virtualPage = ((page - 1) * pageLimit) ? 0 : ((page - 1) * pageLimit)
+    async function fetchRequirements(page, titulo, orderBy = "id", direction = "desc", offSet = "10") {
+      const queryParams = {
+        titulo,
+        orderBy,
+        direction,
+        page,
+        offSet
+      }
 
-        // TODO: Nesse local pode ser inserida a chamada no backend
-        // Analisar se há necessidade do virtual page de acordo com
-        // o modo que foi implementado no backend
-        setRequirements(requirementsList)
+      listAllRequirements(queryParams).then((response) => {
+        setRequirementsToContext(response);
+        setRequirements(response);
+      })
     }
   
     return [

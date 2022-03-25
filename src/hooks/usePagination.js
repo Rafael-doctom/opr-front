@@ -20,7 +20,6 @@ export default function usePagination() {
     useEffect(() => {
         const queryParams = qs.parse(location.search)
 
-        console.log(queryParams, actualPage)
         navigate({
             search: qs.stringify({
                 ...queryParams,
