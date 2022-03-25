@@ -63,7 +63,7 @@ export default function FAQ() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-            Colocar resposta aqui
+            Sim. Existe um limite semanal de 2 requerimentos por usuário.
             </Typography>
           </AccordionDetails>
         </Accordion>
