@@ -90,8 +90,8 @@ const ModalRequirements = forwardRef((props, modalRef) => {
 
   const handleComment = () => {
     const data = {
-      profile: requirement.profile.photo,
-      name: requirement.profile.name,
+      profile: requirement.user.photo,
+      name: requirement.user.name,
       message: comment,
     };
 
@@ -138,9 +138,9 @@ const ModalRequirements = forwardRef((props, modalRef) => {
       <Box className="header-profile">
         {!settings || (
           <Box className="profile">
-            {requirement.profile.photo ? (
+            {requirement.user.photo ? (
               <img
-                src={requirement.profile.photo}
+                src={requirement.user.photo}
                 width={30}
                 height={30}
                 alt="Image"
@@ -149,33 +149,33 @@ const ModalRequirements = forwardRef((props, modalRef) => {
               <AccountCircleRoundedIcon color="action" />
             )}
             <Box className="info">
-              <h5>{requirement.profile.name}</h5>
-              <small>{requirement.profile.city}</small>
+              <h5>{requirement.user.name}</h5>
+              <small>{requirement.user.location}</small>
             </Box>
           </Box>
         )}
         <h5>
           <strong>Data do ocorrido: </strong>
           {settings ? (
-            <p>{requirement.profile.dateOccurrence}</p>
+            <p>{requirement.user.dateOccurrence}</p>
           ) : (
             <input
               id="occurrence"
-              value={requirement.profile.dateOccurrence}
-              onChange={(e) => setRequirement({...requirement, profile: {...requirement.profile, dateOccurrence: e.target.value}})}
+              value={requirement.user.dateOccurrence}
+              onChange={(e) => setRequirement({...requirement, profile: {...requirement.user, dateOccurrence: e.target.value}})}
             />
           )}
         </h5>
       </Box>
 
       <Box className="status">
-        <h4>Requerimento do Usuário {requirement.profile.name}</h4>
+        <h4>Requerimento do Usuário {requirement.user.name}</h4>
         {!settings || <span>{requirement.status}</span>}
       </Box>
 
       <small>
         <strong>Criado em: </strong>
-        {requirement.profile.createdIn}
+        {requirement.user.createdIn}
       </small>
 
       <ul className={settings ? "tags-view" : "tags-view settingsDelete"}>
@@ -199,12 +199,12 @@ const ModalRequirements = forwardRef((props, modalRef) => {
       </ul>
 
       {settings ? (
-        <p className="description">{requirement.message}</p>
+        <p className="description">{requirement.description}</p>
       ) : (
         <textarea
           className="inputText"
-          value={requirement.message}
-          onChange={(e) => setRequirement({...requirement, message: e.target.value})}
+          value={requirement.description}
+          onChange={(e) => setRequirement({...requirement, description: e.target.value})}
         />
       )}
 
@@ -294,9 +294,9 @@ const ModalRequirements = forwardRef((props, modalRef) => {
               {requirement.comments.map((item, id) => (
                 <Box key={id} className="comments">
                   <Box className="profile">
-                    {item.profile ? (
+                    {item.user ? (
                       <img
-                        src={item.profile}
+                        src={item.user}
                         width={20}
                         height={20}
                         alt="Profile"

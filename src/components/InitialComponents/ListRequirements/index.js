@@ -4,13 +4,13 @@ import HeaderBar from "../../HeaderBar/index";
 import Requirement from "../../Requirement/";
 import ModalNewRequeriments from "../../ModalNewRequeriments/index";
 import { AddCircleOutline } from "@material-ui/icons/";
-import { mockListRequeriments } from "../../../service/api";
 import usePagination from "../../../hooks/usePagination";
 import useRequirements from "../../../hooks/useRequirements";
 
 import { FilterList, CompareArrows } from '@material-ui/icons';
 
 import "./styles.css";
+import { listAllRequirements } from "../../../service/requirements.service";
 
 export default function ListRequirements() {
   const newReqModalRef = useRef();
@@ -83,7 +83,7 @@ export default function ListRequirements() {
       </button>
 
       <div className="btn_container">
-        {mockListRequeriments && mockListRequeriments.map((_, index) => {
+        {requirements && requirements.map((_, index) => {
           return (
             <button
               className={`btn_page ${actualPage === (index + 1) ? "actual_page" : ""}` }

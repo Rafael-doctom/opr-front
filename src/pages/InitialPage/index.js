@@ -1,25 +1,26 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import './styles.css';
 import UserHomePage from '../../components/InitialComponents/UserHomePage';
-import LegislatorHomePage from '../../components/InitialComponents/Legislator';
-import ListRequirements from '../../components/InitialComponents/ListRequirements';
+import LegislatorHomePage from '../../components/InitialComponents/LegislatorHomePage';
+import { useUser } from '../../contexts/userContext';
 
 export default function InitialPage() {
 
-    function isCommonUser() {
-        return true;
-    }
+    const { currentUser } = useUser();
+
+    const isCommonUser = useCallback(() => {
+        return !('partido' in currentUser);
+    }, [currentUser]);
 
     return (
         <div>
 
-            {/* {isCommonUser ?
+            {isCommonUser() ?
                 <UserHomePage />
                 :
                 <LegislatorHomePage />
-            } */}
-            <ListRequirements />
+            }
         </div>
     )
 }

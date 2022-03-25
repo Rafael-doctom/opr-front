@@ -125,6 +125,6 @@
   }
 
   .login_logo img {
-    min-width: 400px;
+    display: none;
   }
 }
