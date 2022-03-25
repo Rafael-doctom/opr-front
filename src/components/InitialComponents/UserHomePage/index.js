@@ -8,6 +8,7 @@ import { Search, AddCircleOutline } from "@material-ui/icons/"
 
 import './styles.css';
 import { useRequirements } from "../../../contexts/requirementsContext";
+import { listAllRequirements } from "../../../service/requirements.service";
 
 export default function UserHomePage() {
     const { requirements, setRequirements } = useRequirements();
@@ -18,15 +19,21 @@ export default function UserHomePage() {
 
     const navigate = useNavigate();
   
-    const requirementsFilted = requirements?.filter(p => (p.title.toLocaleLowerCase() || p.description.toLocaleLowerCase() || p.status.toLocaleLowerCase() || p.creationDate.toLocaleLowerCase()).includes((search.toLocaleLowerCase())));
+    //const requirementsFilted = requirements?.filter(p => (p.title.toLocaleLowerCase() || p.description.toLocaleLowerCase() || p.status.toLocaleLowerCase() || p.creationDate.toLocaleLowerCase()).includes((search.toLocaleLowerCase())));
 
     const searchRequirements = useCallback(() => {
-        console.log(searchKeyword)
         // TODO: Criação de funcionalidade de busca de requerimentos
         navigate("/requirements", { state: {
             searchKeyword: searchKeyword }
         });
     }, [searchKeyword]);
+
+    useEffect(() => {
+        listAllRequirements().then(response => {
+            setRequirements(response);
+        })
+    }, [])
+
 
     return (
         <div className="user_home_page_container">
@@ -55,7 +62,7 @@ export default function UserHomePage() {
                 </div>
 
                 <section className="user_home_page-requirements_container">
-                    {requirementsFilted.map(requirement => {
+                    {requirements.map(requirement => {
                         return (
                             <Requirement key={requirement.id} requirement={requirement} />
                         )

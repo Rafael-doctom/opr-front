@@ -6,13 +6,13 @@ export default function useRequirements(pageLimit) {
     const [requirements, setRequirements] = useState([]);
     const {requirements : requirementsList, setRequirements: setRequirementsToContext} = useRequirementsContext()
 
-    async function fetchRequirements(page, titulo, orderBy = "id", direction = "desc", offSet = "10") {
+    async function fetchRequirements(page, titulo, orderBy = "id", direction = "desc", offset = "10") {
       const queryParams = {
         titulo,
         orderBy,
         direction,
         page,
-        offSet
+        offset
       }
 
       listAllRequirements(queryParams).then((response) => {

@@ -14,9 +14,11 @@ export default function ListRequirements(props) {
   const [ requirementsOffSet, setRequirementsOffSet] = useState(10);
   const [ numberOfPages, setNumberOfPages ] = useState(1);
   const [ ordenationSelectionStatus, setOrdenationSelectionStatus ] = useState(false);
+  const [ keywordSelectionStatus, setKeywordSelectionStatus ] = useState(false);
   const [ orderFilter, setOrderFilter] = useState("");
   const [ requirements, fetchRequirements ] = useRequirements(5);
   const [ actualPage, setActualPage ] = usePagination();
+  const [ keyword, setKeyword ] = useState(props.keyword);
 
   useEffect(() => {
     return makeNewRequest();
@@ -26,11 +28,16 @@ export default function ListRequirements(props) {
     if (requirements.length >= requirementsOffSet) {
       const maxPage = Math.min(numberOfPages + 1, actualPage + 1)
       setNumberOfPages(maxPage);
+    } else {
+      const maxPage = Math.max(numberOfPages - 1, actualPage)
+      setNumberOfPages(maxPage);
     }
   }, [requirements])
 
   async function makeNewRequest() {
-    await fetchRequirements(actualPage, props.keyword, orderFilter ? orderFilter : "id", "desc", requirementsOffSet);
+    setKeywordSelectionStatus(false);
+    setOrdenationSelectionStatus(false);
+    await fetchRequirements(actualPage, keyword, orderFilter ? orderFilter : "id", "desc", requirementsOffSet);
   }
 
   return (
@@ -39,9 +46,20 @@ export default function ListRequirements(props) {
       <section className="list_requirements_page_content">
         <div className="list_requirements_page_title">
           <h1>Requerimentos encontrados para: “Palavra-chave”</h1>
-          <button className="filtering_btn">
-            <FilterList style={{ color: "#000000"}} />
-          </button>
+          {keywordSelectionStatus ?
+            <button className="filtering_btn_active" onClick={() => {
+                setOrderFilter("")
+                setKeywordSelectionStatus(false)
+              }}
+              >
+              <FilterList style={{ color: "#FFFFFF" }} />
+              <span>Filtrar</span>
+            </button>
+            :
+            <button className="filtering_btn" onClick={() => setKeywordSelectionStatus(true)}>
+              <FilterList style={{ color: "#000000"}} />
+            </button>
+          }
           {ordenationSelectionStatus ?
             <button className="filtering_btn_active" onClick={() => {
                 setOrderFilter("")
@@ -87,23 +105,40 @@ export default function ListRequirements(props) {
           </div>
         }
 
+        {keywordSelectionStatus &&
+          <div className="ordenation_filter_inputs_section">
+            <span>Nova palavra para busca:</span>
+            <section>
+              <input 
+                type="text"
+                className="new_keyword_input"
+                placeholder="Ex: alagamento"
+                defaultValue={keyword}
+                onChange={(event) => setKeyword(event.target.value)} 
+              />
+            </section>
+
+            <button onClick={() => makeNewRequest()}>Atualizar palavra chave</button>
+          </div>
+        }
+
         <div className="number_of_requirements_per_page">
           <h4>Requerimentos por página</h4>
           <div className="btn_area">
             <button
-              className={`btn_number_of_requirements ${requirementsOffSet == 5 ? "current" : ""}`}
+              className={`btn_number_of_requirements ${requirementsOffSet === 5 ? "current" : ""}`}
               onClick={() => setRequirementsOffSet(5)}
             >
               5
             </button>
             <button
-              className={`btn_number_of_requirements ${requirementsOffSet == 10 ? "current" : ""}`}
+              className={`btn_number_of_requirements ${requirementsOffSet === 10 ? "current" : ""}`}
               onClick={() => setRequirementsOffSet(10)}
             >
               10
             </button>
             <button
-              className={`btn_number_of_requirements ${requirementsOffSet == 25 ? "current" : ""}`}
+              className={`btn_number_of_requirements ${requirementsOffSet === 25 ? "current" : ""}`}
               onClick={() => setRequirementsOffSet(25)}
             >
               25

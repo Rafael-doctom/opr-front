@@ -36,17 +36,15 @@ export default function Requirement({requirement}) {
             <div className="requirement_container" onClick={() => showReqModalRef.current.openModal()}>
                 {renderRequirementStatus()}
 
-                <section className="requirement_user">
+                {/* <section className="requirement_user">
                     <div className="user_image">
                         <img src="/profile.png" alt="user-img" />
                     </div>
                     <div className="user_infos">
-                        {/* <span>{requirementUser.titulo}</span>
-                        <span>{requirementUser.localidade}</span> */}
-                        <span>Marcos</span>
-                        <span>Campina</span>
+                        <span>{requirement.nome}</span>
+                        <span>{requirement.cidade}</span>
                     </div>
-                </section>
+                </section> */}
 
                 <section className="requirement_infos">
                     <strong>{requirement.titulo}</strong>
