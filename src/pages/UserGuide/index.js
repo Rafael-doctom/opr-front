@@ -5,23 +5,30 @@ import Carousel from "react-material-ui-carousel";
 
 import CadastroCidadao from "../../assets/CadastroCidadao.png";
 import CadastroLegislativo from "../../assets/CadastroLegislativo.png";
+import Login from "../../assets/Login.png"
+import LoginButton from "../../assets/LoginButton.png"
 import "./style.css";
 
 export default function UserGuide() {
   var pages = [
     {
+      name: "Onde fazer Login",
+      imagea: LoginButton,
+      imageb: Login,
+      txt:
+        "O botão superior direito da tela inicial, sinalizado pela imagem abaixo pela seta laranja, te levará a tela de login.\n" +
+        "Caso você não tenha tenha cadastro ainda, basta clicar no link sinalizado pela seta laranja na imagem abaixo.",
+    },
+    {
       name: "Se atente ao cadastro!",
       imagea: CadastroCidadao,
       imageb: CadastroLegislativo,
       txt:
-        "Os cadastros para cidadão e legislador são diferentes." +
+        "Os cadastros para cidadão e legislador são diferentes. " +
         "Para se cadastrar corretamente, fique atento ao link de cadastro, sinalizado pelas setas laranjas nas imagens.",
     },
     {
-      name: "def",
-    },
-    {
-      name: "ghi",
+      name: "Se atente ao Menu Lateral",
     },
   ];
 
