@@ -2,19 +2,22 @@ import React, { forwardRef, useEffect, useState } from "react";
 import { Button, Box, Grid } from "@material-ui/core/";
 import { Avatar } from "@material-ui/core";
 import Modal from "../Modal";
-import { useUser } from '../../contexts/userContext';
+import { useUser} from '../../contexts/userContext';
 import "./styles.css";
-import { validateCPF, validateEmail } from '../../utils/validators';
+import {  validateEmail } from '../../utils/validators';
 import { updateCitizen } from "../../service/citizen.service";
+import { updateLegislator } from "../../service/legislator.service";
 import { useNavigate } from "react-router-dom";
 
 const ModalUpdateProfile = forwardRef((props, modalRef) => {
-  const { currentUser, setCurrentUser  } = useUser();
+  const { currentUser, setCurrentUser, updateUser } = useUser();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
   const [isFormCompleted, setIsFormCompleted] = useState(false);
+  const [isCitizen, setIsCitizen] = useState(!!currentUser.partido);
+
 
   const navigate = useNavigate();
 
@@ -30,8 +33,8 @@ const ModalUpdateProfile = forwardRef((props, modalRef) => {
    
     }, [name, state, city, email])
 
-  function makeUpdate() {
-    const updateData = {
+  function makeUpdateUser() {
+    const updateDataUser = {
         
         "nome": name,
         "email": email,
@@ -39,11 +42,26 @@ const ModalUpdateProfile = forwardRef((props, modalRef) => {
         
     }
 
-    updateCitizen(updateData).then((response) => {
-        setCurrentUser(response);
-        navigate("/home");
+    updateCitizen(updateDataUser).then((response) => {
+        updateUser(response);
+        modalRef.current.closeModal();
     })
   }
+
+  function makeUpdateLegislator() {
+    const updateDataLegislator = {
+        
+        "nome": name,
+        "email": email,
+        "cidade": city
+       
+    }
+
+    updateLegislator(updateDataLegislator).then((response) => {
+        updateUser(response);
+        modalRef.current.closeModal();
+    })
+}
 
   return (
     <Modal ref={modalRef} additionalClass="box">
@@ -96,12 +114,22 @@ const ModalUpdateProfile = forwardRef((props, modalRef) => {
           </Box>
         </Grid>
         <Grid item xs={12}>
-          <Button
+          { isCitizen ? 
+            <Button
             className ={isFormCompleted ? "submitBlue" : "submitGray"} 
-            onClick={() => makeUpdate()}                     
-          >
-            Editar
-          </Button>
+            onClick={() => makeUpdateUser()}                     
+            >
+              Editar
+            </Button>
+             : 
+            <Button
+                className ={isFormCompleted ? "submitBlue" : "submitGray"} 
+                onClick={() => makeUpdateLegislator()}                     
+                >
+                Editar
+            </Button>
+          }
+          
         </Grid>
       </Grid>
     </Modal>
