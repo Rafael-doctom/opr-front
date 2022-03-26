@@ -25,6 +25,7 @@ export default function Login() {
       };
 
       await login(data).then((response) => {
+        console.log(response)
         setCurrentUser(response);
       });
 
