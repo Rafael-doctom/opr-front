@@ -16,6 +16,8 @@ import Modal from "../Modal";
 
 import "./styles.css";
 import "./response.css";
+import { modifyRequirement } from "../../service/requirements.service";
+import { useRequirements } from "../../contexts/requirementsContext";
 
 const ModalRequirements = forwardRef((props, modalRef) => {
   const [open, setOpen] = useState(false);
@@ -25,13 +27,23 @@ const ModalRequirements = forwardRef((props, modalRef) => {
   const [comment, setComment] = useState("");
   const [viewImage, setViewImage] = useState("");
 
+  const { updateRequirement } = useRequirements();
+
   const modalRefTags = useRef();
   const modalRefLegislator = useRef();
   const modalViewMedia = useRef();
 
+  const makeUpdateRequirement = () => {
+    modifyRequirement(requirement).then((response) => {
+      updateRequirement(response);
+      modalRef.current.closeModal();
+    });
+  };
+
   const handleSupport = () => {
     setSupport(!support);
-    if (!support) setRequirement({ ...requirement, likes: requirement.likes + 1 });
+    if (!support)
+      setRequirement({ ...requirement, likes: requirement.likes + 1 });
     // POST -> /support
     else setRequirement({ ...requirement, likes: requirement.likes - 1 }); // POST -> /unsupport
   };
@@ -162,7 +174,15 @@ const ModalRequirements = forwardRef((props, modalRef) => {
             <input
               id="occurrence"
               value={requirement.user.dateOccurrence}
-              onChange={(e) => setRequirement({...requirement, profile: {...requirement.user, dateOccurrence: e.target.value}})}
+              onChange={(e) =>
+                setRequirement({
+                  ...requirement,
+                  profile: {
+                    ...requirement.user,
+                    dateOccurrence: e.target.value,
+                  },
+                })
+              }
             />
           )}
         </h5>
@@ -178,7 +198,7 @@ const ModalRequirements = forwardRef((props, modalRef) => {
         {requirement.user.createdIn}
       </small>
 
-      <ul className={settings ? "tags-view" : "tags-view settingsDelete"}>
+      <ul className="tags-view">
         {requirement.tags.map((item, id) => (
           <li key={id}>
             {item}
@@ -204,7 +224,9 @@ const ModalRequirements = forwardRef((props, modalRef) => {
         <textarea
           className="inputText"
           value={requirement.description}
-          onChange={(e) => setRequirement({...requirement, description: e.target.value})}
+          onChange={(e) =>
+            setRequirement({ ...requirement, description: e.target.value })
+          }
         />
       )}
 
@@ -244,7 +266,10 @@ const ModalRequirements = forwardRef((props, modalRef) => {
                     />
                   </Button>
                   {!settings && (
-                    <Button onClick={() => deleteMedia(id)} className="settings-delete">
+                    <Button
+                      onClick={() => deleteMedia(id)}
+                      className="settings-delete"
+                    >
                       <DeleteOutlineIcon />
                     </Button>
                   )}
@@ -366,6 +391,11 @@ const ModalRequirements = forwardRef((props, modalRef) => {
         //fileObjects={files}
         filesLimit={3 - requirement.media.length}
       />
+      {settings && (
+        <Button onClick={() => makeUpdateRequirement()} className="submit">
+          Modificar
+        </Button>
+      )}
     </Modal>
   );
 });

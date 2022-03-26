@@ -332,3 +332,15 @@
   flex-direction: column;
   align-items: center;
 }
+
+
+
+.submit {
+  margin-top: 20px !important;
+  display: flex !important;
+  margin-left: auto !important;
+  background-color: #0A68F4 !important;
+  color: #FFF !important;
+  padding: 10px 30px !important;
+  border-radius: 10px !important;
+}
