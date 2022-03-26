@@ -1,0 +1,36 @@
+.page_user_guide {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel_container {
+    width: 1200px;
+    height: 600px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    
+}
+
+.user_guide_container h1{
+    font-size: 30px;
+    text-align: center;
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+.description{
+    font-size: 22px;
+    font-family: "Roboto Condensed", sans-serif;
+
+}
+.images{
+   display: flex;
+   margin: auto;
+   justify-content: space-evenly;
+}
+.image_a img, .image_b img{
+    height: 45vh;
+}

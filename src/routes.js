@@ -7,7 +7,7 @@ import InitialPage from './pages/InitialPage';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Requirements from './pages/Requirements';
-
+import UserGuide from './pages/UserGuide'
 
 export default function AppRoutes() {
     return (
@@ -19,6 +19,7 @@ export default function AppRoutes() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/requirements" element={<Requirements />} />
                 <Route path="/faq" element={<Faq />} />
+                <Route path="/userGuide" element={<UserGuide />} />
             </Routes>
         </BrowserRouter>
     )
