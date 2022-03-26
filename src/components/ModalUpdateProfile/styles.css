@@ -47,9 +47,19 @@ textarea {
   gap: 8px;
 }
 
-.submit {
+.submitBlue{
   display: flex !important;
   background-color: var(--blue) !important;
+  color: var(--secondary-background) !important;
+  margin: auto !important;
+  margin-top: 10vh !important;
+  padding: 6px 30px !important;
+  border-radius: 10px !important;
+}
+
+.submitGray{
+  display: flex !important;
+  background-color: var(--not-allowed) !important;
   color: var(--secondary-background) !important;
   margin: auto !important;
   margin-top: 10vh !important;
