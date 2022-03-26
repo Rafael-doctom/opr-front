@@ -12,11 +12,11 @@ export async function login(loginData) {
 
                 if (jwtDecrypted.tipo_de_usuario === "cidadao") {
                     getCitizen(jwtDecrypted.cpf).then((response) => {
-                        resolve(response);
+                        resolve(response[0]);
                     })
                 } else {
                     getLegislator(jwtDecrypted.cpf).then((response) => {
-                        resolve(response);
+                        resolve(response[0]);
                     })
                 }
             } else {

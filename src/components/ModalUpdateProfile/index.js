@@ -18,7 +18,6 @@ const ModalUpdateProfile = forwardRef((props, modalRef) => {
   const [isFormCompleted, setIsFormCompleted] = useState(false);
   const [isCitizen, setIsCitizen] = useState(!!currentUser.partido);
 
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,33 +34,45 @@ const ModalUpdateProfile = forwardRef((props, modalRef) => {
 
   function makeUpdateUser() {
     const updateDataUser = {
-        
+        "cpf": currentUser.cpf,
         "nome": name,
         "email": email,
-        "cidade": city
-        
+        "cidade": city,
+        "senha": currentUser.senha
     }
 
     updateCitizen(updateDataUser).then((response) => {
         updateUser(response);
+        
+        clearInformations();
         modalRef.current.closeModal();
     })
   }
 
   function makeUpdateLegislator() {
     const updateDataLegislator = {
-        
+        "cpf": currentUser.cpf,
         "nome": name,
         "email": email,
-        "cidade": city
-       
+        "cidade": city,
+        "partido": currentUser.partido,
+        "senha": currentUser.senha
     }
 
     updateLegislator(updateDataLegislator).then((response) => {
         updateUser(response);
+
+        clearInformations();
         modalRef.current.closeModal();
     })
-}
+  }
+
+  function clearInformations() {
+    setName("");
+    setEmail("");
+    setState("");
+    setCity("");
+  }
 
   return (
     <Modal ref={modalRef} additionalClass="box">
@@ -106,10 +117,10 @@ const ModalUpdateProfile = forwardRef((props, modalRef) => {
               M
             </Avatar>
             <h4>{currentUser.cpf}</h4>
-            <h4>{currentUser.name}</h4>
+            <h4>{currentUser.nome}</h4>
             <h4>{currentUser.email}</h4>
             <h4>
-              {currentUser.city} - {currentUser.state}
+              {currentUser.cidade}
             </h4>
           </Box>
         </Grid>
