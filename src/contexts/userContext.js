@@ -23,7 +23,7 @@ const initialUser = {
 // };
 
 export function UserProvider({ children }) {
-    const [currentUser, setCurrentUser] = useState(initialUser);
+    const [currentUser, setCurrentUser] = useState(null);
     console.log(currentUser)
 
     const updateUser = useCallback((newUser)=>{
@@ -31,7 +31,7 @@ export function UserProvider({ children }) {
     }, [currentUser]);
 
     return (
-        <UserContext.Provider value={{ currentUser, setCurrentUser, updateUser }}>
+        <UserContext.Provider value={{ logged: !!currentUser, currentUser, setCurrentUser, updateUser }}>
             {children}
         </UserContext.Provider>
     )
@@ -40,6 +40,6 @@ export function UserProvider({ children }) {
 export function useUser() {
     const context = useContext(UserContext);
     if (!context) throw new Error("error: no user context")
-    const { currentUser, setCurrentUser, updateUser } = context;
-    return { currentUser, setCurrentUser, updateUser };
+    const { logged, currentUser, setCurrentUser, updateUser } = context;
+    return { currentUser, setCurrentUser, updateUser, logged };
 }
