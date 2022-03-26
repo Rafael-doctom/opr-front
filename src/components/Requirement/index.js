@@ -3,11 +3,10 @@ import moment from 'moment';
 
 import './styles.css';
 
-import Modal from '../Modal';
+import ModalRequirements from '../ModalRequirements';
 
 export default function Requirement({requirement}) {
     const showReqModalRef = useRef();
-    const requirementUser = requirement.user;
 
     function renderRequirementStatus() {
         if (requirement.status === "concluded") {
@@ -36,7 +35,7 @@ export default function Requirement({requirement}) {
             <div className="requirement_container" onClick={() => showReqModalRef.current.openModal()}>
                 {renderRequirementStatus()}
 
-                {/* <section className="requirement_user">
+                <section className="requirement_user">
                     <div className="user_image">
                         <img src="/profile.png" alt="user-img" />
                     </div>
@@ -44,7 +43,7 @@ export default function Requirement({requirement}) {
                         <span>{requirement.nome}</span>
                         <span>{requirement.cidade}</span>
                     </div>
-                </section> */}
+                </section>
 
                 <section className="requirement_infos">
                     <strong>{requirement.titulo}</strong>
@@ -58,9 +57,7 @@ export default function Requirement({requirement}) {
                 </section>
 
             </div>
-            <Modal ref={showReqModalRef}>
-                <h1>Visualizar requerimento</h1>    
-            </Modal>
+            <ModalRequirements ref={showReqModalRef} requirement={requirement}/>
         </>
     )
 }
