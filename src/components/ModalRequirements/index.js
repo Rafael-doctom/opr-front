@@ -234,7 +234,7 @@ const ModalRequirements = forwardRef((props, modalRef) => {
             </Box>
             <Box className="carrossel">
               {requirement.media.map((item, id) => (
-                <Box className="box-media">
+                <Box className="box-media" key={id}>
                   <Button onClick={() => openModalViewPhoto(item)} key={id}>
                     <img
                       src={item}
