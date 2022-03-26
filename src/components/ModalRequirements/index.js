@@ -102,8 +102,7 @@ const ModalRequirements = forwardRef((props, modalRef) => {
 
   const handleComment = () => {
     const data = {
-      profile: requirement.user.photo,
-      name: requirement.user.name,
+      name: requirement.name,
       message: comment,
     };
 
@@ -150,37 +149,26 @@ const ModalRequirements = forwardRef((props, modalRef) => {
       <Box className="header-profile">
         {!settings || (
           <Box className="profile">
-            {requirement.user.photo ? (
-              <img
-                src={requirement.user.photo}
-                width={30}
-                height={30}
-                alt="Image"
-              />
-            ) : (
-              <AccountCircleRoundedIcon color="action" />
-            )}
+            <AccountCircleRoundedIcon color="action" />
+
             <Box className="info">
-              <h5>{requirement.user.name}</h5>
-              <small>{requirement.user.location}</small>
+              <h5>{requirement.nome}</h5>
+              <small>{requirement.cidade}</small>
             </Box>
           </Box>
         )}
         <h5>
           <strong>Data do ocorrido: </strong>
           {settings ? (
-            <p>{requirement.user.dateOccurrence}</p>
+            <p>{requirement.data}</p>
           ) : (
             <input
               id="occurrence"
-              value={requirement.user.dateOccurrence}
+              value={requirement.data}
               onChange={(e) =>
                 setRequirement({
                   ...requirement,
-                  profile: {
-                    ...requirement.user,
-                    dateOccurrence: e.target.value,
-                  },
+                  data: e.target.value
                 })
               }
             />
@@ -189,17 +177,12 @@ const ModalRequirements = forwardRef((props, modalRef) => {
       </Box>
 
       <Box className="status">
-        <h4>Requerimento do Usuário {requirement.user.name}</h4>
+        <h4>Requerimento do Usuário {requirement.nome}</h4>
         {!settings || <span>{requirement.status}</span>}
       </Box>
 
-      <small>
-        <strong>Criado em: </strong>
-        {requirement.user.createdIn}
-      </small>
-
       <ul className="tags-view">
-        {requirement.tags.map((item, id) => (
+        {requirement.tags && requirement.tags.map((item, id) => (
           <li key={id}>
             {item}
             {settings ? (
@@ -248,15 +231,15 @@ const ModalRequirements = forwardRef((props, modalRef) => {
           <Box className="midias">
             <Box className="card-newItem">
               <h4>Lista de mídias</h4>
-              {requirement.media.length !== 3 && !settings ? (
+              { requirement.media && requirement.media.length !== 3 && !settings ? (
                 <Button onClick={() => setOpen(true)} className="settings-new">
                   Adicionar Mídias
                 </Button>
               ) : null}
             </Box>
             <Box className="carrossel">
-              {requirement.media.map((item, id) => (
-                <Box className="box-media">
+              {requirement.media && requirement.media.map((item, id) => (
+                <Box className="box-media" key={id}>
                   <Button onClick={() => openModalViewPhoto(item)} key={id}>
                     <img
                       src={item}
@@ -291,7 +274,7 @@ const ModalRequirements = forwardRef((props, modalRef) => {
             </Box>
             <Box id="carrossel">
               <Box className="carrossel">
-                {requirement.legislators.map((item, id) => (
+                {requirement.legislators && requirement.legislators.map((item, id) => (
                   <Box key={id} className="card-legislador">
                     <Box id="card">
                       <h4>{item.name}</h4>
@@ -316,7 +299,7 @@ const ModalRequirements = forwardRef((props, modalRef) => {
           <Box className="right">
             <h4>Comentários</h4>
             <Box className="boxComments">
-              {requirement.comments.map((item, id) => (
+              {requirement.comments && requirement.comments.map((item, id) => (
                 <Box key={id} className="comments">
                   <Box className="profile">
                     {item.user ? (
@@ -386,10 +369,10 @@ const ModalRequirements = forwardRef((props, modalRef) => {
         showPreviews={true}
         showFileNamesInPreview={true}
         dialogTitle={`Insira ${
-          3 - requirement.media.length
+          3 - requirement.media ? requirement.media.length : ""
         } foto(s) no máximo, limite de 3 fotos.`}
         //fileObjects={files}
-        filesLimit={3 - requirement.media.length}
+        filesLimit={3 - requirement.media ? requirement.media.length : ""}
       />
       {settings && (
         <Button onClick={() => makeUpdateRequirement()} className="submit">
@@ -444,7 +427,7 @@ const ModalTags = forwardRef((props, modalRef) => {
           <option value="" selected disabled hidden>
             Escolha a TAG
           </option>
-          {dropdownTags.map((option, id) => (
+          {dropdownTags && dropdownTags.map((option, id) => (
             <option key={id} value={option.value}>
               {option.value}
             </option>
@@ -575,7 +558,7 @@ const ModalLegislator = forwardRef((props, modalRef) => {
           <option value="" selected disabled hidden>
             Escolha o Legislador
           </option>
-          {listLegislator.map((option, id) => (
+          {listLegislator && listLegislator.map((option, id) => (
             <option key={id} value={option.name}>
               {option.name}
             </option>
@@ -597,7 +580,7 @@ const ModalLegislator = forwardRef((props, modalRef) => {
           <option value="" selected disabled hidden>
             Escolha o partido
           </option>
-          {listParties.map((option, id) => (
+          {listParties && listParties.map((option, id) => (
             <option key={id} value={option.name}>
               {option.name}
             </option>
