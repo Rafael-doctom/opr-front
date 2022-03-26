@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/61962950/160220724-1b3b7d5d-b226-4f30-bb46-3fad39e3c55d.png" width="700" />
+</p>
+
 O sistema O Povo Requer foi desenvolvido para o projeto final da disciplina de Engenharia de Software do curso de Ciência da Computação da UFCG
 
 ## O que é o "O Povo Requer"?
