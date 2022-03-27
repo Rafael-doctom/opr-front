@@ -10,10 +10,10 @@ export async function createRequirement(requirementData) {
     })
 }
 
-export async function modifyRequirement(updateData) {
+export async function modifyRequirement(updateData, requirementId) {
   return new Promise(async (resolve, reject) => {
     return apiAuth
-      .put("/requerimento", updateData)
+      .put(`/requerimento/edit/${requirementId}`, updateData)
       .then((response) => {
         if (response.data.requerimentoAlterado) {
           resolve(response.data.requerimentoAlterado);

@@ -25,13 +25,12 @@ export default function Login() {
       };
 
       await login(data).then((response) => {
-        console.log(response)
         setCurrentUser(response);
       });
 
       navigate("/home");
     } catch (err) {
-      console.log(err.data.response.messagem);
+      alert.call("Erro ao logar")
     }
   };
 

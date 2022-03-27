@@ -152,7 +152,7 @@ const initialRequirements = [
 ];
 
 export function RequirementsProvider({ children }) {
-    const [requirements, setRequirements] = useState(initialRequirements);
+    const [requirements, setRequirements] = useState([]);
 
     const saveRequirement = useCallback((newReq) => {
         setRequirements([...requirements, newReq]);

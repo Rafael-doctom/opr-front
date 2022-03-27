@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useState, useRef, forwardRef } from "react";
+import React, { useState, useRef, forwardRef, useEffect } from "react";
 import { Button, Box, TextField } from "@material-ui/core/";
 import {
   AccountCircleRounded as AccountCircleRoundedIcon,
@@ -26,6 +26,14 @@ const ModalRequirements = forwardRef((props, modalRef) => {
   const [support, setSupport] = useState(false);
   const [comment, setComment] = useState("");
   const [viewImage, setViewImage] = useState("");
+  console.log(requirement)
+
+  useEffect(() => {
+    setRequirement({...requirement, 
+      tags: requirement.tags ? JSON.parse(requirement.tags) : [],
+      legisladores: requirement.legisladores ? JSON.parse(requirement.legisladores) : []
+    })
+  }, [])
 
   const { updateRequirement } = useRequirements();
 
@@ -34,7 +42,12 @@ const ModalRequirements = forwardRef((props, modalRef) => {
   const modalViewMedia = useRef();
 
   const makeUpdateRequirement = () => {
-    modifyRequirement(requirement).then((response) => {
+    const modifyData = {...requirement, 
+      tags: requirement.tags ? JSON.stringify(requirement.tags) : "",
+      legisladores: requirement.legisladores ? JSON.stringify(requirement.legisladores) : ""
+    }
+
+    modifyRequirement(modifyData, requirement.id).then((response) => {
       updateRequirement(response);
       modalRef.current.closeModal();
     });
@@ -48,8 +61,10 @@ const ModalRequirements = forwardRef((props, modalRef) => {
     else setRequirement({ ...requirement, likes: requirement.likes - 1 }); // POST -> /unsupport
   };
 
-  const handleSettings = () => {
-    makeUpdateRequirement();
+  const handleSettings = (shouldSave = false) => {
+    if (shouldSave) {
+      makeUpdateRequirement();
+    }
     setSettings(!settings);
   };
 
@@ -126,7 +141,7 @@ const ModalRequirements = forwardRef((props, modalRef) => {
   };
 
   return (
-    <Modal ref={modalRef} additionalClass="box-requirement">
+    <Modal ref={modalRef} additionalClass="box-requirement requirement_show_modal">
       {settings ? (
         <Box className="header-title">
           <h3>Visualização de Requerimento</h3>
@@ -140,7 +155,7 @@ const ModalRequirements = forwardRef((props, modalRef) => {
       ) : (
         <Box className="header-title">
           <h3>Modificação de Requerimento</h3>
-          <Button onClick={() => handleSettings()}>
+          <Button onClick={() => handleSettings(true)}>
             <SaveIcon color="action" />
             Salvar
           </Button>
@@ -178,12 +193,12 @@ const ModalRequirements = forwardRef((props, modalRef) => {
       </Box>
 
       <Box className="status">
-        <h4>Requerimento do Usuário {requirement.nome}</h4>
-        {!settings || <span>{requirement.status}</span>}
+        <h4>{requirement.titulo}</h4>
+        {!settings || <span>{requirement.status || "Em avaliação"}</span>}
       </Box>
 
       <ul className="tags-view">
-        {requirement.tags && requirement.tags.map((item, id) => (
+        {typeof requirement.tags !== 'string' && requirement.tags.map((item, id) => (
           <li key={id}>
             {item}
             {settings ? (
@@ -203,11 +218,11 @@ const ModalRequirements = forwardRef((props, modalRef) => {
       </ul>
 
       {settings ? (
-        <p className="description">{requirement.description}</p>
+        <p className="description">{requirement.descricao}</p>
       ) : (
         <textarea
           className="inputText"
-          value={requirement.description}
+          value={requirement.descricao}
           onChange={(e) =>
             setRequirement({ ...requirement, description: e.target.value })
           }
@@ -275,11 +290,11 @@ const ModalRequirements = forwardRef((props, modalRef) => {
             </Box>
             <Box id="carrossel">
               <Box className="carrossel">
-                {requirement.legislators && requirement.legislators.map((item, id) => (
+                {typeof requirement.legisladores !== 'string' && requirement.legisladores.map((item, id) => (
                   <Box key={id} className="card-legislador">
                     <Box id="card">
-                      <h4>{item.name}</h4>
-                      <span>{item.party}</span>
+                      <h4>{item.legislador}</h4>
+                      <span>{item.partido}</span>
                     </Box>
                     {settings || (
                       <Button

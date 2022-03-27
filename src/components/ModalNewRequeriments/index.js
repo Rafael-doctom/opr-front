@@ -67,8 +67,8 @@ const ModalNewRequeriments = forwardRef((props, modalRef) => {
       localidade: location,
       descricao: description,
       data: moment(date).format("DD/MM/YYYY"),
-      tags: listTags,
-      legisladores: listLegislador,
+      tags: JSON.stringify(listTags),
+      legisladores: JSON.stringify(listLegislador),
       status: "analisys"
     }
 
