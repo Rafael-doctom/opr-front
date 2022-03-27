@@ -49,6 +49,7 @@ const ModalRequirements = forwardRef((props, modalRef) => {
   };
 
   const handleSettings = () => {
+    makeUpdateRequirement();
     setSettings(!settings);
   };
 
@@ -374,11 +375,6 @@ const ModalRequirements = forwardRef((props, modalRef) => {
         //fileObjects={files}
         filesLimit={3 - requirement.media ? requirement.media.length : ""}
       />
-      {settings && (
-        <Button onClick={() => makeUpdateRequirement()} className="submit">
-          Modificar
-        </Button>
-      )}
     </Modal>
   );
 });
