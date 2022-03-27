@@ -74,7 +74,6 @@ const ModalNewRequeriments = forwardRef((props, modalRef) => {
 
     createRequirement(requirementData).then((response) => {
       if (response) {
-        requirementData['id'] = response;
         saveRequirement(requirementData);
 
         modalRef.current.closeModal();
@@ -217,7 +216,7 @@ const ModalNewRequeriments = forwardRef((props, modalRef) => {
             {listLegislador &&
               listLegislador.map((item, id) => {
                 return (
-                  <Box className="card-tag">
+                  <Box className="card-tag" key={id}>
                     <Paper key={id} className="card">
                       <span>
                         <strong>{item.legislador}</strong>

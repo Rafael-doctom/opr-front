@@ -84,7 +84,7 @@ export default function LegislatorHomePage() {
                 <section  className="requirement_legislator_content"  onClick={() => modalRef.current.openModal()}>
                     
                     <div className="header_title">
-                        <p>Reivindicação em destaque</p>
+                        <strong>Reivindicação em destaque</strong>
                         <Box className="status">                           
                             {renderRequirementStatus()}
                         </Box>

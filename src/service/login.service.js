@@ -1,20 +1,51 @@
-import { api } from "./api";
-import { encryptValue } from "../utils/cryptography";
+import { api, apiAuth } from "./api";
 
-export async function login(loginData, shouldEncrypt = true) {
-    if (shouldEncrypt) {
-        loginData.senha = encryptValue(loginData.senha);
-        loginData.cpf = encryptValue(loginData.cpf);
-    }
+import { encryptValue, decryptJWT } from "../utils/cryptography";
+
+export async function login(loginData, shouldGetUser = true) {
 
     return api.post("/login", loginData).then((response) => {
         return new Promise((resolve, reject) => {
             if (response.data) {
                 localStorage.setItem("@opr/token", response.data);
-                resolve();
+                const jwtDecrypted = decryptJWT(response.data);
+
+                if (shouldGetUser) {
+                    if (jwtDecrypted.tipo_de_usuario === "cidadao") {
+                        getCitizen(jwtDecrypted.cpf).then((response) => {
+                            resolve(response[0]);
+                        })
+                    } else {
+                        getLegislator(jwtDecrypted.cpf).then((response) => {
+                            resolve(response[0]);
+                        })
+                    }
+                } else {
+                    resolve();
+                }
             } else {
                 reject();
             }
         })
+    });
+}
+
+async function getCitizen(citizenCpf) {
+    return apiAuth.post("/search/cidadao", {
+        cpf: citizenCpf
+    }).then((response) => {
+        if (response.data) {
+            return(response.data)
+        }
+    });
+}
+
+async function getLegislator(legislatorCpf) {
+    return apiAuth.post("/search/legislador", {
+        cpf: legislatorCpf
+    }).then((response) => {
+        if (response.data) {
+            return(response.data)
+        }
     });
 }

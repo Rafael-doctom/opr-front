@@ -11,7 +11,7 @@ export function validateCPF(strCPF) {
     let Resto;
     Soma = 0;
 
-    if (strCPF.length != 11) return false;
+    if (strCPF.length !== 11) return false;
     if (strCPF === "00000000000") return false;
 
     for (let i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);

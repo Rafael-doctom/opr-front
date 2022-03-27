@@ -131,10 +131,6 @@ export default function Menu() {
       </AppBar>
       <Drawer
         variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
-        })}
         classes={{
           paper: clsx({
             [classes.drawerOpen]: open,
@@ -189,7 +185,7 @@ export default function Menu() {
                   <ListItemText primary="Perguntas Frequentes" />
                 </ListItem>
               </Link>
-              <Link to="/userManual">
+              <Link to="/userGuide">
                 <ListItem button key="Manual de Uso">
                   <ListItemIcon>
                     <LibraryBooksIcon />
