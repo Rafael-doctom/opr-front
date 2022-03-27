@@ -74,7 +74,6 @@ const ModalNewRequeriments = forwardRef((props, modalRef) => {
 
     createRequirement(requirementData).then((response) => {
       if (response) {
-        requirementData['id'] = response;
         saveRequirement(requirementData);
 
         modalRef.current.closeModal();
