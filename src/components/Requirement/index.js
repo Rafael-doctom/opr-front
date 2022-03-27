@@ -3,7 +3,7 @@ import moment from 'moment';
 
 import './styles.css';
 
-import Modal from '../Modal';
+import ModalRequirements from '../ModalRequirements';
 
 export default function Requirement({requirement}) {
     const showReqModalRef = useRef();
@@ -57,7 +57,7 @@ export default function Requirement({requirement}) {
                 </section>
 
             </div>
-            <Modal ref={showReqModalRef} requirement={requirement}/>
+            <ModalRequirements ref={showReqModalRef} requirement={requirement}/>
         </>
     )
 }
