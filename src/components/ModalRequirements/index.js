@@ -28,6 +28,12 @@ const ModalRequirements = forwardRef((props, modalRef) => {
   const [viewImage, setViewImage] = useState("");
   const [requirementLikes, setRequirementLikes] = useState(0);
   const [requirementComments, setRequirementComments] = useState([]);
+  const [newStatus, setNewStatus] = useState(false);
+  const statusOptions = [
+    { label: 'Em avaliação', value: 'analisys' },
+    { label: 'Não aceito', value: 'not_accepted' },
+    { label: 'Concluído', value: 'concluded' },
+  ];
 
   useEffect(() => {
     function fetchAndParseInfos() {
@@ -64,11 +70,13 @@ const ModalRequirements = forwardRef((props, modalRef) => {
   const makeUpdateRequirement = () => {
     const modifyData = {...requirement, 
       tags: requirement.tags ? JSON.stringify(requirement.tags) : "",
-      legisladores: requirement.legisladores ? JSON.stringify(requirement.legisladores) : ""
+      legisladores: requirement.legisladores ? JSON.stringify(requirement.legisladores) : "",
+      status: newStatus
     }
 
     modifyRequirement(modifyData, requirement.id).then((response) => {
       updateRequirement(response);
+      props.closingModal();
       modalRef.current.closeModal();
     });
   };
@@ -161,7 +169,7 @@ const ModalRequirements = forwardRef((props, modalRef) => {
   };
 
   return (
-    <Modal ref={modalRef} additionalClass="box-requirement requirement_show_modal">
+    <Modal ref={modalRef} closingModal={props.closingModal} additionalClass="box-requirement requirement_show_modal">
       {settings ? (
         <Box className="header-title">
           <h3>Visualização de Requerimento</h3>
@@ -212,9 +220,33 @@ const ModalRequirements = forwardRef((props, modalRef) => {
         </h5>
       </Box>
 
-      <Box className="status">
+      <Box className={`status_requirement ${!settings ? "changing" : ""}`}>
         <h4>{requirement.titulo}</h4>
-        {!settings || <span>{getRequirementStatus()}</span>}
+          {!settings ? 
+            <TextField
+            id="outlined-select-currency-native"
+            select
+            value={newStatus}
+            onChange={(e) => setNewStatus(e.target.value)}
+            SelectProps={{
+              native: true,
+            }}
+            helperText="Por favor selecione o status"
+            variant="outlined"
+            className="status_change"
+            required
+          >
+            <option value="" selected disabled hidden>
+              Escolha o status
+            </option>
+            {statusOptions && statusOptions.map((option, id) => (
+              <option key={id} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </TextField>
+          : 
+          <span className={requirement.status}>{getRequirementStatus()}</span>}
       </Box>
 
       <ul className="tags-view">

@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ThumbUpOutlined, CommentOutlined } from "@material-ui/icons";
 import { useNavigate } from "react-router-dom";
 
 import ProjectLogo from "../../assets/ProjectLogo.png"
+import { getHypedRequirement } from '../../service/requirements.service';
 import './styles.css';
 
 export default function LandingPage() {
-    const requirements = [0, 1, 2, 3];
+    const [requirements, setRequirements] = useState([]);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        getHypedRequirement().then((response) => {
+
+        })
+    }, [])
 
     function redirectToLogin() {
         navigate("/login");
@@ -35,8 +42,8 @@ export default function LandingPage() {
             </section>
 
             <section className="requirements_container">
-                {requirements.map((requirement) => (
-                    <div className="requirement" key={requirement}>
+                {requirements.map((requirement, index) => (
+                    <div className="requirement" key={index}>
                         <section className="user_section">
                             <div className="user_image">
                                 <img src="/profile.png" alt="user-image" />

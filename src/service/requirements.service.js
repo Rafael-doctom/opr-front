@@ -1,4 +1,4 @@
-import { apiAuth } from "./api";
+import { api, apiAuth } from "./api";
 
 export async function createRequirement(requirementData) {
     return new Promise((resolve, reject) => {
@@ -29,8 +29,7 @@ export async function modifyRequirement(updateData, requirementId) {
 
 export async function getHypedRequirement() {
   return new Promise((resolve, reject) => {
-    apiAuth
-      .get("/emalta")
+    api.get("/emalta")
       .then((response) => {
         resolve(response.data);
       })
