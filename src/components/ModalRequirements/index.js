@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useState, useRef, forwardRef } from "react";
+import React, { useState, useRef, forwardRef, useEffect } from "react";
 import { Button, Box, TextField } from "@material-ui/core/";
 import {
   AccountCircleRounded as AccountCircleRoundedIcon,
@@ -16,6 +16,8 @@ import Modal from "../Modal";
 
 import "./styles.css";
 import "./response.css";
+import { modifyRequirement, getLikeAndComments } from "../../service/requirements.service";
+import { useRequirements } from "../../contexts/requirementsContext";
 
 const ModalRequirements = forwardRef((props, modalRef) => {
   const [open, setOpen] = useState(false);
@@ -24,19 +26,65 @@ const ModalRequirements = forwardRef((props, modalRef) => {
   const [support, setSupport] = useState(false);
   const [comment, setComment] = useState("");
   const [viewImage, setViewImage] = useState("");
+  const [requirementLikes, setRequirementLikes] = useState(0);
+  const [requirementComments, setRequirementComments] = useState([]);
+
+  useEffect(() => {
+    function fetchAndParseInfos() {
+      setRequirement({...requirement, 
+        tags: requirement.tags ? JSON.parse(requirement.tags) : [],
+        legisladores: requirement.legisladores ? JSON.parse(requirement.legisladores) : []
+      })
+
+      getLikeAndComments(requirement.id).then(({likes, comments}) => {
+        setRequirementLikes(likes);
+        setRequirementComments(comments);
+      })
+    }
+
+    return fetchAndParseInfos();
+  }, [])
+
+  const { updateRequirement } = useRequirements();
 
   const modalRefTags = useRef();
   const modalRefLegislator = useRef();
   const modalViewMedia = useRef();
 
+  const getRequirementStatus = () => {
+    if (requirement.status === "concluded") {
+      return "Concluído";
+    } else if (requirement.status === "not_accepted") {
+      return "Não aceito";
+    } else {
+      return "Em avaliação";
+    }
+  }
+
+  const makeUpdateRequirement = () => {
+    const modifyData = {...requirement, 
+      tags: requirement.tags ? JSON.stringify(requirement.tags) : "",
+      legisladores: requirement.legisladores ? JSON.stringify(requirement.legisladores) : ""
+    }
+
+    modifyRequirement(modifyData, requirement.id).then((response) => {
+      updateRequirement(response);
+      modalRef.current.closeModal();
+    });
+  };
+
   const handleSupport = () => {
     setSupport(!support);
-    if (!support) setRequirement({ ...requirement, likes: requirement.likes + 1 });
+    if (!support)
+      setRequirement({ ...requirement, likes: requirement.likes + 1 });
     // POST -> /support
     else setRequirement({ ...requirement, likes: requirement.likes - 1 }); // POST -> /unsupport
   };
 
-  const handleSettings = () => {
+  const handleSettings = (shouldSave = false) => {
+    if (shouldSave) {
+      makeUpdateRequirement();
+    }
     setSettings(!settings);
   };
 
@@ -90,8 +138,7 @@ const ModalRequirements = forwardRef((props, modalRef) => {
 
   const handleComment = () => {
     const data = {
-      profile: requirement.user.photo,
-      name: requirement.user.name,
+      name: requirement.name,
       message: comment,
     };
 
@@ -114,7 +161,7 @@ const ModalRequirements = forwardRef((props, modalRef) => {
   };
 
   return (
-    <Modal ref={modalRef} additionalClass="box-requirement">
+    <Modal ref={modalRef} additionalClass="box-requirement requirement_show_modal">
       {settings ? (
         <Box className="header-title">
           <h3>Visualização de Requerimento</h3>
@@ -128,7 +175,7 @@ const ModalRequirements = forwardRef((props, modalRef) => {
       ) : (
         <Box className="header-title">
           <h3>Modificação de Requerimento</h3>
-          <Button onClick={() => handleSettings()}>
+          <Button onClick={() => handleSettings(true)}>
             <SaveIcon color="action" />
             Salvar
           </Button>
@@ -138,48 +185,40 @@ const ModalRequirements = forwardRef((props, modalRef) => {
       <Box className="header-profile">
         {!settings || (
           <Box className="profile">
-            {requirement.user.photo ? (
-              <img
-                src={requirement.user.photo}
-                width={30}
-                height={30}
-                alt="Image"
-              />
-            ) : (
-              <AccountCircleRoundedIcon color="action" />
-            )}
+            <AccountCircleRoundedIcon color="action" />
+
             <Box className="info">
-              <h5>{requirement.user.name}</h5>
-              <small>{requirement.user.location}</small>
+              <h5>{requirement.nome}</h5>
+              <small>{requirement.cidade}</small>
             </Box>
           </Box>
         )}
         <h5>
           <strong>Data do ocorrido: </strong>
           {settings ? (
-            <p>{requirement.user.dateOccurrence}</p>
+            <p>{requirement.data}</p>
           ) : (
             <input
               id="occurrence"
-              value={requirement.user.dateOccurrence}
-              onChange={(e) => setRequirement({...requirement, profile: {...requirement.user, dateOccurrence: e.target.value}})}
+              value={requirement.data}
+              onChange={(e) =>
+                setRequirement({
+                  ...requirement,
+                  data: e.target.value
+                })
+              }
             />
           )}
         </h5>
       </Box>
 
       <Box className="status">
-        <h4>Requerimento do Usuário {requirement.user.name}</h4>
-        {!settings || <span>{requirement.status}</span>}
+        <h4>{requirement.titulo}</h4>
+        {!settings || <span>{getRequirementStatus()}</span>}
       </Box>
 
-      <small>
-        <strong>Criado em: </strong>
-        {requirement.user.createdIn}
-      </small>
-
-      <ul className={settings ? "tags-view" : "tags-view settingsDelete"}>
-        {requirement.tags.map((item, id) => (
+      <ul className="tags-view">
+        {typeof requirement.tags !== 'string' && requirement.tags.map((item, id) => (
           <li key={id}>
             {item}
             {settings ? (
@@ -199,12 +238,14 @@ const ModalRequirements = forwardRef((props, modalRef) => {
       </ul>
 
       {settings ? (
-        <p className="description">{requirement.description}</p>
+        <p className="description">{requirement.descricao}</p>
       ) : (
         <textarea
           className="inputText"
-          value={requirement.description}
-          onChange={(e) => setRequirement({...requirement, description: e.target.value})}
+          value={requirement.descricao}
+          onChange={(e) =>
+            setRequirement({ ...requirement, description: e.target.value })
+          }
         />
       )}
 
@@ -217,7 +258,7 @@ const ModalRequirements = forwardRef((props, modalRef) => {
               <ThumbUpAltOutlinedIcon color="action" />
             )}
           </Button>
-          <span>{requirement.likes} apoios</span>
+          <span>{requirementLikes} apoios</span>
         </Box>
       )}
 
@@ -226,14 +267,14 @@ const ModalRequirements = forwardRef((props, modalRef) => {
           <Box className="midias">
             <Box className="card-newItem">
               <h4>Lista de mídias</h4>
-              {requirement.media.length !== 3 && !settings ? (
+              { requirement.media && requirement.media.length !== 3 && !settings ? (
                 <Button onClick={() => setOpen(true)} className="settings-new">
                   Adicionar Mídias
                 </Button>
               ) : null}
             </Box>
             <Box className="carrossel">
-              {requirement.media.map((item, id) => (
+              {requirement.media && requirement.media.map((item, id) => (
                 <Box className="box-media" key={id}>
                   <Button onClick={() => openModalViewPhoto(item)} key={id}>
                     <img
@@ -244,7 +285,10 @@ const ModalRequirements = forwardRef((props, modalRef) => {
                     />
                   </Button>
                   {!settings && (
-                    <Button onClick={() => deleteMedia(id)} className="settings-delete">
+                    <Button
+                      onClick={() => deleteMedia(id)}
+                      className="settings-delete"
+                    >
                       <DeleteOutlineIcon />
                     </Button>
                   )}
@@ -266,11 +310,11 @@ const ModalRequirements = forwardRef((props, modalRef) => {
             </Box>
             <Box id="carrossel">
               <Box className="carrossel">
-                {requirement.legislators.map((item, id) => (
+                {typeof requirement.legisladores !== 'string' && requirement.legisladores.map((item, id) => (
                   <Box key={id} className="card-legislador">
                     <Box id="card">
-                      <h4>{item.name}</h4>
-                      <span>{item.party}</span>
+                      <h4>{item.legislador}</h4>
+                      <span>{item.partido}</span>
                     </Box>
                     {settings || (
                       <Button
@@ -291,7 +335,7 @@ const ModalRequirements = forwardRef((props, modalRef) => {
           <Box className="right">
             <h4>Comentários</h4>
             <Box className="boxComments">
-              {requirement.comments.map((item, id) => (
+              {requirementComments && requirementComments.map((item, id) => (
                 <Box key={id} className="comments">
                   <Box className="profile">
                     {item.user ? (
@@ -304,9 +348,9 @@ const ModalRequirements = forwardRef((props, modalRef) => {
                     ) : (
                       <AccountCircleRoundedIcon color="action" />
                     )}
-                    <small>{item.name}</small>
+                    <small>{item.nome}</small>
                   </Box>
-                  <p>{item.message}</p>
+                  <p>{item.comentario}</p>
                 </Box>
               ))}
               <span id="downScroll" />
@@ -361,10 +405,10 @@ const ModalRequirements = forwardRef((props, modalRef) => {
         showPreviews={true}
         showFileNamesInPreview={true}
         dialogTitle={`Insira ${
-          3 - requirement.media.length
+          3 - requirement.media ? requirement.media.length : ""
         } foto(s) no máximo, limite de 3 fotos.`}
         //fileObjects={files}
-        filesLimit={3 - requirement.media.length}
+        filesLimit={3 - requirement.media ? requirement.media.length : ""}
       />
     </Modal>
   );
@@ -414,7 +458,7 @@ const ModalTags = forwardRef((props, modalRef) => {
           <option value="" selected disabled hidden>
             Escolha a TAG
           </option>
-          {dropdownTags.map((option, id) => (
+          {dropdownTags && dropdownTags.map((option, id) => (
             <option key={id} value={option.value}>
               {option.value}
             </option>
@@ -545,7 +589,7 @@ const ModalLegislator = forwardRef((props, modalRef) => {
           <option value="" selected disabled hidden>
             Escolha o Legislador
           </option>
-          {listLegislator.map((option, id) => (
+          {listLegislator && listLegislator.map((option, id) => (
             <option key={id} value={option.name}>
               {option.name}
             </option>
@@ -567,7 +611,7 @@ const ModalLegislator = forwardRef((props, modalRef) => {
           <option value="" selected disabled hidden>
             Escolha o partido
           </option>
-          {listParties.map((option, id) => (
+          {listParties && listParties.map((option, id) => (
             <option key={id} value={option.name}>
               {option.name}
             </option>

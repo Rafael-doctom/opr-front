@@ -2,38 +2,59 @@ import { apiAuth } from "./api";
 
 export async function createRequirement(requirementData) {
     return new Promise((resolve, reject) => {
-        apiAuth.post("/requerimento", {
-            requirementData
-        }).then((response) => {
-            resolve(response.data);
+        apiAuth.post("/requerimento/novo", requirementData).then((response) => {
+            resolve(response.data.requerimentoCriado);
         }).catch(() => {
             reject();
         })
     })
+}
+
+export async function modifyRequirement(updateData, requirementId) {
+  return new Promise(async (resolve, reject) => {
+    return apiAuth
+      .put(`/requerimento/edit/${requirementId}`, updateData)
+      .then((response) => {
+        if (response.data.requerimentoAlterado) {
+          resolve(response.data.requerimentoAlterado);
+        } else {
+          reject();
+        }
+      })
+      .catch(() => {
+        reject();
+      });
+  });
 }
 
 export async function getHypedRequirement() {
-    return new Promise((resolve, reject) => {
-        apiAuth.get("/emalta").then((response) => {
-            resolve(response.data);
-        }).catch(() => {
-            reject();
-        })
-    })
+  return new Promise((resolve, reject) => {
+    apiAuth
+      .get("/emalta")
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch(() => {
+        reject();
+      });
+  });
 }
 
 export async function getRequirement(requirementId) {
-    return new Promise((resolve, reject) => {
-        apiAuth.get("/requerimento", { 
-            params: {
-                id: requirementId
-            }
-        }).then((response) => {
-            resolve(response.data);
-        }).catch(() => {
-            reject();
-        })
-    })
+  return new Promise((resolve, reject) => {
+    apiAuth
+      .get("/requerimento", {
+        params: {
+          id: requirementId,
+        },
+      })
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch(() => {
+        reject();
+      });
+  });
 }
 
 export async function listAllRequirements(queryParams) {
@@ -47,3 +68,46 @@ export async function listAllRequirements(queryParams) {
         })
     })
 }
+
+export async function getLikeAndComments(requirementId) {
+    let likes = 0;
+    let comments = [];
+    
+    await apiAuth.post("/curtidas_por_requerimento", {
+        idRequerimento: requirementId
+    }).then((response) => {
+        if (!response.data.message === "Este requerimento ainda não recebeu curtidas.") {
+            likes = response.data.total_curtidas;
+        } 
+    }).catch(() => {
+      likes = 0
+    })
+
+    await apiAuth.post("search/comentario", {
+        id: requirementId
+    }).then((response) => {
+        if (!response.data.message) {
+          comments = response.data
+        }
+    }).catch(() => {
+      comments = []
+    })
+
+    return {likes, comments};
+}
+
+export async function changeRequirementStatus(updateData, requirementId) {
+    return new Promise((resolve, reject) => {
+        apiAuth.put(`/requerimento/edit/${requirementId}`, {
+            updateData
+        }).then((response) => {
+            if (response.data.requerimentoAtualizado) {
+                resolve(response.data.requerimentoAtualizado)
+            } else {
+                reject();
+            }
+        }).catch(() => {
+            reject();
+        })
+    })
+} 

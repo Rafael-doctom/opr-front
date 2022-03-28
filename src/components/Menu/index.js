@@ -131,10 +131,6 @@ export default function Menu() {
       </AppBar>
       <Drawer
         variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
-        })}
         classes={{
           paper: clsx({
             [classes.drawerOpen]: open,

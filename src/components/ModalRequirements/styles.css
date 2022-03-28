@@ -75,17 +75,19 @@
   font-size: 14px;
 }
 
-.status {
+.requirement_show_modal .status {
   display: flex;
   align-items: center;
-  gap: 12px;
 }
 
-.status h4 {
+.requirement_show_modal .status h4 {
   color: var(--blue);
+  font-weight: 600;
+  margin-bottom: 0px !important;
+  width: auto !important
 }
 
-.status span {
+.requirement_show_modal .status span {
   font-size: 12px;
   padding: 4px 18px;
   border-radius: 20px;
@@ -114,11 +116,11 @@
   text-align: center;
 }
 
-.description {
-  font-size: 16px;
-  color: var(--infos);
-  margin: 0 8px 8px 0;
+.requirement_show_modal .description {
+  font-size: 16px !important;
+  color: var(--infos) !important;
   text-align: justify;
+  margin: 0 !important;
 }
 
 .inputText {
@@ -131,6 +133,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  margin-left: 12px;
 }
 
 .box-support button {
@@ -142,10 +145,12 @@
 
 .box-support button svg {
   color: var(--descriptions);
+  width: 16px;
+  height: 16px;
 }
 
 .box-support span {
-  font-size: 16px;
+  font-size: 14px;
   color: var(--descriptions);
 }
 
@@ -203,7 +208,7 @@
   width: fit-content;
 }
 
-.card-legislador {
+.requirement_show_modal .card-legislador {
   width: 160px;
   display: flex;
   justify-content: space-between;
@@ -211,6 +216,7 @@
   padding: 8px;
   border-radius: 12px;
   background: var(--background);
+  margin: 0 !important;
 }
 
 .card-legislador #card {
@@ -225,7 +231,8 @@
 .right .boxComments {
   display: flex;
   flex-direction: column;
-  height: 220px;
+  max-height: 220px;
+  height: auto;
   overflow-y: auto;
   gap: 10px;
   padding: 8px;
@@ -247,6 +254,11 @@
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+.requirement_show_modal .header-profile .profile svg {
+  width: 45px !important;
+  height: 45px !important;
 }
 
 .profile img {

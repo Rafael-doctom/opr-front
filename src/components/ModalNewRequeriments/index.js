@@ -67,14 +67,13 @@ const ModalNewRequeriments = forwardRef((props, modalRef) => {
       localidade: location,
       descricao: description,
       data: moment(date).format("DD/MM/YYYY"),
-      tags: listTags,
-      legisladores: listLegislador,
+      tags: JSON.stringify(listTags),
+      legisladores: JSON.stringify(listLegislador),
       status: "analisys"
     }
 
     createRequirement(requirementData).then((response) => {
       if (response) {
-        requirementData['id'] = response;
         saveRequirement(requirementData);
 
         modalRef.current.closeModal();

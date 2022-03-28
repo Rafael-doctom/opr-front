@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import moment from 'moment';
 
 import './styles.css';
@@ -6,7 +6,14 @@ import './styles.css';
 import ModalRequirements from '../ModalRequirements';
 
 export default function Requirement({requirement}) {
+    const [shouldOpenModal, setShouldOpenModal] = useState(false);
     const showReqModalRef = useRef();
+
+    useEffect(() => {
+        if (shouldOpenModal) {
+            showReqModalRef.current.openModal();
+        }
+    }, [shouldOpenModal])
 
     function renderRequirementStatus() {
         if (requirement.status === "concluded") {
@@ -32,7 +39,7 @@ export default function Requirement({requirement}) {
 
     return (
         <>
-            <div className="requirement_container" onClick={() => showReqModalRef.current.openModal()}>
+            <div className="requirement_container" onClick={() => setShouldOpenModal(true)}>
                 {renderRequirementStatus()}
 
                 <section className="requirement_user">
@@ -57,7 +64,10 @@ export default function Requirement({requirement}) {
                 </section>
 
             </div>
-            <ModalRequirements ref={showReqModalRef} requirement={requirement}/>
+
+            {shouldOpenModal && 
+                <ModalRequirements ref={showReqModalRef} requirement={requirement}/>
+            }
         </>
     )
 }
