@@ -348,7 +348,7 @@ const ModalRequirements = forwardRef((props, modalRef) => {
                     ) : (
                       <AccountCircleRoundedIcon color="action" />
                     )}
-                    <small>{item.cpf_usuario}</small>
+                    <small>{item.nome}</small>
                   </Box>
                   <p>{item.comentario}</p>
                 </Box>
