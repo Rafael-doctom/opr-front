@@ -16,7 +16,7 @@ import Modal from "../Modal";
 
 import "./styles.css";
 import "./response.css";
-import { modifyRequirement } from "../../service/requirements.service";
+import { modifyRequirement, getLikeAndComments } from "../../service/requirements.service";
 import { useRequirements } from "../../contexts/requirementsContext";
 
 const ModalRequirements = forwardRef((props, modalRef) => {
@@ -26,13 +26,23 @@ const ModalRequirements = forwardRef((props, modalRef) => {
   const [support, setSupport] = useState(false);
   const [comment, setComment] = useState("");
   const [viewImage, setViewImage] = useState("");
-  console.log(requirement)
+  const [requirementLikes, setRequirementLikes] = useState(0);
+  const [requirementComments, setRequirementComments] = useState([]);
 
   useEffect(() => {
-    setRequirement({...requirement, 
-      tags: requirement.tags ? JSON.parse(requirement.tags) : [],
-      legisladores: requirement.legisladores ? JSON.parse(requirement.legisladores) : []
-    })
+    function fetchAndParseInfos() {
+      setRequirement({...requirement, 
+        tags: requirement.tags ? JSON.parse(requirement.tags) : [],
+        legisladores: requirement.legisladores ? JSON.parse(requirement.legisladores) : []
+      })
+
+      getLikeAndComments(requirement.id).then(({likes, comments}) => {
+        setRequirementLikes(likes);
+        setRequirementComments(comments);
+      })
+    }
+
+    return fetchAndParseInfos();
   }, [])
 
   const { updateRequirement } = useRequirements();
@@ -40,6 +50,16 @@ const ModalRequirements = forwardRef((props, modalRef) => {
   const modalRefTags = useRef();
   const modalRefLegislator = useRef();
   const modalViewMedia = useRef();
+
+  const getRequirementStatus = () => {
+    if (requirement.status === "concluded") {
+      return "Concluído";
+    } else if (requirement.status === "not_accepted") {
+      return "Não aceito";
+    } else {
+      return "Em avaliação";
+    }
+  }
 
   const makeUpdateRequirement = () => {
     const modifyData = {...requirement, 
@@ -194,7 +214,7 @@ const ModalRequirements = forwardRef((props, modalRef) => {
 
       <Box className="status">
         <h4>{requirement.titulo}</h4>
-        {!settings || <span>{requirement.status || "Em avaliação"}</span>}
+        {!settings || <span>{getRequirementStatus()}</span>}
       </Box>
 
       <ul className="tags-view">
@@ -238,7 +258,7 @@ const ModalRequirements = forwardRef((props, modalRef) => {
               <ThumbUpAltOutlinedIcon color="action" />
             )}
           </Button>
-          <span>{requirement.likes} apoios</span>
+          <span>{requirementLikes} apoios</span>
         </Box>
       )}
 
@@ -315,7 +335,7 @@ const ModalRequirements = forwardRef((props, modalRef) => {
           <Box className="right">
             <h4>Comentários</h4>
             <Box className="boxComments">
-              {requirement.comments && requirement.comments.map((item, id) => (
+              {requirementComments && requirementComments.map((item, id) => (
                 <Box key={id} className="comments">
                   <Box className="profile">
                     {item.user ? (
@@ -328,9 +348,9 @@ const ModalRequirements = forwardRef((props, modalRef) => {
                     ) : (
                       <AccountCircleRoundedIcon color="action" />
                     )}
-                    <small>{item.name}</small>
+                    <small>{item.cpf_usuario}</small>
                   </Box>
-                  <p>{item.message}</p>
+                  <p>{item.comentario}</p>
                 </Box>
               ))}
               <span id="downScroll" />

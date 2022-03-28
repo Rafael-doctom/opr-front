@@ -73,20 +73,24 @@ export async function getLikeAndComments(requirementId) {
     let likes = 0;
     let comments = [];
     
-    await apiAuth.get("/curtidas_por_requerimento", {
+    await apiAuth.post("/curtidas_por_requerimento", {
         idRequerimento: requirementId
     }).then((response) => {
         if (!response.data.message === "Este requerimento ainda não recebeu curtidas.") {
             likes = response.data.total_curtidas;
         } 
+    }).catch(() => {
+      likes = 0
     })
 
-    await apiAuth.get("search/comentario", {
+    await apiAuth.post("search/comentario", {
         id: requirementId
     }).then((response) => {
-        if (response.data.comentarios) {
-            comments = response.data
+        if (!response.data.message) {
+          comments = response.data
         }
+    }).catch(() => {
+      comments = []
     })
 
     return {likes, comments};
