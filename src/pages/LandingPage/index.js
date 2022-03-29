@@ -13,7 +13,8 @@ export default function LandingPage() {
 
     useEffect(() => {
         getHypedRequirement().then((response) => {
-
+            console.log(response)
+            setRequirements(response)
         })
     }, [])
 
@@ -49,25 +50,25 @@ export default function LandingPage() {
                                 <img src="/profile.png" alt="user-image" />
                             </div>
                             <div className="user_infos">
-                                <span>Marcos Antônio</span>
-                                <span>Campina Grande - PB</span>
+                                <span>{requirement.nome}</span>
+                                <span>{requirement.cidade}</span>
                             </div>
                         </section>
 
                         <section className="requirement_infos">
-                            <span>Título descritivo do requerimento</span>
-                            <p>Descrição do Requerimento feito na busca de solucionar um problema existente dentro da comunidade!</p>
+                            <span>{requirement.titulo}</span>
+                            <p>{requirement.descricao}</p>
                         </section>
 
                         <section className="requirement_actions">
                             <div className="support_requirement">
-                                <ThumbUpOutlined />
-                                <span>235 Apoios</span>
+                                <ThumbUpOutlined style={{ color: "#666666" }}/>
+                                <span>{requirement.curtidas} Apoios</span>
                             </div>
 
                             <div className="support_requirement">
-                                <CommentOutlined />
-                                <span>100 Comentários</span>
+                                <CommentOutlined style={{ color: "#666666" }}/>
+                                <span>{requirement.comentarios} Comentários</span>
                             </div>
                         </section>
                     </div>
