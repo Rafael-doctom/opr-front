@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import './global.css';
-
+import AppProvider from "./contexts";
 import AppRoutes from './routes';
 
 function App() {
@@ -10,7 +10,9 @@ function App() {
   }, [])
 
   return (
-    <AppRoutes />
+    <AppProvider>
+      <AppRoutes />
+    </AppProvider>
   );
 }
 

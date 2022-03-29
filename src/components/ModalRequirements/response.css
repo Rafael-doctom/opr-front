@@ -1,0 +1,55 @@
+@media(max-width: 1000px){
+  .box-info {
+    flex-direction: column;
+  }
+}
+
+@media(max-width: 745px){
+  .box-requirement {
+    width: 96vw;
+    height: 92vh;
+  }
+
+  .carrossel {
+    overflow-x: auto;
+  }
+
+  .right .boxComments {
+    height: 260px;
+  }
+}
+
+@media(max-width: 610px){
+  .box-requirement {
+    padding: 15px;
+  }
+}
+
+@media(max-width: 470px){
+  .box-requirement {
+    padding: 22px 14px !important;
+  }
+  
+  .header-profile {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .status {
+    flex-direction: column-reverse;
+  }
+
+  .status h4 {
+    text-align: center;
+  }
+
+  .box > small {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0;
+  }
+
+  .header-title {
+    flex-direction: column;
+  }
+}
